@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  height: 100%;
+  line-height: 1.2;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  position: absolute;
+  top: 50%;
+  z-index: 11;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.swiper-button-next {
+  right: 0;
+}
+
+.swiper-button-next::after {
+  content: ">";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: white;
+  background: rgba(0, 0, 0, 0.189);
+  padding: 6px 5px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.8;
+}
+
+.swiper-button-prev::before {
+  content: "<";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: white;
+  background: rgba(0, 0, 0, 0.245);
+  padding: 6px 5px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.8;
+}
+
+.swiper-slide-thumb-active {
+  position: relative;
+}
+
+.swiper-slide-thumb-active::before {
+  content: "";
+  @apply border-2 border-primary;
+  position: absolute;
+  inset: 0;
+  z-index: 1000;
+}
+
+.add-to-cart-successfully-toast {
+  background: rgba(0, 0, 0, 0.423) !important;
+  color: white !important;
+}
