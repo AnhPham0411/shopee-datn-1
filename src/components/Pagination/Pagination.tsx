@@ -20,7 +20,7 @@ const Pagination = ({ pageSize, queryConfig }: PaginationProps) => {
         return (
           <span
             key={index}
-            className=" bg-white px-3 py-2"
+            className=" bg-white dark:bg-gray-800 text-black dark:text-gray-300 px-3 py-2"
           >
             ...
           </span>
@@ -34,7 +34,7 @@ const Pagination = ({ pageSize, queryConfig }: PaginationProps) => {
         return (
           <span
             key={index}
-            className="bg-white px-3 py-2"
+            className="bg-white dark:bg-gray-800 text-black dark:text-gray-300 px-3 py-2"
           >
             ...
           </span>
@@ -63,7 +63,7 @@ const Pagination = ({ pageSize, queryConfig }: PaginationProps) => {
             key={index}
             className={classNames("cursor-pointer px-3 py-2 shadow-sm", {
               "bg-primary text-white hover:bg-primary": pageNumber === currentPage,
-              "bg-white hover:bg-gray-100": pageNumber !== currentPage,
+              "bg-white dark:bg-gray-800 text-black dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700": pageNumber !== currentPage,
             })}
             to={{
               pathname: path.home,
@@ -81,12 +81,12 @@ const Pagination = ({ pageSize, queryConfig }: PaginationProps) => {
   return (
     <div className="mt-6 flex flex-wrap justify-center">
       {currentPage === 1 ? (
-        <button className="cursor-not-allowed bg-white bg-opacity-30 px-3 py-2 shadow-sm hover:bg-gray-100">
+        <button className="cursor-not-allowed bg-white/30 dark:bg-gray-800/30 text-black dark:text-gray-300 px-3 py-2 shadow-sm hover:bg-gray-100 dark:hover:bg-gray-700">
           {"<"} Prev
         </button>
       ) : (
         <Link
-          className="cursor-pointer bg-white px-3 py-2 shadow-sm hover:bg-gray-100"
+          className="cursor-pointer bg-white dark:bg-gray-800 text-black dark:text-gray-300 px-3 py-2 shadow-sm hover:bg-gray-100 dark:hover:bg-gray-700"
           to={{
             pathname: path.home,
             search: createSearchParams({
@@ -100,12 +100,12 @@ const Pagination = ({ pageSize, queryConfig }: PaginationProps) => {
       )}
       {renderPagination()}
       {currentPage >= pageSize ? (
-        <button className="cursor-not-allowed bg-white bg-opacity-30 px-3 py-2 shadow-sm hover:bg-gray-100">
+        <button className="cursor-not-allowed bg-white/30 dark:bg-gray-800/30 text-black dark:text-gray-300 px-3 py-2 shadow-sm hover:bg-gray-100 dark:hover:bg-gray-700">
           Next {">"}
         </button>
       ) : (
         <Link
-          className="cursor-pointer bg-white px-3 py-2 shadow-sm hover:bg-gray-100"
+          className="cursor-pointer bg-white dark:bg-gray-800 text-black dark:text-gray-300 px-3 py-2 shadow-sm hover:bg-gray-100 dark:hover:bg-gray-700"
           to={{
             pathname: path.home,
             search: createSearchParams({

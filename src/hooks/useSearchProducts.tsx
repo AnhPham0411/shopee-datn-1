@@ -9,13 +9,23 @@ import useQueryConfig from "./useQueryConfig";
 const useSearchProducts = () => {
   const queryConfig = useQueryConfig();
   const navigate = useNavigate();
-  const { register, handleSubmit } = useForm<TSearchQueryType>({
+  const { register, handleSubmit, watch, setValue } = useForm<TSearchQueryType>({
     resolver: yupResolver(searchQuerySchema),
     defaultValues: {
       search: "",
     },
   });
   const handleSearch = handleSubmit((data) => {
+    const searchString = data.search.toString().trim();
+    if (searchString) {
+      try {
+        const history = JSON.parse(localStorage.getItem("search_history") || "[]");
+        const newHistory = [searchString, ...history.filter((h: string) => h !== searchString)].slice(0, 5);
+        localStorage.setItem("search_history", JSON.stringify(newHistory));
+      } catch (e) {
+        console.error(e);
+      }
+    }
     navigate({
       pathname: path.home,
       search: createSearchParams(
@@ -23,7 +33,7 @@ const useSearchProducts = () => {
           {
             ...queryConfig,
             page: "1",
-            search: data.search.toString(),
+            search: searchString,
           },
           ["rating_filter", "sort_by", "price_min", "price_max", "order"],
         ),
@@ -33,6 +43,8 @@ const useSearchProducts = () => {
   return {
     register,
     handleSearch,
+    watch,
+    setValue,
   };
 };
 

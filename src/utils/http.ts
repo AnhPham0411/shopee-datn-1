@@ -1,5 +1,4 @@
 import axios, { AxiosError, AxiosInstance, InternalAxiosRequestConfig } from "axios";
-import { env } from "process";
 import { toast } from "react-toastify";
 import { AUTH_ENUM } from "src/apis/auth.api";
 import { config } from "src/constants/config.enum";

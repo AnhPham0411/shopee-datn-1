@@ -61,7 +61,7 @@ const QuantityController = ({
     <div className={`${containerClassName} flex items-center`}>
       <button
         onClick={handleDecrease}
-        className="flex h-6 w-6 items-center justify-center rounded-l-sm border border-gray-300 text-gray-600 sm:h-8 sm:w-8 "
+        className="flex h-6 w-6 items-center justify-center rounded-l-sm border border-gray-300 text-gray-600 dark:border-gray-600 dark:text-gray-300 dark:bg-gray-800 sm:h-8 sm:w-8 "
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -79,7 +79,7 @@ const QuantityController = ({
         </svg>
       </button>
       <InputNumber
-        className="h-6 w-9 rounded-none border-t border-b border-gray-300 p-1 text-center outline-none sm:h-8 sm:w-14"
+        className="h-6 w-9 rounded-none border-t border-b border-gray-300 p-1 text-center outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white sm:h-8 sm:w-14"
         errorClassName="hidden"
         value={value || localValue}
         onChange={handleChange}
@@ -88,7 +88,7 @@ const QuantityController = ({
       />
       <button
         onClick={handleIncrease}
-        className="flex h-6 w-6 items-center justify-center rounded-r-sm border border-gray-300 text-gray-600 sm:h-8 sm:w-8"
+        className="flex h-6 w-6 items-center justify-center rounded-r-sm border border-gray-300 text-gray-600 dark:border-gray-600 dark:text-gray-300 dark:bg-gray-800 sm:h-8 sm:w-8"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

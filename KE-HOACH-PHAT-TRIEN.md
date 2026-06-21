@@ -125,34 +125,35 @@
 
 ---
 
-## PHASE 3 — Lọc & tìm kiếm nâng cao (#10)
+## PHASE 3 — Lọc & tìm kiếm nâng cao (#10) ✅
 
-### T3.1 — Bộ lọc nâng cao
+### T3.1 — Bộ lọc nâng cao ✅
 - **Mục tiêu:** lọc mạnh hơn hiện tại.
 - **Việc làm:** thêm lọc đa tiêu chí: nhiều category, còn hàng/hết hàng, có giảm giá, theo shop; UI chip filter đang áp dụng + nút bỏ từng filter. Mở rộng `AsideFilter.tsx`.
 - **✅ Pass khi:**
   1. Chọn nhiều bộ lọc cùng lúc → URL phản ánh đúng query, kết quả khớp.
   2. Mỗi filter đang áp dụng hiển thị dạng chip, bấm X gỡ đúng filter đó.
 
-### T3.2 — Tìm kiếm gợi ý (autocomplete)
+### T3.2 — Tìm kiếm gợi ý (autocomplete) ✅
 - **Mục tiêu:** ô search thông minh hơn.
 - **Việc làm:** `GET /products/suggest?q=` (debounce); dropdown gợi ý tên sản phẩm + từ khóa gần đây (localStorage). Nâng cấp `useSearchProducts`.
 - **✅ Pass khi:**
   1. Gõ ≥ 2 ký tự → dropdown gợi ý xuất hiện trong < 500ms, bấm vào điều hướng đúng.
   2. Từ khóa đã tìm được lưu và hiện lại khi focus ô trống.
 
+
 ---
 
-## PHASE 4 — Nhận xét & đánh giá (#5)
+## PHASE 4 — Nhận xét & đánh giá (#5) ✅
 
-### T4.1 — Backend review
+### T4.1 — Backend review ✅
 - **Mục tiêu:** lưu đánh giá gắn với sản phẩm + người mua.
 - **Việc làm:** model `Review` (productId, userId, rating 1–5, comment, images?, createdAt); `POST /products/:id/reviews` (chỉ user **đã mua**), `GET /products/:id/reviews` (phân trang + lọc theo số sao); tự tính lại `rating` trung bình của product.
 - **✅ Pass khi:**
   1. User chưa mua → không gửi được review (`403`).
   2. Gửi review hợp lệ → `rating` trung bình của sản phẩm cập nhật lại.
 
-### T4.2 — UI đánh giá ở trang chi tiết
+### T4.2 — UI đánh giá ở trang chi tiết ✅
 - **Mục tiêu:** xem + viết đánh giá.
 - **Việc làm:** section "Đánh giá sản phẩm" dưới mô tả: phân bố sao, danh sách review (avatar, tên, sao, ngày, nội dung, ảnh), bộ lọc theo sao, form viết review (chỉ hiện với người đã mua).
 - **✅ Pass khi:**
@@ -161,16 +162,16 @@
 
 ---
 
-## PHASE 5 — Giỏ hàng & Yêu thích (#11)
+## PHASE 5 — Giỏ hàng & Yêu thích (#11) ✅
 
-### T5.1 — Wishlist backend + UI
+### T5.1 — Wishlist backend + UI ✅
 - **Mục tiêu:** thêm/bỏ sản phẩm yêu thích.
 - **Việc làm:** model `Wishlist` (userId, productId[]); `GET/POST/DELETE /wishlist`; nút trái tim trên card `Product` và trang chi tiết; trang `/user/wishlist`.
 - **✅ Pass khi:**
   1. Bấm tim trên 1 sản phẩm (đã đăng nhập) → vào `/user/wishlist` thấy sản phẩm đó; bấm lại để gỡ.
   2. Khách vãng lai bấm tim → được nhắc đăng nhập.
 
-### T5.2 — Tinh chỉnh giỏ hàng
+### T5.2 — Tinh chỉnh giỏ hàng ✅
 - **Mục tiêu:** sửa các điểm chưa mượt hiện có.
 - **Việc làm:** kiểm tra & sửa lỗi `draft[productIndex].disabled === true;` (so sánh thừa, không gán) trong `Cart.tsx`; thêm trạng thái loading khi cập nhật số lượng; xác nhận trước khi xóa.
 - **✅ Pass khi:**
@@ -179,16 +180,16 @@
 
 ---
 
-## PHASE 6 — Thanh toán & Vận chuyển (#4)
+## PHASE 6 — Thanh toán & Vận chuyển (#4) ✅
 
-### T6.1 — Backend đơn hàng + địa chỉ
+### T6.1 — Backend đơn hàng + địa chỉ ✅
 - **Mục tiêu:** mô hình đơn hàng đầy đủ.
 - **Việc làm:** mở rộng `Order` (items, địa chỉ giao, phương thức vận chuyển, phí ship, phương thức thanh toán, trạng thái: `chờ xác nhận → đang giao → hoàn thành → đã hủy`); `Address` của user; endpoints checkout & cập nhật trạng thái.
 - **✅ Pass khi:**
   1. Đặt 1 đơn → đơn lưu kèm địa chỉ + phương thức ship + phương thức thanh toán + tổng tiền (gồm phí ship).
   2. Trạng thái đơn đổi được và phản ánh trong `OrderHistory`.
 
-### T6.2 — Luồng checkout nhiều bước (FE)
+### T6.2 — Luồng checkout nhiều bước (FE) ✅
 - **Mục tiêu:** trang thanh toán đúng nghĩa.
 - **Việc làm:** trang `/checkout`: (1) chọn/nhập địa chỉ, (2) chọn vận chuyển (Nhanh/Tiết kiệm/Hỏa tốc — phí khác nhau), (3) chọn thanh toán (COD / chuyển khoản / ví — demo), (4) xem lại & đặt hàng. Nút "Mua hàng" ở Cart dẫn sang đây.
 - **✅ Pass khi:**
@@ -198,42 +199,42 @@
 
 ---
 
-## PHASE 7 — Trang tĩnh + Social (#6, #7, #8, #14)
+## PHASE 7 — Trang tĩnh + Social (#6, #7, #8, #14) ✅
 
-### T7.1 — Trang FAQ
+### T7.1 — Trang FAQ ✅
 - **Việc làm:** route `/faq`, accordion câu hỏi thường gặp (đặt hàng, thanh toán, vận chuyển, đổi trả, tài khoản); có ô tìm trong FAQ.
 - **✅ Pass khi:** mở `/faq`, click 1 câu → mở/đóng đáp án; tìm từ khóa lọc đúng danh sách câu hỏi.
 
-### T7.2 — Trang Hỗ trợ & Liên hệ
+### T7.2 — Trang Hỗ trợ & Liên hệ ✅
 - **Việc làm:** route `/contact`, form (tên, email, nội dung) gửi về `POST /contact` (lưu DB hoặc gửi mail), kèm thông tin hotline/email/bản đồ.
 - **✅ Pass khi:** gửi form hợp lệ → thông báo thành công + bản ghi liên hệ được lưu; bỏ trống trường bắt buộc → báo lỗi validate.
 
-### T7.3 — Trang Chính sách đổi trả
+### T7.3 — Trang Chính sách đổi trả ✅
 - **Việc làm:** route `/return-policy`, nội dung chính sách rõ ràng, mục lục nhảy nhanh.
 - **✅ Pass khi:** mở `/return-policy` hiển thị đầy đủ nội dung; link ở footer trỏ tới đúng trang.
 
-### T7.4 — Liên kết mạng xã hội + hoàn thiện Footer
+### T7.4 — Liên kết mạng xã hội + hoàn thiện Footer ✅
 - **Việc làm:** thêm icon + link Facebook/Instagram/YouTube/TikTok vào `Footer.tsx`; thêm cụm link điều hướng tới FAQ/Liên hệ/Chính sách.
 - **✅ Pass khi:** footer hiển thị các icon MXH (mở tab mới, có `rel="noreferrer"`) + link tới 3 trang tĩnh trên, hoạt động ở cả mobile.
 
 ---
 
-## PHASE 8 — Store / Seller dashboard (#16 phần Store)
+## PHASE 8 — Store / Seller dashboard (#16 phần Store) ✅
 
-### T8.1 — Đăng ký & không gian Store
+### T8.1 — Đăng ký & không gian Store ✅
 - **Mục tiêu:** user trở thành Store, có khu quản lý riêng.
 - **Việc làm:** luồng "Đăng ký bán hàng" (nâng role lên `Store`, tạo `Store` profile); layout `/store/*` chỉ cho role Store; `requireRole('Store')`.
 - **✅ Pass khi:**
   1. User đăng ký bán hàng → role thành `Store`, truy cập được `/store`.
   2. Tài khoản User thường vào `/store` → bị chặn/redirect.
 
-### T8.2 — Quản lý sản phẩm của shop (CRUD)
+### T8.2 — Quản lý sản phẩm của shop (CRUD) ✅
 - **Việc làm:** `/store/products`: tạo/sửa/xóa sản phẩm (tên, giá, mô tả, ảnh, video, kho, category); chỉ thao tác trên sản phẩm thuộc shop mình.
 - **✅ Pass khi:**
   1. Store tạo sản phẩm mới → xuất hiện ở trang chủ và ở danh sách của shop.
   2. Store A không sửa/xóa được sản phẩm của Store B (`403`).
 
-### T8.3 — Đơn hàng & doanh thu của shop
+### T8.3 — Đơn hàng & doanh thu của shop ✅
 - **Việc làm:** `/store/orders` (đơn chứa sản phẩm của shop, đổi trạng thái giao hàng); `/store/dashboard` (doanh thu shop theo ngày/tháng, số đơn, sản phẩm bán chạy).
 - **✅ Pass khi:**
   1. Khi có người mua sản phẩm của shop → đơn hiện trong `/store/orders`.
@@ -241,19 +242,19 @@
 
 ---
 
-## PHASE 9 — Admin dashboard & thống kê doanh thu (#15, #16 phần Admin)
+## PHASE 9 — Admin dashboard & thống kê doanh thu (#15, #16 phần Admin) ✅
 
-### T9.1 — Khu vực Admin
+### T9.1 — Khu vực Admin ✅
 - **Việc làm:** layout `/admin/*` cho role `Admin`; menu: Tổng quan, Người dùng, Cửa hàng, Sản phẩm, Đơn hàng.
 - **✅ Pass khi:** chỉ Admin vào được `/admin`; role khác bị chặn.
 
-### T9.2 — Thống kê doanh thu
+### T9.2 — Thống kê doanh thu ✅
 - **Việc làm:** `GET /admin/stats` (doanh thu theo ngày/tuần/tháng, tổng đơn, người dùng mới, top sản phẩm/shop); trang `/admin/dashboard` với biểu đồ (line/bar) + thẻ số liệu. Dùng thư viện chart (vd `recharts`).
 - **✅ Pass khi:**
   1. Dashboard hiển thị biểu đồ doanh thu theo thời gian + ít nhất 4 thẻ KPI.
   2. Số liệu khớp dữ liệu thật (đối chiếu tổng đơn hoàn thành trong DB).
 
-### T9.3 — Quản trị người dùng / cửa hàng / sản phẩm
+### T9.3 — Quản trị người dùng / cửa hàng / sản phẩm ✅
 - **Việc làm:** bảng danh sách + tìm kiếm + phân trang; khóa/mở user; duyệt/khóa shop; gỡ sản phẩm vi phạm.
 - **✅ Pass khi:**
   1. Admin khóa 1 user → user đó không đăng nhập được.
@@ -261,16 +262,16 @@
 
 ---
 
-## PHASE 10 — Bảo mật (#9)
+## PHASE 10 — Bảo mật (#9) ✅
 
-### T10.1 — Bảo mật backend
+### T10.1 — Bảo mật backend ✅
 - **Việc làm:** `helmet`, rate-limit cho `/login`/`/register`, validate toàn bộ input, hash mật khẩu `bcrypt`, kiểm tra phân quyền ở **mọi** route nhạy cảm, giới hạn loại/dung lượng file upload, không trả thông tin nhạy cảm trong error.
 - **✅ Pass khi:**
   1. Spam sai mật khẩu vượt ngưỡng → bị chặn tạm thời (`429`).
   2. Gọi API của role khác bằng token sai quyền luôn trả `403` (kiểm thử ≥ 3 endpoint).
   3. Upload file > giới hạn hoặc sai định dạng → bị từ chối.
 
-### T10.2 — Bảo mật frontend
+### T10.2 — Bảo mật frontend ✅
 - **Việc làm:** rà soát toàn bộ `dangerouslySetInnerHTML` đã bọc `DOMPurify`; cân nhắc chuyển token sang cách lưu an toàn hơn / thêm cảnh báo; ẩn route theo role; thêm trang `403`.
 - **✅ Pass khi:**
   1. Nội dung mô tả/đánh giá có chèn `<script>` → không thực thi (đã sanitize).
@@ -278,15 +279,15 @@
 
 ---
 
-## PHASE 11 — Thân thiện người dùng & di động (#12, #13)
+## PHASE 11 — Thân thiện người dùng & di động (#12, #13) ✅
 
-### T11.1 — Trải nghiệm người dùng
+### T11.1 — Trải nghiệm người dùng ✅
 - **Việc làm:** skeleton loading cho danh sách/chi tiết; empty state nhất quán; thông báo lỗi rõ ràng; nút back-to-top; giữ scroll khi đổi trang filter.
 - **✅ Pass khi:**
   1. Khi tải dữ liệu hiện skeleton (không nhảy layout).
   2. Mọi trang danh sách rỗng đều có empty state + hành động gợi ý.
 
-### T11.2 — Tối ưu di động & accessibility
+### T11.2 — Tối ưu di động & accessibility ✅
 - **Việc làm:** rà toàn bộ trang ở breakpoint 360–414px; menu/giỏ hàng/checkout dùng tốt 1 tay; kiểm tra `aria-label`, focus state, tương phản màu; chạy Lighthouse.
 - **✅ Pass khi:**
   1. Không có tràn ngang ở màn 375px trên các trang chính (chủ, chi tiết, giỏ, checkout, store, admin).
@@ -296,14 +297,7 @@
 
 ## PHASE 12 — 2 tính năng đề xuất nổi bật
 
-### ⭐ Đề xuất A — Trợ lý mua sắm AI (AI Shopping Assistant)
-- **Ý tưởng:** chatbot góc màn hình dùng **Claude API**: tư vấn chọn sản phẩm theo nhu cầu/ngân sách, so sánh nhanh, và tự trả lời câu hỏi FAQ (đổi trả, vận chuyển...). Có thể "đọc" được sản phẩm đang mở để trả lời theo ngữ cảnh.
-- **Việc làm:** endpoint `POST /assistant/chat` (gọi Claude API, có tool tra cứu sản phẩm trong DB); widget chat nổi ở frontend.
-- **✅ Pass khi:**
-  1. Hỏi "gợi ý điện thoại dưới 5 triệu" → trả lời kèm ≥ 2 sản phẩm có thật trong shop (link bấm được).
-  2. Hỏi "chính sách đổi trả thế nào" → trả lời đúng theo nội dung trang chính sách.
-
-### ⭐ Đề xuất B — Voucher / Mã giảm giá + Flash Sale đếm ngược
+### ⭐ Đề xuất B — Voucher / Mã giảm giá + Flash Sale đếm ngược ✅
 - **Ý tưởng:** hệ thống mã giảm giá rất "Shopee": Admin/Store tạo voucher (theo %, theo số tiền, đơn tối thiểu, hạn dùng); user nhập mã ở checkout; gắn với Flash Sale đếm ngược thời gian thực.
 - **Việc làm:** model `Voucher`; `POST /vouchers/apply` (kiểm tra hợp lệ, trừ tiền); ô nhập mã ở `/checkout`; trang quản lý voucher cho Store/Admin.
 - **✅ Pass khi:**

@@ -14,6 +14,7 @@ export type TProduct = {
     name: string;
   };
   image: string;
+  video?: string;
   createdAt: string;
   updatedAt: string;
 };
@@ -37,5 +38,8 @@ export type TProductListConfig = {
   price_max?: number | string;
   price_min?: number | string;
   name?: string;
-  category?: string;
+  category?: string; // Can be comma separated
+  stock_status?: "in_stock" | "out_of_stock";
+  has_discount?: "true" | "false" | boolean;
+  storeId?: string;
 };

@@ -8,6 +8,11 @@ const productApi = {
       params,
     }),
   getProductById: (productId: string) => http.get<TSuccessApiResponse<TProduct>>(`/products/${productId}`),
+  getRecommendations: (category?: string, recentlyViewed?: string[]) =>
+    http.get<TSuccessApiResponse<TProduct[]>>("/products/recommendations", {
+      params: { category, recently_viewed: recentlyViewed?.join(",") },
+    }),
+  suggestProducts: (q: string) => http.get<TSuccessApiResponse<TProduct[]>>("/products/suggest", { params: { q } }),
 };
 
 export default productApi;

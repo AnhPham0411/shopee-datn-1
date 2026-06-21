@@ -2,6 +2,8 @@ import { useContext, useEffect } from "react";
 import { AuthContext } from "./contexts/auth.context";
 import useRoutesElement from "./routes/useRouteElements";
 import { LocalStorageEventTarget } from "./utils/auth";
+import BackToTop from "./components/BackToTop";
+
 // eslint-disable-next-line import/no-unresolved
 function App() {
   const routeElements = useRoutesElement();
@@ -12,7 +14,12 @@ function App() {
       LocalStorageEventTarget.removeEventListener("clearAuthen", clearAuthenFromProvider);
     };
   }, [clearAuthenFromProvider]);
-  return <>{routeElements}</>;
+  return (
+    <>
+      {routeElements}
+      <BackToTop />
+    </>
+  );
 }
 
 export default App;

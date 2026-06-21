@@ -1,15 +1,17 @@
 import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import LockIcon from "src/components/Icon/LockIcon";
 import { path } from "src/constants/path.enum";
 import { AuthContext } from "src/contexts/auth.context";
 import getAvatarUrl from "src/utils/getAvatarUrl";
 
 const UserSidebar = () => {
+  const { t } = useTranslation();
   const { userProfile } = useContext(AuthContext);
   return (
     <aside>
-      <div className="flex items-center border-b border-b-gray-200 py-4">
+      <div className="flex items-center border-b border-b-gray-200 dark:border-b-gray-700 py-4">
         <NavLink
           to={path.profile}
           className="h-12 w-12 flex-shrink-0 overflow-hidden rounded-full border border-black/10"
@@ -21,10 +23,10 @@ const UserSidebar = () => {
           />
         </NavLink>
         <div className="flex-grow pl-4">
-          <div className="mb-1 font-semibold text-gray-600 line-clamp-1">Trần Đăng Khôi</div>
+          <div className="mb-1 font-semibold text-gray-600 dark:text-gray-300 line-clamp-1">{userProfile?.name || userProfile?.email || t("Chưa có tên")}</div>
           <NavLink
             to={path.profile}
-            className="flex items-center capitalize text-gray-500"
+            className="flex items-center capitalize text-gray-500 dark:text-gray-400"
           >
             <svg
               width={12}
@@ -39,7 +41,7 @@ const UserSidebar = () => {
                 fillRule="evenodd"
               />
             </svg>
-            Sửa hồ sơ
+            {t("Sửa hồ sơ")}
           </NavLink>
         </div>
       </div>
@@ -47,7 +49,7 @@ const UserSidebar = () => {
         <NavLink
           to={path.profile}
           className={({ isActive }) =>
-            `flex items-center gap-x-3 capitalize transition-colors ${isActive ? "text-primary" : "text-gray-600"}`
+            `flex items-center gap-x-3 capitalize transition-colors ${isActive ? "text-primary" : "text-gray-600 dark:text-gray-400"}`
           }
         >
           <div className="h-[22px] w-[22px]">
@@ -57,12 +59,12 @@ const UserSidebar = () => {
               className="h-full w-full"
             />
           </div>
-          Tài khoản của tôi
+          {t("Tài khoản của tôi")}
         </NavLink>
         <NavLink
           to={path.changePassword}
           className={({ isActive }) =>
-            `mt-2 flex items-center gap-x-3 capitalize transition-colors ${isActive ? "text-primary" : "text-gray-600"}`
+            `mt-2 flex items-center gap-x-3 capitalize transition-colors ${isActive ? "text-primary" : "text-gray-600 dark:text-gray-400"}`
           }
         >
           <div className="h-[22px] w-[22px]">
@@ -71,12 +73,12 @@ const UserSidebar = () => {
               fill="#0E4FB2"
             ></LockIcon>
           </div>
-          Đổi mật khẩu
+          {t("Đổi mật khẩu")}
         </NavLink>
         <NavLink
           to={path.orderHistory}
           className={({ isActive }) =>
-            `mt-2 flex items-center gap-x-3 capitalize transition-colors ${isActive ? "text-primary" : "text-gray-600"}`
+            `mt-2 flex items-center gap-x-3 capitalize transition-colors ${isActive ? "text-primary" : "text-gray-600 dark:text-gray-400"}`
           }
         >
           <div className="h-[22px] w-[22px]">
@@ -113,7 +115,23 @@ const UserSidebar = () => {
               />
             </svg>
           </div>
-          Đơn mua
+          {t("Đơn mua")}
+        </NavLink>
+        <NavLink
+          to={path.wishlist}
+          className={({ isActive }) =>
+            `mt-2 flex items-center gap-x-3 capitalize transition-colors ${isActive ? "text-primary" : "text-gray-600 dark:text-gray-400"}`
+          }
+        >
+          <div className="flex h-[22px] w-[22px] items-center justify-center">
+            <svg
+              viewBox="0 0 24 24"
+              className="h-5 w-5 fill-none stroke-[#0E4FB2] stroke-2"
+            >
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+            </svg>
+          </div>
+          {t("Yêu thích")}
         </NavLink>
       </div>
     </aside>

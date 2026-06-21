@@ -8,9 +8,9 @@ const CartNavbar = () => {
   const { handleSearch, register } = useSearchProducts();
 
   return (
-    <div className="border-b border-b-black/10">
+    <div className="border-b border-b-black/10 dark:border-b-gray-700">
       <MainNavbar bottomCropped={true} />
-      <div className="bg-white py-6">
+      <div className="bg-white dark:bg-gray-800 py-6">
         <div className="container">
           <nav className="flex flex-col items-center justify-center md:flex-row md:justify-between">
             <Link
@@ -27,10 +27,10 @@ const CartNavbar = () => {
               className="mt-3 w-full md:mt-0 md:w-[50%]"
               onSubmit={handleSearch}
             >
-              <div className="flex rounded-sm border-2 border-primary">
+              <div className="flex rounded-sm border-2 border-primary bg-white dark:bg-gray-900">
                 <input
                   type="text"
-                  className="w-full flex-grow border-none bg-transparent px-3 py-1 text-black outline-none"
+                  className="w-full flex-grow border-none bg-transparent px-3 py-1 text-black dark:text-white outline-none"
                   placeholder="Free Ship Đơn Từ 0Đ"
                   {...register("search")}
                 />

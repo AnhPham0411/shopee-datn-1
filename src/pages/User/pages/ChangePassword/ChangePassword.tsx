@@ -3,6 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 import omit from "lodash/omit";
 import { useContext } from "react";
 import { Helmet } from "react-helmet-async";
+import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import userApi from "src/apis/user.api";
@@ -16,6 +17,7 @@ import { isAxiosError, isAxiosUnprocessableEntity } from "src/utils/isAxiosError
 type TFormData = Pick<TUserSchema, "password" | "new_password" | "confirm_password">;
 const changePasswordSchema = userSchema.pick(["password", "new_password", "confirm_password"]);
 const ChangePassword = () => {
+  const { t } = useTranslation();
   const { userProfile } = useContext(AuthContext);
   const {
     handleSubmit,
@@ -55,7 +57,7 @@ const ChangePassword = () => {
     }
   });
   return (
-    <div className="rounded-sm bg-white px-2 pb-10 shadow md:px-7 md:pb-20">
+    <div className="rounded-sm bg-white dark:bg-gray-800 px-2 pb-10 shadow md:px-7 md:pb-20">
       <Helmet>
         <title>Shopee At Home | Thay đổi mật khẩu</title>
         <meta
@@ -63,10 +65,10 @@ const ChangePassword = () => {
           content={`Đổi mật khẩu tài khoản ${userProfile?.email}`}
         />
       </Helmet>
-      <div className="border-b border-b-gray-200 py-6">
-        <h1 className="text-lg font-medium capitalize text-gray-900">Đổi mật khẩu</h1>
-        <div className="mt-1 text-sm text-gray-700">
-          Để bảo mật tài khoản, vui lòng không chia sẻ mật khẩu cho người khác
+      <div className="border-b border-b-gray-200 dark:border-b-gray-700 py-6">
+        <h1 className="text-lg font-medium capitalize text-gray-900 dark:text-gray-100">{t("Đổi mật khẩu")}</h1>
+        <div className="mt-1 text-sm text-gray-700 dark:text-gray-400">
+          {t("Để bảo mật tài khoản, vui lòng không chia sẻ mật khẩu cho người khác")}
         </div>
       </div>
       <div className="mt-8 mr-auto max-w-[800px]">
@@ -75,45 +77,45 @@ const ChangePassword = () => {
           className="mt-6 flex-grow md:mt-0 md:pr-12"
         >
           <div className="mt-2 flex flex-col flex-wrap sm:flex-row">
-            <div className="truncate capitalize sm:w-[20%] sm:pt-3 sm:text-right">Mật khẩu cũ</div>
+            <div className="truncate capitalize sm:w-[20%] sm:pt-3 sm:text-right dark:text-gray-300">{t("Mật khẩu cũ")}</div>
             <div className="sm:w-[80%] sm:pl-5">
               <InputPassword
                 register={register}
                 name="password"
-                placeholder="Mật khẩu cũ"
+                placeholder={t("Mật khẩu cũ")}
                 errorMsg={errors.password?.message}
-                className="w-full rounded-sm border border-gray-300 px-3 py-2 outline-none focus:border-gray-500 focus:shadow-sm"
+                className="w-full rounded-sm border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-black dark:text-white px-3 py-2 outline-none focus:border-gray-500 focus:shadow-sm"
               />
             </div>
           </div>
           <div className="mt-2 flex flex-col flex-wrap sm:flex-row">
-            <div className="truncate capitalize sm:w-[20%] sm:pt-3 sm:text-right">Mật khẩu mới</div>
+            <div className="truncate capitalize sm:w-[20%] sm:pt-3 sm:text-right dark:text-gray-300">{t("Mật khẩu mới")}</div>
             <div className="sm:w-[80%] sm:pl-5">
               <InputPassword
                 register={register}
                 name="new_password"
-                placeholder="Mật khẩu mới"
+                placeholder={t("Mật khẩu mới")}
                 errorMsg={errors.new_password?.message}
-                className="w-full rounded-sm border border-gray-300 px-3 py-2 outline-none focus:border-gray-500 focus:shadow-sm"
+                className="w-full rounded-sm border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-black dark:text-white px-3 py-2 outline-none focus:border-gray-500 focus:shadow-sm"
               />
             </div>
           </div>
           <div className="mt-2 flex flex-col flex-wrap sm:flex-row">
-            <div className="capitalize sm:w-[20%] sm:pt-3 sm:text-right">Nhập lại mật khẩu mới</div>
+            <div className="capitalize sm:w-[20%] sm:pt-3 sm:text-right dark:text-gray-300">{t("Nhập lại mật khẩu mới")}</div>
             <div className="sm:w-[80%] sm:pl-5">
               <InputPassword
                 register={register}
                 name="confirm_password"
-                placeholder="Xác nhận mật khẩu mới"
+                placeholder={t("Xác nhận mật khẩu mới")}
                 errorMsg={errors.confirm_password?.message}
-                className="w-full rounded-sm border border-gray-300 px-3 py-2 outline-none focus:border-gray-500 focus:shadow-sm"
+                className="w-full rounded-sm border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-black dark:text-white px-3 py-2 outline-none focus:border-gray-500 focus:shadow-sm"
               />
             </div>
           </div>
           <div className="mt-2 flex flex-col flex-wrap sm:flex-row">
             <div className="truncate capitalize sm:w-[20%] sm:pt-3 sm:text-right"></div>
             <div className="sm:w-[80%] sm:pl-5">
-              <Button className="rounded-sm">Cập nhật mật khẩu</Button>
+              <Button className="rounded-sm">{t("Cập nhật mật khẩu")}</Button>
             </div>
           </div>
         </form>

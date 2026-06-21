@@ -2,8 +2,9 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { produce } from "immer";
 import keyBy from "lodash/keyBy";
 import React, { useContext, useEffect, useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import EmptyCartIcon from "src/assets/images/empty-cart.png";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import purchaseAPI from "src/apis/purchase.api";
 import Button from "src/components/Button";
@@ -17,7 +18,9 @@ import { generateSlug } from "src/utils/slugify";
 import { Helmet } from "react-helmet-async";
 
 const Cart = () => {
+  const { t } = useTranslation();
   const { state } = useLocation();
+  const navigate = useNavigate();
   const chosenBuyNowPurchaseId = (state as { purchaseId: string | null })?.purchaseId;
   const { extendedPurchases, setExtendedPurchases } = useContext(CartContext);
   // Đại diện cho những purchase được checked
@@ -83,17 +86,12 @@ const Cart = () => {
 
   const handlePurchase = () => {
     if (checkedPurchases.length > 0) {
-      const body = checkedPurchases.map((checkedPurchase) => ({
-        product_id: checkedPurchase.product._id,
-        buy_count: checkedPurchase.buy_count,
-      }));
-      buyProductsMutation.mutate(body, {
-        onSuccess: (data) => {
-          toast.success(data.data.message);
-        },
+      // Instead of calling API immediately, navigate to Checkout page
+      navigate(path.checkout, {
+        state: { purchases: checkedPurchases },
       });
     } else {
-      toast.info("Vui lòng chọn sản phẩm muốn mua");
+      toast.info(t("Vui lòng chọn sản phẩm muốn mua"));
     }
   };
 
@@ -119,7 +117,7 @@ const Cart = () => {
     if (enable) {
       setExtendedPurchases(
         produce((draft) => {
-          draft[productIndex].disabled === true;
+          draft[productIndex].disabled = true;
         }),
       );
     }
@@ -135,15 +133,19 @@ const Cart = () => {
   };
   const handleDeleteAPurchase = (purchaseIndex: number) => () => {
     const purchaseId = extendedPurchases[purchaseIndex]._id;
-    deletePurchaseMutation.mutate([purchaseId]);
+    if (window.confirm(t("Bạn có chắc muốn xoá sản phẩm này khỏi giỏ hàng?"))) {
+      deletePurchaseMutation.mutate([purchaseId]);
+    }
   };
 
   const handleDeleteMultiplePurchases = () => {
     const purchaseIds = checkedPurchases.map((purchase) => purchase._id);
-    deletePurchaseMutation.mutate(purchaseIds);
+    if (purchaseIds.length > 0 && window.confirm(t("Bạn có chắc muốn xoá các sản phẩm đã chọn khỏi giỏ hàng?"))) {
+      deletePurchaseMutation.mutate(purchaseIds);
+    }
   };
   return (
-    <div className="bg-neutral-100 py-16">
+    <div className="bg-neutral-100 dark:bg-gray-900 py-16">
       <Helmet>
         <title>Shopee At Home | Giỏ hàng</title>
         <meta
@@ -154,7 +156,7 @@ const Cart = () => {
       <div className="container">
         {extendedPurchases.length > 0 ? (
           <>
-            <div className="hidden grid-cols-12 rounded-sm bg-white py-5 px-9 text-sm capitalize text-gray-500 shadow lg:grid">
+            <div className="hidden grid-cols-12 rounded-sm bg-white dark:bg-gray-800 py-5 px-9 text-sm capitalize text-gray-500 dark:text-gray-300 shadow lg:grid">
               <div className="col-span-6">
                 <div className="flex items-center">
                   <div className="flex flex-shrink-0 items-center justify-center pr-3">
@@ -165,24 +167,24 @@ const Cart = () => {
                       onChange={handleSelectAllProducts}
                     />
                   </div>
-                  <div className="text-black">Sản phẩm</div>
+                  <div className="text-black dark:text-white">{t("Sản phẩm")}</div>
                 </div>
               </div>
               <div className="col-span-6">
                 <div className="grid grid-cols-5 text-center">
-                  <div className="col-span-2">Đơn giá</div>
-                  <div className="col-span-1">Số lượng</div>
-                  <div className="col-span-1">Số tiền</div>
-                  <div className="col-span-1">Thao tác</div>
+                  <div className="col-span-2">{t("Đơn giá")}</div>
+                  <div className="col-span-1">{t("Số lượng")}</div>
+                  <div className="col-span-1">{t("Số tiền")}</div>
+                  <div className="col-span-1">{t("Thao tác")}</div>
                 </div>
               </div>
             </div>
             {extendedPurchases.length > 0 && (
-              <div className="my-3 rounded-sm bg-white shadow sm:p-5">
+              <div className="my-3 rounded-sm bg-white dark:bg-gray-800 shadow sm:p-5">
                 {extendedPurchases.map((purchase, index) => (
                   <div
                     key={purchase._id}
-                    className="mb-5 flex items-center justify-between rounded-sm border border-gray-200 bg-white py-5 px-4 text-center text-sm text-gray-500 first:mt-0 lg:grid lg:grid-cols-12"
+                    className="mb-5 flex items-center justify-between rounded-sm border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 py-5 px-4 text-center text-sm text-gray-500 dark:text-gray-300 first:mt-0 lg:grid lg:grid-cols-12"
                   >
                     <div className="flex items-center gap-x-3 lg:col-span-6">
                       <div className="flex items-center justify-center gap-x-3">
@@ -247,7 +249,7 @@ const Cart = () => {
                             onClick={handleDeleteAPurchase(index)}
                             className="bg-none text-primary"
                           >
-                            Xóa khỏi giỏ
+                            {t("Xóa khỏi giỏ")}
                           </button>
                         </div>
                       </div>
@@ -291,9 +293,9 @@ const Cart = () => {
                         <div className="col-span-1 hidden lg:block">
                           <button
                             onClick={handleDeleteAPurchase(index)}
-                            className="bg-none text-black transition-all hover:text-primary"
+                            className="bg-none text-black dark:text-white transition-all hover:text-primary"
                           >
-                            Xóa
+                            {t("Xóa")}
                           </button>
                         </div>
                       </div>
@@ -302,7 +304,7 @@ const Cart = () => {
                 ))}
               </div>
             )}
-            <div className="sticky bottom-0 z-10 mt-8 flex flex-col rounded-sm border border-gray-100 bg-white p-5 shadow lg:flex-row lg:items-center">
+            <div className="sticky bottom-0 z-10 mt-8 flex flex-col rounded-sm border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 p-5 shadow lg:flex-row lg:items-center">
               <div className="flex items-center">
                 <div className="flex flex-shrink-0 items-center justify-center pr-3">
                   <input
@@ -312,23 +314,23 @@ const Cart = () => {
                     onChange={handleSelectAllProducts}
                   />
                 </div>
-                <button className="mx-3 border-none bg-none">Chọn tất cả ({purchasesInCart?.length})</button>
+                <button className="mx-3 border-none bg-none">{t("Chọn tất cả")} ({purchasesInCart?.length})</button>
                 <button
                   onClick={handleDeleteMultiplePurchases}
                   className="mx-3 border-none bg-none"
                 >
-                  Xóa
+                  {t("Xóa")}
                 </button>
               </div>
 
               <div className="mt-5 flex flex-col lg:ml-auto lg:mt-0 lg:flex-row lg:items-center">
                 <div>
                   <div className="flex items-center lg:justify-end">
-                    <div>Tổng thanh toán ({checkedPurchasesCount} sản phẩm):</div>
+                    <div>{t("Tổng thanh toán")} ({checkedPurchasesCount} {t("sản phẩm")}):</div>
                     <div className="ml-2 text-2xl text-primary">₫{formatCurrency(totalCheckedPurchasesPrice)}</div>
                   </div>
                   <div className="flex items-center text-sm lg:justify-end">
-                    <div className="text-gray-500">Tiết kiệm</div>
+                    <div className="text-gray-500 dark:text-gray-400">{t("Tiết kiệm")}</div>
                     <div className="ml-6 text-primary">₫{formatCurrency(totalSavedPrice)}</div>
                   </div>
                 </div>
@@ -337,7 +339,7 @@ const Cart = () => {
                   isLoading={buyProductsMutation.isLoading}
                   className="mt-5 flex h-10 w-52 items-center justify-center bg-red-500 text-sm uppercase text-white hover:bg-red-600 lg:ml-4 lg:mt-0"
                 >
-                  Mua hàng
+                  {t("Mua hàng")}
                 </Button>
               </div>
             </div>
@@ -349,12 +351,12 @@ const Cart = () => {
               alt="Empty"
               className="h-20 w-20 sm:h-40 sm:w-40"
             />
-            <span className="text-sm sm:text-base">Giỏ hàng còn trống</span>
+            <span className="text-sm sm:text-base">{t("Giỏ hàng còn trống")}</span>
             <Link
               to={path.home}
               className="w-full bg-primary px-2 py-3 text-center uppercase text-white"
             >
-              Mua ngay
+              {t("Mua ngay")}
             </Link>
           </div>
         )}

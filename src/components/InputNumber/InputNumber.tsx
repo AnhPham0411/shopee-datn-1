@@ -14,7 +14,7 @@ const InputNumber = forwardRef<HTMLInputElement, TInputNumberProps>(function Inp
   {
     type = "text",
     errorMsg,
-    className = "p-3 w-full outline-none border border-gray-300 focus:border-gray-500 rounded-sm focus:shadow-sm",
+    className = "p-3 w-full outline-none border border-gray-300 dark:border-gray-600 dark:bg-gray-700 text-black dark:text-white focus:border-gray-500 dark:focus:border-gray-400 rounded-sm focus:shadow-sm",
     containerClassName = "",
     errorClassName = "mt-1 text-red-600 min-h-[1.25rem] text-sm",
     placeholder = "",
@@ -44,7 +44,7 @@ const InputNumber = forwardRef<HTMLInputElement, TInputNumberProps>(function Inp
           `${className}`,
           // Error!
           {
-            "border-red-600 bg-red-50 focus:border-red-600": errorMsg,
+            "border-red-600 bg-red-50 dark:bg-red-900/30 focus:border-red-600": errorMsg,
           },
         )}
         onChange={handleChange}

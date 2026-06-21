@@ -13,8 +13,7 @@ const AuthenticationLayoutInner = ({ children }: RegisterLayoutProps) => {
       <AuthenticationNavbar></AuthenticationNavbar>
       <div className="h-full bg-primary lg:h-[650px]">
         <div className="container lg:bg-shopee-pattern lg:bg-no-repeat">
-          <Outlet></Outlet>
-          {children}
+          {children || <Outlet />}
         </div>
       </div>
       <Footer></Footer>

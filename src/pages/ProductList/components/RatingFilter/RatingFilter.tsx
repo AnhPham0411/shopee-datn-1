@@ -2,12 +2,14 @@ import { createSearchParams, useNavigate } from "react-router-dom";
 import { StarIcon, TransparentStarIcon } from "src/components/Icon";
 import { path } from "src/constants/path.enum";
 import { TQueryConfig } from "src/types/query.type";
+import { useTranslation } from "react-i18next";
 
 type RatingFilterProps = {
   queryConfig: TQueryConfig;
 };
 
 const RatingFilter = ({ queryConfig }: RatingFilterProps) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const handleRatingFilter = (numberOfStar: number) => {
     navigate({
@@ -22,7 +24,7 @@ const RatingFilter = ({ queryConfig }: RatingFilterProps) => {
 
   return (
     <>
-      <div className="text-sm">Đánh giá</div>
+      <div className="text-sm text-black dark:text-gray-200">{t("Đánh giá")}</div>
       <ul className="my-3">
         {Array(5)
           .fill(0)
@@ -44,7 +46,7 @@ const RatingFilter = ({ queryConfig }: RatingFilterProps) => {
                     }
                     return <TransparentStarIcon key={starIndex}></TransparentStarIcon>;
                   })}
-                {listIndex !== 0 && <span>Trở lên</span>}
+                {listIndex !== 0 && <span className="ml-1 text-black dark:text-gray-300">{t("Trở lên")}</span>}
               </div>
             </li>
           ))}

@@ -10,8 +10,7 @@ const MainLayoutInner = ({ children }: MainLayoutProps) => {
   return (
     <>
       <MainNavbar></MainNavbar>
-      {children}
-      <Outlet></Outlet>
+      {children || <Outlet />}
       <Footer></Footer>
     </>
   );

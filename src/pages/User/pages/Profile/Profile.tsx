@@ -1,6 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet-async";
 import { Controller, FormProvider, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
@@ -22,6 +23,7 @@ const profileSchema = userSchema.pick(["name", "address", "phone", "date_of_birt
 const ONE_MEGABYTE_TO_BYTES = 1048576;
 
 const Profile = () => {
+  const { t } = useTranslation();
   const [previewImageFile, setPreviewImageFile] = useState<File>();
   const { userProfile, setUserProfile } = useContext(AuthContext);
   const previewImageURL = useMemo(() => {
@@ -71,7 +73,7 @@ const Profile = () => {
   const handleChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     const fileFromLocal = e.target.files?.[0];
     if (fileFromLocal && fileFromLocal.size >= ONE_MEGABYTE_TO_BYTES) {
-      toast.error("Kích cỡ ảnh không được vượt quá 1MB");
+      toast.error(t("Kích cỡ ảnh không được vượt quá 1MB"));
       // Set lại value để có thể chọn lại bức ảnh trước một lần nữa đề phòng có chuyện gì xảy ra
 
       e.target.value = "";
@@ -80,7 +82,7 @@ const Profile = () => {
     if (fileFromLocal && !fileFromLocal.type.includes("image")) {
       toast.error(
         <div className="text-sm">
-          File không đúng định dạng quy định
+          {t("File không đúng định dạng quy định")}
           <br />
           (.JPEG, .PNG, .JPG)
         </div>,
@@ -114,7 +116,7 @@ const Profile = () => {
         {
           onSuccess: (data) => {
             profileRefetch();
-            toast.success("Đã cập nhật thông tin người dùng");
+            toast.success(t("Đã cập nhật thông tin người dùng"));
             setUserProfile(data.data.data);
             saveProfileToLS(data.data.data);
           },
@@ -143,7 +145,7 @@ const Profile = () => {
   });
 
   return (
-    <div className="rounded-sm bg-white px-2 pb-10 shadow md:px-7 md:pb-20">
+    <div className="rounded-sm bg-white dark:bg-gray-800 px-2 pb-10 shadow md:px-7 md:pb-20">
       <Helmet>
         <title>Shopee At Home | Thông tin cá nhân</title>
         <meta
@@ -151,9 +153,9 @@ const Profile = () => {
           content={`Thông tin cá nhân của ${userProfile?.email}`}
         />
       </Helmet>
-      <div className="border-b border-b-gray-200 py-6">
-        <h1 className="text-lg font-medium capitalize text-gray-900">Hồ Sơ Của Tôi</h1>
-        <div className="mt-1 text-sm text-gray-700">Quản lý thông tin hồ sơ để bảo mật tài khoản</div>
+      <div className="border-b border-b-gray-200 dark:border-b-gray-700 py-6">
+        <h1 className="text-lg font-medium capitalize text-gray-900 dark:text-gray-100">{t("Hồ Sơ Của Tôi")}</h1>
+        <div className="mt-1 text-sm text-gray-700 dark:text-gray-400">{t("Quản lý thông tin hồ sơ để bảo mật tài khoản")}</div>
       </div>
       <div className="mt-8 flex flex-col-reverse md:flex-row md:items-start">
         <FormProvider {...methods}>
@@ -162,9 +164,9 @@ const Profile = () => {
             className="mt-6 flex-grow md:mt-0 md:pr-12"
           >
             <div className="flex flex-col flex-wrap sm:flex-row">
-              <div className="truncate pt-3 capitalize sm:w-[20%] sm:text-right">Email</div>
+              <div className="truncate pt-3 capitalize sm:w-[20%] sm:text-right dark:text-gray-300">Email</div>
               <div className="sm:w-[80%] sm:pl-5">
-                <div className="pt-3 text-gray-700">{profile?.email}</div>
+                <div className="pt-3 text-gray-700 dark:text-gray-400">{profile?.email}</div>
               </div>
             </div>
             <InformationGroup className="mt-6 flex flex-col flex-wrap sm:flex-row"></InformationGroup>
@@ -182,13 +184,13 @@ const Profile = () => {
             <div className="mt-2 flex flex-col flex-wrap sm:flex-row">
               <div className="truncate pt-3 capitalize sm:w-[20%] sm:text-right"></div>
               <div className="sm:w-[80%] sm:pl-5">
-                <Button className="rounded-sm">Cập nhật</Button>
+                <Button className="rounded-sm">{t("Cập nhật")}</Button>
               </div>
             </div>
           </form>
         </FormProvider>
 
-        <div className="flex justify-center md:w-72 md:border-l md:border-l-gray-200">
+        <div className="flex justify-center md:w-72 md:border-l md:border-l-gray-200 dark:md:border-l-gray-700">
           <div className="flex flex-col items-center">
             <div className="my-5 flex h-24 w-24 items-center justify-center overflow-hidden">
               <img
@@ -202,11 +204,11 @@ const Profile = () => {
               handleClickOnInput={handleClickOnInput}
               inputFileRef={inputFileRef}
             >
-              Chọn ảnh
+              {t("Chọn ảnh")}
             </InputFile>
             <div className="mt-3 text-gray-400">
-              <div>Dụng lượng file tối đa 1 MB</div>
-              <div>Định dạng .jpg .jpeg .png</div>
+              <div>{t("Dụng lượng file tối đa 1 MB")}</div>
+              <div>{t("Định dạng .jpg .jpeg .png")}</div>
             </div>
           </div>
         </div>

@@ -1,4 +1,4 @@
-type Role = "User" | "Admin";
+type Role = "User" | "Admin" | "Store";
 export type TUser = {
   _id: string;
   roles: Role[];

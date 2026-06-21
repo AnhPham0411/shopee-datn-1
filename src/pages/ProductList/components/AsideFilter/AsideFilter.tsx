@@ -10,6 +10,7 @@ import { TCategory } from "src/types/category.type";
 import { TQueryConfig } from "src/types/query.type";
 import { priceRangeSchema, TPriceRangeType } from "src/schemas/schema";
 import RatingFilter from "../RatingFilter";
+import { useTranslation } from "react-i18next";
 
 type AsideFilterProps = {
   categories: TCategory[];
@@ -18,6 +19,7 @@ type AsideFilterProps = {
 
 type FormData = TPriceRangeType;
 const AsideFilter = ({ categories, queryConfig }: AsideFilterProps) => {
+  const { t } = useTranslation();
   const { category } = queryConfig;
   const navigate = useNavigate();
   const {
@@ -55,14 +57,151 @@ const AsideFilter = ({ categories, queryConfig }: AsideFilterProps) => {
           {
             ...queryConfig,
           },
-          ["rating_filter", "sort_by", "price_min", "price_max", "category", "order"],
+          [
+            "rating_filter",
+            "sort_by",
+            "price_min",
+            "price_max",
+            "category",
+            "order",
+            "stock_status",
+            "has_discount",
+            "storeId",
+          ],
         ),
       ).toString(),
     });
   };
 
+  const activeCategories = category ? category.split(",") : [];
+
+  const handleToggleCategory = (categoryId: string) => {
+    const newCategories = activeCategories.includes(categoryId)
+      ? activeCategories.filter((id) => id !== categoryId)
+      : [...activeCategories, categoryId];
+
+    navigate({
+      pathname: path.home,
+      search: createSearchParams(
+        newCategories.length > 0
+          ? { ...queryConfig, category: newCategories.join(",") }
+          : omit(queryConfig, ["category"]),
+      ).toString(),
+    });
+  };
+
+  const handleToggleFilter = (key: keyof TQueryConfig, value: string) => {
+    const isActive = queryConfig[key] === value;
+    navigate({
+      pathname: path.home,
+      search: createSearchParams(isActive ? omit(queryConfig, [key]) : { ...queryConfig, [key]: value }).toString(),
+    });
+  };
+
+  const handleRemoveFilter = (key: keyof TQueryConfig, valueToRemove?: string) => {
+    if (key === "category" && valueToRemove) {
+      handleToggleCategory(valueToRemove);
+    } else {
+      navigate({
+        pathname: path.home,
+        search: createSearchParams(omit(queryConfig, [key])).toString(),
+      });
+    }
+  };
+
   return (
     <div className="py-4">
+      {/* Active Filters Chips */}
+      {(activeCategories.length > 0 ||
+        queryConfig.stock_status ||
+        queryConfig.has_discount ||
+        queryConfig.price_min ||
+        queryConfig.price_max ||
+        queryConfig.rating_filter) && (
+        <div className="mb-4">
+          <div className="mb-2 text-sm font-semibold text-black dark:text-gray-200">{t("Đang áp dụng:")}</div>
+          <div className="flex flex-wrap gap-2">
+            {activeCategories.map((id) => {
+              const catName = categories.find((c) => c._id === id)?.name || id;
+              return (
+                <div
+                  key={id}
+                  className="flex items-center gap-1 rounded-full bg-primary/10 px-3 py-1 text-xs text-primary"
+                >
+                  <span>{catName}</span>
+                  <button
+                    onClick={() => handleRemoveFilter("category", id)}
+                    className="ml-1 font-bold"
+                  >
+                    ×
+                  </button>
+                </div>
+              );
+            })}
+            {queryConfig.stock_status === "in_stock" && (
+              <div className="flex items-center gap-1 rounded-full bg-primary/10 px-3 py-1 text-xs text-primary">
+                <span>{t("Còn hàng")}</span>
+                <button
+                  onClick={() => handleRemoveFilter("stock_status")}
+                  className="ml-1 font-bold"
+                >
+                  ×
+                </button>
+              </div>
+            )}
+            {queryConfig.stock_status === "out_of_stock" && (
+              <div className="flex items-center gap-1 rounded-full bg-primary/10 px-3 py-1 text-xs text-primary">
+                <span>{t("Hết hàng")}</span>
+                <button
+                  onClick={() => handleRemoveFilter("stock_status")}
+                  className="ml-1 font-bold"
+                >
+                  ×
+                </button>
+              </div>
+            )}
+            {queryConfig.has_discount === "true" && (
+              <div className="flex items-center gap-1 rounded-full bg-primary/10 px-3 py-1 text-xs text-primary">
+                <span>{t("Đang giảm giá")}</span>
+                <button
+                  onClick={() => handleRemoveFilter("has_discount")}
+                  className="ml-1 font-bold"
+                >
+                  ×
+                </button>
+              </div>
+            )}
+            {(queryConfig.price_min || queryConfig.price_max) && (
+              <div className="flex items-center gap-1 rounded-full bg-primary/10 px-3 py-1 text-xs text-primary">
+                <span>
+                  {t("Giá:")} {queryConfig.price_min || "0"} - {queryConfig.price_max || t("Max")}
+                </span>
+                <button
+                  onClick={() => {
+                    handleRemoveFilter("price_min");
+                    setTimeout(() => handleRemoveFilter("price_max"), 0);
+                  }}
+                  className="ml-1 font-bold"
+                >
+                  ×
+                </button>
+              </div>
+            )}
+            {queryConfig.rating_filter && (
+              <div className="flex items-center gap-1 rounded-full bg-primary/10 px-3 py-1 text-xs text-primary">
+                <span>≥ {queryConfig.rating_filter} {t("sao")}</span>
+                <button
+                  onClick={() => handleRemoveFilter("rating_filter")}
+                  className="ml-1 font-bold"
+                >
+                  ×
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
       <Link
         to={{
           pathname: path.home,
@@ -75,8 +214,8 @@ const AsideFilter = ({ categories, queryConfig }: AsideFilterProps) => {
             ),
           ).toString(),
         }}
-        className={classNames("flex items-center font-bold", {
-          "font-semibold text-primary": !category,
+        className={classNames("flex items-center font-bold text-black dark:text-white hover:text-primary dark:hover:text-primary transition-colors", {
+          "font-semibold text-primary dark:text-primary": !category,
         })}
       >
         <svg
@@ -99,52 +238,45 @@ const AsideFilter = ({ categories, queryConfig }: AsideFilterProps) => {
             </g>
           </g>
         </svg>
-        Tất cả danh mục
+        {t("Tất cả danh mục")}
       </Link>
-      <div className="my-4 h-[1px] bg-gray-300" />
+      <div className="my-4 h-[1px] bg-gray-300 dark:bg-gray-700" />
       <ul>
         {categories.map((categoryItem) => {
-          const isActive = categoryItem._id === category;
+          const isActive = activeCategories.includes(categoryItem._id);
           return (
             <li
               className="py-2 pl-2"
               key={categoryItem._id}
             >
-              <Link
-                to={{
-                  pathname: path.home,
-                  search: createSearchParams({
-                    ...queryConfig,
-                    category: categoryItem._id.toString(),
-                  }).toString(),
-                }}
-                className={classNames(
-                  "relative px-2",
-                  {
-                    "font-semibold text-primary": isActive,
-                  },
-                  {
-                    "font-normal text-black": !isActive,
-                  },
-                )}
-              >
-                {isActive && (
-                  <svg
-                    viewBox="0 0 4 7"
-                    className="absolute top-1 left-[-10px] h-2 w-2 fill-primary"
-                  >
-                    <polygon points="4 3.5 0 0 0 7" />
-                  </svg>
-                )}
-                {categoryItem.name}
-              </Link>
+              <label className="flex cursor-pointer items-center gap-2">
+                <input
+                  type="checkbox"
+                  className="accent-primary"
+                  checked={isActive}
+                  onChange={() => handleToggleCategory(categoryItem._id)}
+                />
+                <span
+                  className={classNames(
+                    "text-sm",
+                    {
+                      "font-semibold text-primary": isActive,
+                    },
+                    {
+                      "font-normal text-black dark:text-gray-300": !isActive,
+                    },
+                  )}
+                >
+                  {categoryItem.name}
+                </span>
+              </label>
             </li>
           );
         })}
       </ul>
       <Link
         to={path.home}
-        className="mt-4 flex items-center font-bold uppercase"
+        className="mt-4 flex items-center font-bold uppercase text-black dark:text-white"
       >
         <svg
           enableBackground="new 0 0 15 15"
@@ -163,11 +295,53 @@ const AsideFilter = ({ categories, queryConfig }: AsideFilterProps) => {
             />
           </g>
         </svg>
-        Bộ lọc tìm kiếm
+        {t("Bộ lọc tìm kiếm")}
       </Link>
-      <div className="my-4 h-[1px] bg-gray-300" />
+      <div className="my-4 h-[1px] bg-gray-300 dark:bg-gray-700" />
+
+      {/* Tình trạng & Khuyến mãi */}
       <div className="my-5">
-        <div>Khoảng giá</div>
+        <div className="mb-3 font-semibold text-black dark:text-gray-200">{t("Tình trạng & Khuyến mãi")}</div>
+        <ul className="flex flex-col gap-2 text-black dark:text-gray-300">
+          <li>
+            <label className="flex cursor-pointer items-center gap-2 text-sm">
+              <input
+                type="checkbox"
+                className="accent-primary"
+                checked={queryConfig.stock_status === "in_stock"}
+                onChange={() => handleToggleFilter("stock_status", "in_stock")}
+              />
+              {t("Còn hàng")}
+            </label>
+          </li>
+          <li>
+            <label className="flex cursor-pointer items-center gap-2 text-sm">
+              <input
+                type="checkbox"
+                className="accent-primary"
+                checked={queryConfig.stock_status === "out_of_stock"}
+                onChange={() => handleToggleFilter("stock_status", "out_of_stock")}
+              />
+              {t("Hết hàng")}
+            </label>
+          </li>
+          <li>
+            <label className="flex cursor-pointer items-center gap-2 text-sm">
+              <input
+                type="checkbox"
+                className="accent-primary"
+                checked={queryConfig.has_discount === "true"}
+                onChange={() => handleToggleFilter("has_discount", "true")}
+              />
+              {t("Đang giảm giá")}
+            </label>
+          </li>
+        </ul>
+      </div>
+
+      <div className="my-4 h-[1px] bg-gray-300 dark:bg-gray-700" />
+      <div className="my-5">
+        <div className="text-black dark:text-gray-200">{t("Khoảng giá")}</div>
         <form
           className="mt-2"
           onSubmit={handleApplyPriceRange}
@@ -191,7 +365,7 @@ const AsideFilter = ({ categories, queryConfig }: AsideFilterProps) => {
                 return (
                   <InputNumber
                     type="text"
-                    placeholder="₫ TỪ"
+                    placeholder={t("₫ TỪ") as string}
                     containerClassName="grow"
                     errorClassName="hidden"
                     errorMsg={errors.price_min?.message}
@@ -204,7 +378,7 @@ const AsideFilter = ({ categories, queryConfig }: AsideFilterProps) => {
                 );
               }}
             ></Controller>
-            <div className="mx-2 shrink-0">-</div>
+            <div className="mx-2 shrink-0 text-black dark:text-gray-300">-</div>
             <Controller
               control={control}
               name="price_max"
@@ -212,7 +386,7 @@ const AsideFilter = ({ categories, queryConfig }: AsideFilterProps) => {
                 return (
                   <InputNumber
                     type="text"
-                    placeholder="₫ ĐẾN"
+                    placeholder={t("₫ ĐẾN") as string}
                     containerClassName="grow"
                     errorClassName="hidden"
                     errorMsg={errors.price_max?.message}
@@ -232,18 +406,18 @@ const AsideFilter = ({ categories, queryConfig }: AsideFilterProps) => {
             <div className="mt-1 min-h-[24px] text-center text-base text-red-600"></div>
           )}
           <Button className="flex w-full items-center justify-center bg-primary p-2 text-sm uppercase text-white hover:bg-primary/80">
-            Áp dụng
+            {t("Áp dụng")}
           </Button>
         </form>
       </div>
-      <div className="my-4 h-[1px] bg-gray-300" />
+      <div className="my-4 h-[1px] bg-gray-300 dark:bg-gray-700" />
       <RatingFilter queryConfig={queryConfig}></RatingFilter>
-      <div className="my-4 h-[1px] bg-gray-300" />
+      <div className="my-4 h-[1px] bg-gray-300 dark:bg-gray-700" />
       <Button
         onClick={handleRemoveAllFilter}
         className="flex w-full items-center justify-center bg-primary p-2 text-sm uppercase text-white hover:bg-primary/80"
       >
-        Xóa tất cả
+        {t("Xóa tất cả")}
       </Button>
     </div>
   );

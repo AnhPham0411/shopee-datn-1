@@ -5,6 +5,7 @@ import { sortBy, sortOrder } from "src/constants/params.enum";
 import { path } from "src/constants/path.enum";
 import { TProductListConfig } from "src/types/product.type";
 import { TQueryConfig } from "src/types/query.type";
+import { useTranslation } from "react-i18next";
 
 type SortProductListProps = {
   queryConfig: TQueryConfig;
@@ -12,6 +13,7 @@ type SortProductListProps = {
 };
 
 const SortProductList = ({ pageSize, queryConfig }: SortProductListProps) => {
+  const { t } = useTranslation();
   const page = Number(queryConfig.page);
   const { sort_by = sortBy.createdAt, order } = queryConfig;
   const navigate = useNavigate();
@@ -43,10 +45,10 @@ const SortProductList = ({ pageSize, queryConfig }: SortProductListProps) => {
     return sort_by === sortByValue;
   };
   return (
-    <div className="bg-gray-300/40 py-4 px-3">
+    <div className="bg-gray-300/40 dark:bg-gray-800 py-4 px-3">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <div className="flex flex-wrap items-center gap-2">
-          <div>Sắp xếp theo</div>
+          <div className="text-black dark:text-gray-300">{t("Sắp xếp theo")}</div>
           <button
             className={classNames(
               "h-8 bg-primary px-4 text-center text-sm capitalize hover:bg-primary/80",
@@ -59,7 +61,7 @@ const SortProductList = ({ pageSize, queryConfig }: SortProductListProps) => {
             )}
             onClick={() => handleFilterSort(sortBy.view)}
           >
-            Phổ biến
+            {t("Phổ biến")}
           </button>
           <button
             className={classNames(
@@ -73,7 +75,7 @@ const SortProductList = ({ pageSize, queryConfig }: SortProductListProps) => {
             )}
             onClick={() => handleFilterSort(sortBy.createdAt)}
           >
-            Mới nhất
+            {t("Mới nhất")}
           </button>
           <button
             className={classNames(
@@ -87,7 +89,7 @@ const SortProductList = ({ pageSize, queryConfig }: SortProductListProps) => {
             )}
             onClick={() => handleFilterSort(sortBy.sold)}
           >
-            Bán chạy
+            {t("Bán chạy")}
           </button>
           <select
             className={classNames(
@@ -96,7 +98,7 @@ const SortProductList = ({ pageSize, queryConfig }: SortProductListProps) => {
                 "bg-primary text-white hover:bg-primary/80": isActiveSortBy(sortBy.price),
               },
               {
-                "bg-white text-black hover:bg-slate-100": !isActiveSortBy(sortBy.price),
+                "bg-white dark:bg-gray-700 text-black dark:text-gray-300 hover:bg-slate-100 dark:hover:bg-gray-600": !isActiveSortBy(sortBy.price),
               },
             )}
             value={order || ""}
@@ -104,22 +106,22 @@ const SortProductList = ({ pageSize, queryConfig }: SortProductListProps) => {
           >
             <option
               value=""
-              className="cursor-not-allowed bg-white text-black hover:bg-slate-100"
+              className="cursor-not-allowed bg-white dark:bg-gray-700 text-black dark:text-gray-300 hover:bg-slate-100 dark:hover:bg-gray-600"
               disabled
             >
-              Giá
+              {t("Giá")}
             </option>
             <option
               value={sortOrder.asc}
-              className="bg-white text-black hover:bg-slate-100"
+              className="bg-white dark:bg-gray-700 text-black dark:text-gray-300 hover:bg-slate-100 dark:hover:bg-gray-600"
             >
-              Giá: Thấp đến cao
+              {t("Giá: Thấp đến cao")}
             </option>
             <option
               value={sortOrder.desc}
-              className="bg-white text-black hover:bg-slate-100"
+              className="bg-white dark:bg-gray-700 text-black dark:text-gray-300 hover:bg-slate-100 dark:hover:bg-gray-600"
             >
-              Giá: Cao đến thấp
+              {t("Giá: Cao đến thấp")}
             </option>
           </select>
         </div>
@@ -127,11 +129,11 @@ const SortProductList = ({ pageSize, queryConfig }: SortProductListProps) => {
         <div className="flex items-center gap-x-2">
           <div>
             <span className="text-primary">{page}</span>
-            <span>/{pageSize}</span>
+            <span className="text-black dark:text-white">/{pageSize}</span>
           </div>
           <div className="flex items-center justify-center">
             {page === 1 ? (
-              <button className="h-8 cursor-not-allowed rounded-tl-sm rounded-bl-sm bg-white/60 px-3 shadow hover:bg-slate-100">
+              <button className="h-8 cursor-not-allowed rounded-tl-sm rounded-bl-sm bg-white/60 dark:bg-gray-700/60 px-3 shadow hover:bg-slate-100 dark:hover:bg-gray-600">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -156,7 +158,7 @@ const SortProductList = ({ pageSize, queryConfig }: SortProductListProps) => {
                     page: (page - 1).toString(),
                   }).toString(),
                 }}
-                className="flex h-8 items-center justify-center rounded-tl-sm rounded-bl-sm bg-white px-3 shadow hover:bg-slate-100"
+                className="flex h-8 items-center justify-center rounded-tl-sm rounded-bl-sm bg-white dark:bg-gray-700 px-3 shadow hover:bg-slate-100 dark:hover:bg-gray-600"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -175,7 +177,7 @@ const SortProductList = ({ pageSize, queryConfig }: SortProductListProps) => {
               </Link>
             )}
             {page === pageSize ? (
-              <button className="flex h-8 cursor-not-allowed items-center justify-center rounded-tr-sm rounded-br-sm bg-white/60 px-3 shadow hover:bg-slate-100">
+              <button className="flex h-8 cursor-not-allowed items-center justify-center rounded-tr-sm rounded-br-sm bg-white/60 dark:bg-gray-700/60 px-3 shadow hover:bg-slate-100 dark:hover:bg-gray-600">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -200,7 +202,7 @@ const SortProductList = ({ pageSize, queryConfig }: SortProductListProps) => {
                     page: (page + 1).toString(),
                   }).toString(),
                 }}
-                className="flex h-8 items-center justify-center rounded-tr-sm rounded-br-sm bg-white px-3 shadow hover:bg-slate-100"
+                className="flex h-8 items-center justify-center rounded-tr-sm rounded-br-sm bg-white dark:bg-gray-700 px-3 shadow hover:bg-slate-100 dark:hover:bg-gray-600"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

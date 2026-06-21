@@ -17,6 +17,9 @@ export default function useQueryConfig() {
       exclude: queryParams.exclude,
       rating_filter: queryParams.rating_filter,
       category: queryParams.category,
+      stock_status: queryParams.stock_status,
+      has_discount: queryParams.has_discount,
+      storeId: queryParams.storeId,
     },
     isUndefined,
   );
