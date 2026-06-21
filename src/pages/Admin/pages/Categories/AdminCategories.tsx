@@ -55,8 +55,8 @@ export default function AdminCategories() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-gray-800">Quản lý Danh mục</h2>
-          <p className="mt-1 text-sm text-gray-500">Quản lý các danh mục sản phẩm trên toàn sàn.</p>
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Quản lý Danh mục</h2>
+          <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">Quản lý các danh mục sản phẩm trên toàn sàn.</p>
         </div>
         <button
           onClick={() => setIsAdding(true)}
@@ -78,7 +78,7 @@ export default function AdminCategories() {
               value={newName}
               onChange={(e) => setNewName(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && newName.trim() && createMutation.mutate({ name: newName })}
-              className="flex-1 rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/10"
+              className="flex-1 rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
               autoFocus
             />
             <button onClick={() => newName.trim() && createMutation.mutate({ name: newName })}
@@ -120,7 +120,7 @@ export default function AdminCategories() {
                         if (e.key === "Enter") updateMutation.mutate({ id: editState.id, name: editState.name });
                         if (e.key === "Escape") setEditState(null);
                       }}
-                      className="flex-1 rounded-lg border border-primary px-3 py-1.5 text-sm outline-none focus:ring-2 focus:ring-primary/10"
+                      className="flex-1 rounded-lg border border-primary bg-white px-3 py-1.5 text-sm outline-none focus:ring-2 focus:ring-primary/10 dark:bg-gray-700 dark:text-white"
                     />
                     <button
                       onClick={() => updateMutation.mutate({ id: editState.id, name: editState.name })}
@@ -137,7 +137,7 @@ export default function AdminCategories() {
                 ) : (
                   /* ── display mode ── */
                   <>
-                    <span className="flex-1 text-sm font-medium text-gray-800">{cat.name}</span>
+                    <span className="flex-1 text-sm font-medium text-gray-800 dark:text-gray-100">{cat.name}</span>
                     <div className="flex items-center gap-1">
                       <button
                         onClick={() => setEditState({ id: cat._id, name: cat.name })}

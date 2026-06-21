@@ -70,7 +70,7 @@ const Register = () => {
       <div className="lg:col-span-2 lg:col-start-4">
         <form
           onSubmit={handleSignUp}
-          className="rounded bg-white p-10 shadow-sm"
+          className="rounded bg-white p-10 shadow-sm text-gray-800"
           noValidate
           autoComplete="on"
         >

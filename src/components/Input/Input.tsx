@@ -20,7 +20,7 @@ const Input = ({
   errorMsg,
   name,
   register,
-  className = "p-3 w-full outline-none border border-gray-300 focus:border-gray-500 rounded-sm focus:shadow-sm",
+  className = "p-3 w-full outline-none border border-gray-300 focus:border-gray-500 rounded-sm focus:shadow-sm text-gray-800 bg-white",
   containerClassName = "",
   errorClassName = "mt-1 text-red-600 min-h-[1.25rem] text-sm",
   placeholder = "",
