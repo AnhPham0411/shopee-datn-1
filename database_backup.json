@@ -1,0 +1,1427 @@
+{
+  "categories": [
+    {
+      "_id": "6a378fac7484365df21b2e44",
+      "name": "Thời trang nam",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.947Z",
+      "updatedAt": "2026-06-21T07:15:56.947Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e45",
+      "name": "Thời trang nữ",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.947Z",
+      "updatedAt": "2026-06-21T07:15:56.947Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e46",
+      "name": "Phụ kiện điện thoại",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.947Z",
+      "updatedAt": "2026-06-21T07:15:56.947Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e47",
+      "name": "Balo & Túi xách",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.947Z",
+      "updatedAt": "2026-06-21T07:15:56.947Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e48",
+      "name": "Đồng hồ & Trang sức",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.947Z",
+      "updatedAt": "2026-06-21T07:15:56.947Z"
+    }
+  ],
+  "reviews": [
+    {
+      "_id": "6a37b078515d539f78cf1dde",
+      "product": "6a378fac7484365df21b2e63",
+      "user": "6a379391dd1210fc709e513a",
+      "rating": 5,
+      "comment": "ok tốt\n",
+      "images": [],
+      "helpfulCount": 0,
+      "createdAt": "2026-06-21T09:35:52.601Z",
+      "updatedAt": "2026-06-21T09:35:52.601Z",
+      "__v": 0
+    }
+  ],
+  "products": [
+    {
+      "_id": "6a378fac7484365df21b2e4a",
+      "name": "Áo thun nam basic cổ tròn",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/71rxmYWcGML._AC_SY879_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/71rxmYWcGML._AC_SY879_.jpg",
+      "price": 150000,
+      "rating": 4.8,
+      "price_before_discount": 172500,
+      "quantity": 468,
+      "sold": 100,
+      "view": 4543,
+      "category": "6a378fac7484365df21b2e44",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.962Z",
+      "updatedAt": "2026-06-21T07:15:56.962Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e4b",
+      "name": "Áo nỉ hoodie nam dáng rộng",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/51A+zDkX92L._AC_SX679_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/51A+zDkX92L._AC_SX679_.jpg",
+      "price": 250000,
+      "rating": 5,
+      "price_before_discount": 295000,
+      "quantity": 376,
+      "sold": 1554,
+      "view": 5063,
+      "category": "6a378fac7484365df21b2e44",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.962Z",
+      "updatedAt": "2026-06-21T07:15:56.962Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e4c",
+      "name": "Quần jean nam dáng đứng",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/616xchp1ECL._AC_SY879_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/616xchp1ECL._AC_SY879_.jpg",
+      "price": 300000,
+      "rating": 4.5,
+      "price_before_discount": 330000,
+      "quantity": 421,
+      "sold": 1307,
+      "view": 1783,
+      "category": "6a378fac7484365df21b2e44",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.962Z",
+      "updatedAt": "2026-06-21T07:15:56.962Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e4d",
+      "name": "Áo sơ mi nam công sở tay dài",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/51VjB+-E+tL._AC_SY879_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/51VjB+-E+tL._AC_SY879_.jpg",
+      "price": 220000,
+      "rating": 4.8,
+      "price_before_discount": 275000,
+      "quantity": 478,
+      "sold": 1578,
+      "view": 5122,
+      "category": "6a378fac7484365df21b2e44",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.962Z",
+      "updatedAt": "2026-06-21T07:15:56.962Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e4e",
+      "name": "Quần short nam thể thao nhẹ",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/61k1qO-g9tL._AC_SY879_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/61k1qO-g9tL._AC_SY879_.jpg",
+      "price": 120000,
+      "rating": 4.7,
+      "price_before_discount": 145200,
+      "quantity": 126,
+      "sold": 1434,
+      "view": 5023,
+      "category": "6a378fac7484365df21b2e44",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.962Z",
+      "updatedAt": "2026-06-21T07:15:56.962Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e4f",
+      "name": "Đầm xòe hoa nhí mùa hè",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/71k3A9gK6SL._AC_SY879_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/71k3A9gK6SL._AC_SY879_.jpg",
+      "price": 280000,
+      "rating": 4,
+      "price_before_discount": 310800,
+      "quantity": 310,
+      "sold": 643,
+      "view": 3069,
+      "category": "6a378fac7484365df21b2e45",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.962Z",
+      "updatedAt": "2026-06-21T07:15:56.962Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e50",
+      "name": "Áo sơ mi nữ tay bồng",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/61T2YmI+2yL._AC_SY879_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/61T2YmI+2yL._AC_SY879_.jpg",
+      "price": 190000,
+      "rating": 4.7,
+      "price_before_discount": 209000,
+      "quantity": 146,
+      "sold": 1984,
+      "view": 2429,
+      "category": "6a378fac7484365df21b2e45",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.962Z",
+      "updatedAt": "2026-06-21T07:15:56.962Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e51",
+      "name": "Chân váy chữ A xếp ly",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/51oI6E3M6vL._AC_SY879_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/51oI6E3M6vL._AC_SY879_.jpg",
+      "price": 160000,
+      "rating": 5,
+      "price_before_discount": 204800,
+      "quantity": 214,
+      "sold": 1522,
+      "view": 5241,
+      "category": "6a378fac7484365df21b2e45",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.963Z",
+      "updatedAt": "2026-06-21T07:15:56.963Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e52",
+      "name": "Quần jean ống rộng nữ tôn dáng",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/61vY+yY07dL._AC_SY879_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/61vY+yY07dL._AC_SY879_.jpg",
+      "price": 320000,
+      "rating": 4.4,
+      "price_before_discount": 368000,
+      "quantity": 81,
+      "sold": 569,
+      "view": 629,
+      "category": "6a378fac7484365df21b2e45",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.963Z",
+      "updatedAt": "2026-06-21T07:15:56.963Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e53",
+      "name": "Áo thun croptop nữ năng động",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/61KxZ50YI9L._AC_SY879_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/61KxZ50YI9L._AC_SY879_.jpg",
+      "price": 110000,
+      "rating": 4.6,
+      "price_before_discount": 128699,
+      "quantity": 193,
+      "sold": 1448,
+      "view": 5142,
+      "category": "6a378fac7484365df21b2e45",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.963Z",
+      "updatedAt": "2026-06-21T07:15:56.963Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e54",
+      "name": "Ốp lưng trong suốt chống sốc",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/61bK6PMOC8L._AC_SX679_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/61bK6PMOC8L._AC_SX679_.jpg",
+      "price": 50000,
+      "rating": 5,
+      "price_before_discount": 61000,
+      "quantity": 347,
+      "sold": 688,
+      "view": 509,
+      "category": "6a378fac7484365df21b2e46",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.963Z",
+      "updatedAt": "2026-06-21T07:15:56.963Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e55",
+      "name": "Sạc dự phòng 10000mAh nhỏ gọn",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/71lVwl3q-kL._AC_SX679_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/71lVwl3q-kL._AC_SX679_.jpg",
+      "price": 350000,
+      "rating": 4.7,
+      "price_before_discount": 427000,
+      "quantity": 401,
+      "sold": 1266,
+      "view": 1570,
+      "category": "6a378fac7484365df21b2e46",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.963Z",
+      "updatedAt": "2026-06-21T07:15:56.963Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e56",
+      "name": "Cáp sạc Type-C siêu bền bọc dù",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/71m-EsCA2aL._AC_SX679_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/71m-EsCA2aL._AC_SX679_.jpg",
+      "price": 80000,
+      "rating": 4.7,
+      "price_before_discount": 101600,
+      "quantity": 426,
+      "sold": 1610,
+      "view": 1329,
+      "category": "6a378fac7484365df21b2e46",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.963Z",
+      "updatedAt": "2026-06-21T07:15:56.963Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e57",
+      "name": "Giá đỡ điện thoại để bàn hợp kim",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/71z7tT71WLL._AC_SX679_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/71z7tT71WLL._AC_SX679_.jpg",
+      "price": 120000,
+      "rating": 4.4,
+      "price_before_discount": 138000,
+      "quantity": 190,
+      "sold": 539,
+      "view": 4835,
+      "category": "6a378fac7484365df21b2e46",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.963Z",
+      "updatedAt": "2026-06-21T07:15:56.963Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e58",
+      "name": "Tai nghe Bluetooth True Wireless",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/61Qh6J9UgwL._AC_SX679_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/61Qh6J9UgwL._AC_SX679_.jpg",
+      "price": 450000,
+      "rating": 4.7,
+      "price_before_discount": 544500,
+      "quantity": 185,
+      "sold": 283,
+      "view": 940,
+      "category": "6a378fac7484365df21b2e46",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.963Z",
+      "updatedAt": "2026-06-21T07:15:56.963Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e59",
+      "name": "Balo laptop chống nước cao cấp",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/81q2X9xOkiL._AC_SY879_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/81q2X9xOkiL._AC_SY879_.jpg",
+      "price": 400000,
+      "rating": 4.4,
+      "price_before_discount": 496000,
+      "quantity": 387,
+      "sold": 1773,
+      "view": 1677,
+      "category": "6a378fac7484365df21b2e47",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.963Z",
+      "updatedAt": "2026-06-21T07:15:56.963Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e5a",
+      "name": "Túi đeo chéo nam thể thao",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/71W8S9YlBfL._AC_SY879_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/71W8S9YlBfL._AC_SY879_.jpg",
+      "price": 180000,
+      "rating": 4.9,
+      "price_before_discount": 226800,
+      "quantity": 296,
+      "sold": 640,
+      "view": 1770,
+      "category": "6a378fac7484365df21b2e47",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.963Z",
+      "updatedAt": "2026-06-21T07:15:56.963Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e5b",
+      "name": "Túi xách nữ da PU thời trang",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/71yE9X9q+8L._AC_SY879_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/71yE9X9q+8L._AC_SY879_.jpg",
+      "price": 350000,
+      "rating": 4.4,
+      "price_before_discount": 420000,
+      "quantity": 277,
+      "sold": 1497,
+      "view": 3922,
+      "category": "6a378fac7484365df21b2e47",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.963Z",
+      "updatedAt": "2026-06-21T07:15:56.963Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e5c",
+      "name": "Ví da nam dáng gập đôi",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/81xUJEgT5WL._AC_SX679_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/81xUJEgT5WL._AC_SX679_.jpg",
+      "price": 250000,
+      "rating": 4.4,
+      "price_before_discount": 312500,
+      "quantity": 248,
+      "sold": 347,
+      "view": 2437,
+      "category": "6a378fac7484365df21b2e47",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.963Z",
+      "updatedAt": "2026-06-21T07:15:56.963Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e5d",
+      "name": "Balo mini nữ thời trang",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/71P4o2kI3iL._AC_SY879_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/71P4o2kI3iL._AC_SY879_.jpg",
+      "price": 220000,
+      "rating": 4.7,
+      "price_before_discount": 277200,
+      "quantity": 333,
+      "sold": 1690,
+      "view": 2603,
+      "category": "6a378fac7484365df21b2e47",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.964Z",
+      "updatedAt": "2026-06-21T07:15:56.964Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e5e",
+      "name": "Đồng hồ Casio nam dây thép",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/51xxA+6E+xL._AC_SY879_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/51xxA+6E+xL._AC_SY879_.jpg",
+      "price": 850000,
+      "rating": 4.7,
+      "price_before_discount": 985999,
+      "quantity": 377,
+      "sold": 390,
+      "view": 2919,
+      "category": "6a378fac7484365df21b2e48",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.964Z",
+      "updatedAt": "2026-06-21T07:15:56.964Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e5f",
+      "name": "Dây chuyền bạc nữ đính đá",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/61Gj3aGDBEL._AC_SY879_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/61Gj3aGDBEL._AC_SY879_.jpg",
+      "price": 300000,
+      "rating": 4.9,
+      "price_before_discount": 363000,
+      "quantity": 412,
+      "sold": 138,
+      "view": 5411,
+      "category": "6a378fac7484365df21b2e48",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.964Z",
+      "updatedAt": "2026-06-21T07:15:56.964Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e60",
+      "name": "Đồng hồ nữ dây kim loại nhỏ gọn",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/61X-u7qLkhL._AC_SY879_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/61X-u7qLkhL._AC_SY879_.jpg",
+      "price": 750000,
+      "rating": 4.3,
+      "price_before_discount": 922500,
+      "quantity": 185,
+      "sold": 1935,
+      "view": 2535,
+      "category": "6a378fac7484365df21b2e48",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.964Z",
+      "updatedAt": "2026-06-21T07:15:56.964Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e61",
+      "name": "Bông tai bạc đính ngọc trai",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/51lU6h8FkLL._AC_SY879_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/51lU6h8FkLL._AC_SY879_.jpg",
+      "price": 150000,
+      "rating": 5,
+      "price_before_discount": 171000,
+      "quantity": 301,
+      "sold": 871,
+      "view": 864,
+      "category": "6a378fac7484365df21b2e48",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.964Z",
+      "updatedAt": "2026-06-21T07:15:56.964Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e62",
+      "name": "Lắc tay nam chuỗi mắt xích",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/71O1O4L-LwL._AC_SY879_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/71O1O4L-LwL._AC_SY879_.jpg",
+      "price": 200000,
+      "rating": 5,
+      "price_before_discount": 242000,
+      "quantity": 430,
+      "sold": 957,
+      "view": 951,
+      "category": "6a378fac7484365df21b2e48",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.964Z",
+      "updatedAt": "2026-06-21T07:15:56.964Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e63",
+      "name": "Áo thun nam basic cổ tròn (Bản Cao Cấp)",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/71rxmYWcGML._AC_SY879_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/71rxmYWcGML._AC_SY879_.jpg",
+      "price": 200000,
+      "rating": 5,
+      "price_before_discount": 252000,
+      "quantity": 278,
+      "sold": 855,
+      "view": 737,
+      "category": "6a378fac7484365df21b2e44",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.964Z",
+      "updatedAt": "2026-06-21T09:35:52.613Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e64",
+      "name": "Áo nỉ hoodie nam dáng rộng (Bản Cao Cấp)",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/51A+zDkX92L._AC_SX679_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/51A+zDkX92L._AC_SX679_.jpg",
+      "price": 300000,
+      "rating": 4.6,
+      "price_before_discount": 384000,
+      "quantity": 33,
+      "sold": 837,
+      "view": 320,
+      "category": "6a378fac7484365df21b2e44",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.964Z",
+      "updatedAt": "2026-06-21T07:15:56.964Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e65",
+      "name": "Quần jean nam dáng đứng (Bản Cao Cấp)",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/616xchp1ECL._AC_SY879_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/616xchp1ECL._AC_SY879_.jpg",
+      "price": 350000,
+      "rating": 4.5,
+      "price_before_discount": 420000,
+      "quantity": 58,
+      "sold": 795,
+      "view": 1840,
+      "category": "6a378fac7484365df21b2e44",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.964Z",
+      "updatedAt": "2026-06-21T07:15:56.964Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e66",
+      "name": "Áo sơ mi nam công sở tay dài (Bản Cao Cấp)",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/51VjB+-E+tL._AC_SY879_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/51VjB+-E+tL._AC_SY879_.jpg",
+      "price": 270000,
+      "rating": 5,
+      "price_before_discount": 326700,
+      "quantity": 111,
+      "sold": 318,
+      "view": 3155,
+      "category": "6a378fac7484365df21b2e44",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.964Z",
+      "updatedAt": "2026-06-21T07:15:56.964Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e67",
+      "name": "Quần short nam thể thao nhẹ (Bản Cao Cấp)",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/61k1qO-g9tL._AC_SY879_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/61k1qO-g9tL._AC_SY879_.jpg",
+      "price": 170000,
+      "rating": 4.7,
+      "price_before_discount": 214200,
+      "quantity": 238,
+      "sold": 770,
+      "view": 2775,
+      "category": "6a378fac7484365df21b2e44",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.964Z",
+      "updatedAt": "2026-06-21T07:15:56.964Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e68",
+      "name": "Đầm xòe hoa nhí mùa hè (Bản Cao Cấp)",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/71k3A9gK6SL._AC_SY879_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/71k3A9gK6SL._AC_SY879_.jpg",
+      "price": 330000,
+      "rating": 4.9,
+      "price_before_discount": 402600,
+      "quantity": 212,
+      "sold": 345,
+      "view": 2219,
+      "category": "6a378fac7484365df21b2e45",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.964Z",
+      "updatedAt": "2026-06-21T07:15:56.964Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e69",
+      "name": "Áo sơ mi nữ tay bồng (Bản Cao Cấp)",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/61T2YmI+2yL._AC_SY879_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/61T2YmI+2yL._AC_SY879_.jpg",
+      "price": 240000,
+      "rating": 4.6,
+      "price_before_discount": 307200,
+      "quantity": 186,
+      "sold": 426,
+      "view": 2719,
+      "category": "6a378fac7484365df21b2e45",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.964Z",
+      "updatedAt": "2026-06-21T07:15:56.964Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e6a",
+      "name": "Chân váy chữ A xếp ly (Bản Cao Cấp)",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/51oI6E3M6vL._AC_SY879_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/51oI6E3M6vL._AC_SY879_.jpg",
+      "price": 210000,
+      "rating": 4.7,
+      "price_before_discount": 245699,
+      "quantity": 298,
+      "sold": 174,
+      "view": 2598,
+      "category": "6a378fac7484365df21b2e45",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.964Z",
+      "updatedAt": "2026-06-21T07:15:56.964Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e6b",
+      "name": "Quần jean ống rộng nữ tôn dáng (Bản Cao Cấp)",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/61vY+yY07dL._AC_SY879_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/61vY+yY07dL._AC_SY879_.jpg",
+      "price": 370000,
+      "rating": 4.9,
+      "price_before_discount": 436600,
+      "quantity": 107,
+      "sold": 825,
+      "view": 1885,
+      "category": "6a378fac7484365df21b2e45",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.964Z",
+      "updatedAt": "2026-06-21T07:15:56.964Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e6c",
+      "name": "Áo thun croptop nữ năng động (Bản Cao Cấp)",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/61KxZ50YI9L._AC_SY879_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/61KxZ50YI9L._AC_SY879_.jpg",
+      "price": 160000,
+      "rating": 4.8,
+      "price_before_discount": 204800,
+      "quantity": 219,
+      "sold": 444,
+      "view": 379,
+      "category": "6a378fac7484365df21b2e45",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.964Z",
+      "updatedAt": "2026-06-21T07:15:56.964Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e6d",
+      "name": "Ốp lưng trong suốt chống sốc (Bản Cao Cấp)",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/61bK6PMOC8L._AC_SX679_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/61bK6PMOC8L._AC_SX679_.jpg",
+      "price": 100000,
+      "rating": 4.8,
+      "price_before_discount": 124000,
+      "quantity": 71,
+      "sold": 629,
+      "view": 1570,
+      "category": "6a378fac7484365df21b2e46",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.964Z",
+      "updatedAt": "2026-06-21T07:15:56.964Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e6e",
+      "name": "Sạc dự phòng 10000mAh nhỏ gọn (Bản Cao Cấp)",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/71lVwl3q-kL._AC_SX679_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/71lVwl3q-kL._AC_SX679_.jpg",
+      "price": 400000,
+      "rating": 4.7,
+      "price_before_discount": 484000,
+      "quantity": 315,
+      "sold": 270,
+      "view": 1943,
+      "category": "6a378fac7484365df21b2e46",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.964Z",
+      "updatedAt": "2026-06-21T07:15:56.964Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e6f",
+      "name": "Cáp sạc Type-C siêu bền bọc dù (Bản Cao Cấp)",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/71m-EsCA2aL._AC_SX679_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/71m-EsCA2aL._AC_SX679_.jpg",
+      "price": 130000,
+      "rating": 4.7,
+      "price_before_discount": 162500,
+      "quantity": 262,
+      "sold": 831,
+      "view": 1535,
+      "category": "6a378fac7484365df21b2e46",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.964Z",
+      "updatedAt": "2026-06-21T07:15:56.964Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e70",
+      "name": "Giá đỡ điện thoại để bàn hợp kim (Bản Cao Cấp)",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/71z7tT71WLL._AC_SX679_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/71z7tT71WLL._AC_SX679_.jpg",
+      "price": 170000,
+      "rating": 4.6,
+      "price_before_discount": 221000,
+      "quantity": 297,
+      "sold": 693,
+      "view": 1926,
+      "category": "6a378fac7484365df21b2e46",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.964Z",
+      "updatedAt": "2026-06-21T07:15:56.964Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e71",
+      "name": "Tai nghe Bluetooth True Wireless (Bản Cao Cấp)",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/61Qh6J9UgwL._AC_SX679_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/61Qh6J9UgwL._AC_SX679_.jpg",
+      "price": 500000,
+      "rating": 4.6,
+      "price_before_discount": 655000,
+      "quantity": 204,
+      "sold": 390,
+      "view": 1780,
+      "category": "6a378fac7484365df21b2e46",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.964Z",
+      "updatedAt": "2026-06-21T07:15:56.964Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e72",
+      "name": "Balo laptop chống nước cao cấp (Bản Cao Cấp)",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/81q2X9xOkiL._AC_SY879_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/81q2X9xOkiL._AC_SY879_.jpg",
+      "price": 450000,
+      "rating": 4.7,
+      "price_before_discount": 521999,
+      "quantity": 108,
+      "sold": 248,
+      "view": 2529,
+      "category": "6a378fac7484365df21b2e47",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.964Z",
+      "updatedAt": "2026-06-21T07:15:56.964Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e73",
+      "name": "Túi đeo chéo nam thể thao (Bản Cao Cấp)",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/71W8S9YlBfL._AC_SY879_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/71W8S9YlBfL._AC_SY879_.jpg",
+      "price": 230000,
+      "rating": 5,
+      "price_before_discount": 299000,
+      "quantity": 65,
+      "sold": 494,
+      "view": 2305,
+      "category": "6a378fac7484365df21b2e47",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.965Z",
+      "updatedAt": "2026-06-21T07:15:56.965Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e74",
+      "name": "Túi xách nữ da PU thời trang (Bản Cao Cấp)",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/71yE9X9q+8L._AC_SY879_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/71yE9X9q+8L._AC_SY879_.jpg",
+      "price": 400000,
+      "rating": 4.9,
+      "price_before_discount": 476000,
+      "quantity": 190,
+      "sold": 340,
+      "view": 348,
+      "category": "6a378fac7484365df21b2e47",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.965Z",
+      "updatedAt": "2026-06-21T07:15:56.965Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e75",
+      "name": "Ví da nam dáng gập đôi (Bản Cao Cấp)",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/81xUJEgT5WL._AC_SX679_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/81xUJEgT5WL._AC_SX679_.jpg",
+      "price": 300000,
+      "rating": 4.8,
+      "price_before_discount": 372000,
+      "quantity": 78,
+      "sold": 112,
+      "view": 2732,
+      "category": "6a378fac7484365df21b2e47",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.965Z",
+      "updatedAt": "2026-06-21T07:15:56.965Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e76",
+      "name": "Balo mini nữ thời trang (Bản Cao Cấp)",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/71P4o2kI3iL._AC_SY879_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/71P4o2kI3iL._AC_SY879_.jpg",
+      "price": 270000,
+      "rating": 4.7,
+      "price_before_discount": 315900,
+      "quantity": 88,
+      "sold": 191,
+      "view": 2643,
+      "category": "6a378fac7484365df21b2e47",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.965Z",
+      "updatedAt": "2026-06-21T07:15:56.965Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e77",
+      "name": "Đồng hồ Casio nam dây thép (Bản Cao Cấp)",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/51xxA+6E+xL._AC_SY879_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/51xxA+6E+xL._AC_SY879_.jpg",
+      "price": 900000,
+      "rating": 4.5,
+      "price_before_discount": 1170000,
+      "quantity": 195,
+      "sold": 929,
+      "view": 1545,
+      "category": "6a378fac7484365df21b2e48",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.965Z",
+      "updatedAt": "2026-06-21T07:15:56.965Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e78",
+      "name": "Dây chuyền bạc nữ đính đá (Bản Cao Cấp)",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/61Gj3aGDBEL._AC_SY879_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/61Gj3aGDBEL._AC_SY879_.jpg",
+      "price": 350000,
+      "rating": 4.8,
+      "price_before_discount": 406000,
+      "quantity": 199,
+      "sold": 884,
+      "view": 1330,
+      "category": "6a378fac7484365df21b2e48",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.965Z",
+      "updatedAt": "2026-06-21T07:15:56.965Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e79",
+      "name": "Đồng hồ nữ dây kim loại nhỏ gọn (Bản Cao Cấp)",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/61X-u7qLkhL._AC_SY879_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/61X-u7qLkhL._AC_SY879_.jpg",
+      "price": 800000,
+      "rating": 4.7,
+      "price_before_discount": 992000,
+      "quantity": 133,
+      "sold": 1031,
+      "view": 912,
+      "category": "6a378fac7484365df21b2e48",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.965Z",
+      "updatedAt": "2026-06-21T07:15:56.965Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e7a",
+      "name": "Bông tai bạc đính ngọc trai (Bản Cao Cấp)",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/51lU6h8FkLL._AC_SY879_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/51lU6h8FkLL._AC_SY879_.jpg",
+      "price": 200000,
+      "rating": 4.9,
+      "price_before_discount": 242000,
+      "quantity": 61,
+      "sold": 411,
+      "view": 1055,
+      "category": "6a378fac7484365df21b2e48",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.965Z",
+      "updatedAt": "2026-06-21T07:15:56.965Z"
+    },
+    {
+      "_id": "6a378fac7484365df21b2e7b",
+      "name": "Lắc tay nam chuỗi mắt xích (Bản Cao Cấp)",
+      "description": "",
+      "images": [
+        "https://m.media-amazon.com/images/I/71O1O4L-LwL._AC_SY879_.jpg"
+      ],
+      "image": "https://m.media-amazon.com/images/I/71O1O4L-LwL._AC_SY879_.jpg",
+      "price": 250000,
+      "rating": 5,
+      "price_before_discount": 327500,
+      "quantity": 25,
+      "sold": 1042,
+      "view": 2045,
+      "category": "6a378fac7484365df21b2e48",
+      "status": "active",
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:56.965Z",
+      "updatedAt": "2026-06-21T07:15:56.965Z"
+    }
+  ],
+  "users": [
+    {
+      "_id": "6a378fac7484365df21b2e42",
+      "email": "admin@shopee.com",
+      "password": "$2b$10$il3cE4PtKQECLmyKTdRDXefs0udoXQmbxaWe56X4bK2HwPDzukzwG",
+      "roles": [
+        "Admin",
+        "User"
+      ],
+      "isLocked": false,
+      "createdAt": "2026-06-21T07:15:56.942Z",
+      "updatedAt": "2026-06-21T07:15:56.942Z",
+      "__v": 0
+    },
+    {
+      "_id": "6a379391dd1210fc709e513a",
+      "email": "letuan040702@gmail.com",
+      "password": "$2b$10$L7EygnhaMQCQD5o9q7kYXea0.s2O91H2/8feUZNeZ1kADRu8ui8pO",
+      "roles": [
+        "User"
+      ],
+      "isLocked": false,
+      "createdAt": "2026-06-21T07:32:33.460Z",
+      "updatedAt": "2026-06-21T09:32:39.853Z",
+      "__v": 0,
+      "avatar": "",
+      "date_of_birth": "1989-12-31T17:00:00.000Z",
+      "name": "le tuuan anh"
+    },
+    {
+      "_id": "6a37948bdd1210fc709e5145",
+      "email": "test5@example.com",
+      "password": "$2b$10$CmhedID7UMpO3.mNRmd5/ef0HpAlmBptyAfax9LwLNgXCtJlAJhae",
+      "roles": [
+        "User"
+      ],
+      "isLocked": false,
+      "createdAt": "2026-06-21T07:36:43.608Z",
+      "updatedAt": "2026-06-21T07:36:43.608Z",
+      "__v": 0
+    },
+    {
+      "_id": "6a3796369ab9f490e5fc5481",
+      "email": "test6@example.com",
+      "password": "$2b$10$z0xKrJV6ufYtMuiKm/u/xOfdHWUTjwIsfVKGQFsqenb7aDtANvuO2",
+      "roles": [
+        "User",
+        "Store",
+        "Admin"
+      ],
+      "isLocked": false,
+      "createdAt": "2026-06-21T07:43:50.164Z",
+      "updatedAt": "2026-06-21T07:53:53.884Z",
+      "__v": 2
+    },
+    {
+      "_id": "6a37998bd7db7b552d4d44ba",
+      "email": "newtest7@example.com",
+      "password": "$2b$10$TaPwiIMCtQKEX1/S3iAFZO.tHMvNdZf8.e8qN6d85szCpbtsDArRe",
+      "roles": [
+        "User",
+        "Store"
+      ],
+      "isLocked": false,
+      "createdAt": "2026-06-21T07:58:03.022Z",
+      "updatedAt": "2026-06-21T08:00:01.834Z",
+      "__v": 1
+    }
+  ],
+  "contacts": [],
+  "vouchers": [],
+  "wishlists": [
+    {
+      "_id": "6a37a3300b992120268f60c0",
+      "user": "6a379391dd1210fc709e513a",
+      "products": [
+        "6a378fac7484365df21b2e4d"
+      ],
+      "createdAt": "2026-06-21T08:39:12.173Z",
+      "updatedAt": "2026-06-21T10:32:32.195Z",
+      "__v": 1
+    },
+    {
+      "_id": "6a37a49505d748eb61310c8e",
+      "user": "6a378fac7484365df21b2e42",
+      "products": [],
+      "createdAt": "2026-06-21T08:45:09.948Z",
+      "updatedAt": "2026-06-21T08:45:09.948Z",
+      "__v": 0
+    }
+  ],
+  "promotions": [
+    {
+      "_id": "6a378fad7484365df21b2e7f",
+      "product": "6a378fac7484365df21b2e4a",
+      "discount_percent": 11,
+      "original_price": 172500,
+      "flash_price": 133500,
+      "sold_in_sale": 0,
+      "start_time": "2026-06-21T07:15:57.413Z",
+      "end_time": "2026-06-22T07:15:57.413Z",
+      "isActive": true,
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:57.415Z",
+      "updatedAt": "2026-06-21T07:15:57.415Z"
+    },
+    {
+      "_id": "6a378fad7484365df21b2e80",
+      "product": "6a378fac7484365df21b2e4b",
+      "discount_percent": 28,
+      "original_price": 295000,
+      "flash_price": 180000,
+      "sold_in_sale": 0,
+      "start_time": "2026-06-21T07:15:57.413Z",
+      "end_time": "2026-06-22T07:15:57.413Z",
+      "isActive": true,
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:57.415Z",
+      "updatedAt": "2026-06-21T07:15:57.415Z"
+    },
+    {
+      "_id": "6a378fad7484365df21b2e81",
+      "product": "6a378fac7484365df21b2e4c",
+      "discount_percent": 32,
+      "original_price": 330000,
+      "flash_price": 203999,
+      "sold_in_sale": 0,
+      "start_time": "2026-06-21T07:15:57.413Z",
+      "end_time": "2026-06-22T07:15:57.413Z",
+      "isActive": true,
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:57.415Z",
+      "updatedAt": "2026-06-21T07:15:57.415Z"
+    },
+    {
+      "_id": "6a378fad7484365df21b2e82",
+      "product": "6a378fac7484365df21b2e4d",
+      "discount_percent": 17,
+      "original_price": 275000,
+      "flash_price": 182600,
+      "sold_in_sale": 0,
+      "start_time": "2026-06-21T07:15:57.413Z",
+      "end_time": "2026-06-22T07:15:57.413Z",
+      "isActive": true,
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:57.415Z",
+      "updatedAt": "2026-06-21T07:15:57.415Z"
+    },
+    {
+      "_id": "6a378fad7484365df21b2e83",
+      "product": "6a378fac7484365df21b2e4e",
+      "discount_percent": 25,
+      "original_price": 145200,
+      "flash_price": 90000,
+      "sold_in_sale": 0,
+      "start_time": "2026-06-21T07:15:57.413Z",
+      "end_time": "2026-06-22T07:15:57.413Z",
+      "isActive": true,
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:57.415Z",
+      "updatedAt": "2026-06-21T07:15:57.415Z"
+    },
+    {
+      "_id": "6a378fad7484365df21b2e84",
+      "product": "6a378fac7484365df21b2e4f",
+      "discount_percent": 15,
+      "original_price": 310800,
+      "flash_price": 238000,
+      "sold_in_sale": 0,
+      "start_time": "2026-06-21T07:15:57.413Z",
+      "end_time": "2026-06-22T07:15:57.413Z",
+      "isActive": true,
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:57.415Z",
+      "updatedAt": "2026-06-21T07:15:57.415Z"
+    },
+    {
+      "_id": "6a378fad7484365df21b2e85",
+      "product": "6a378fac7484365df21b2e50",
+      "discount_percent": 18,
+      "original_price": 209000,
+      "flash_price": 155800,
+      "sold_in_sale": 0,
+      "start_time": "2026-06-21T07:15:57.413Z",
+      "end_time": "2026-06-22T07:15:57.413Z",
+      "isActive": true,
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:57.415Z",
+      "updatedAt": "2026-06-21T07:15:57.415Z"
+    },
+    {
+      "_id": "6a378fad7484365df21b2e86",
+      "product": "6a378fac7484365df21b2e51",
+      "discount_percent": 26,
+      "original_price": 204800,
+      "flash_price": 118400,
+      "sold_in_sale": 0,
+      "start_time": "2026-06-21T07:15:57.413Z",
+      "end_time": "2026-06-22T07:15:57.413Z",
+      "isActive": true,
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:57.415Z",
+      "updatedAt": "2026-06-21T07:15:57.415Z"
+    },
+    {
+      "_id": "6a378fad7484365df21b2e87",
+      "product": "6a378fac7484365df21b2e52",
+      "discount_percent": 23,
+      "original_price": 368000,
+      "flash_price": 246400,
+      "sold_in_sale": 0,
+      "start_time": "2026-06-21T07:15:57.413Z",
+      "end_time": "2026-06-22T07:15:57.413Z",
+      "isActive": true,
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:57.415Z",
+      "updatedAt": "2026-06-21T07:15:57.415Z"
+    },
+    {
+      "_id": "6a378fad7484365df21b2e88",
+      "product": "6a378fac7484365df21b2e53",
+      "discount_percent": 36,
+      "original_price": 128699,
+      "flash_price": 70400,
+      "sold_in_sale": 0,
+      "start_time": "2026-06-21T07:15:57.413Z",
+      "end_time": "2026-06-22T07:15:57.413Z",
+      "isActive": true,
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:57.415Z",
+      "updatedAt": "2026-06-21T07:15:57.415Z"
+    },
+    {
+      "_id": "6a378fad7484365df21b2e89",
+      "product": "6a378fac7484365df21b2e54",
+      "discount_percent": 26,
+      "original_price": 61000,
+      "flash_price": 37000,
+      "sold_in_sale": 0,
+      "start_time": "2026-06-21T07:15:57.413Z",
+      "end_time": "2026-06-22T07:15:57.413Z",
+      "isActive": true,
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:57.416Z",
+      "updatedAt": "2026-06-21T07:15:57.416Z"
+    },
+    {
+      "_id": "6a378fad7484365df21b2e8a",
+      "product": "6a378fac7484365df21b2e55",
+      "discount_percent": 10,
+      "original_price": 427000,
+      "flash_price": 315000,
+      "sold_in_sale": 0,
+      "start_time": "2026-06-21T07:15:57.413Z",
+      "end_time": "2026-06-22T07:15:57.413Z",
+      "isActive": true,
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:57.416Z",
+      "updatedAt": "2026-06-21T07:15:57.416Z"
+    },
+    {
+      "_id": "6a378fad7484365df21b2e8b",
+      "product": "6a378fac7484365df21b2e56",
+      "discount_percent": 24,
+      "original_price": 101600,
+      "flash_price": 60800,
+      "sold_in_sale": 0,
+      "start_time": "2026-06-21T07:15:57.413Z",
+      "end_time": "2026-06-22T07:15:57.413Z",
+      "isActive": true,
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:57.416Z",
+      "updatedAt": "2026-06-21T07:15:57.416Z"
+    },
+    {
+      "_id": "6a378fad7484365df21b2e8c",
+      "product": "6a378fac7484365df21b2e57",
+      "discount_percent": 32,
+      "original_price": 138000,
+      "flash_price": 81599,
+      "sold_in_sale": 0,
+      "start_time": "2026-06-21T07:15:57.413Z",
+      "end_time": "2026-06-22T07:15:57.413Z",
+      "isActive": true,
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:57.416Z",
+      "updatedAt": "2026-06-21T07:15:57.416Z"
+    },
+    {
+      "_id": "6a378fad7484365df21b2e8d",
+      "product": "6a378fac7484365df21b2e58",
+      "discount_percent": 24,
+      "original_price": 544500,
+      "flash_price": 342000,
+      "sold_in_sale": 0,
+      "start_time": "2026-06-21T07:15:57.413Z",
+      "end_time": "2026-06-22T07:15:57.413Z",
+      "isActive": true,
+      "__v": 0,
+      "createdAt": "2026-06-21T07:15:57.416Z",
+      "updatedAt": "2026-06-21T07:15:57.416Z"
+    }
+  ],
+  "orders": [
+    {
+      "_id": "6a37a44c05d748eb61310c6c",
+      "user": "6a379391dd1210fc709e513a",
+      "items": [
+        {
+          "product": "6a378fac7484365df21b2e63",
+          "productName": "Áo thun nam basic cổ tròn (Bản Cao Cấp)",
+          "productImage": "https://m.media-amazon.com/images/I/71rxmYWcGML._AC_SY879_.jpg",
+          "buy_count": 1,
+          "price": 200000,
+          "price_before_discount": 252000,
+          "_id": "6a37a44c05d748eb61310c6d"
+        }
+      ],
+      "shippingAddress": "jfsdj",
+      "recipientName": "Khách hàng",
+      "recipientPhone": "0123456789",
+      "shippingMethod": "standard",
+      "shippingFee": 30000,
+      "paymentMethod": "cod",
+      "paymentStatus": "pending",
+      "subTotal": 200000,
+      "discountAmount": 0,
+      "totalAmount": 230000,
+      "status": 4,
+      "createdAt": "2026-06-21T08:43:56.583Z",
+      "updatedAt": "2026-06-21T09:33:10.768Z",
+      "__v": 0
+    }
+  ],
+  "purchases": [
+    {
+      "_id": "6a37a36e0b992120268f60e5",
+      "buy_count": 1,
+      "price": 200000,
+      "price_before_discount": 252000,
+      "status": 4,
+      "product": "6a378fac7484365df21b2e63",
+      "user": "6a379391dd1210fc709e513a",
+      "createdAt": "2026-06-21T08:40:14.850Z",
+      "updatedAt": "2026-06-21T09:33:10.775Z",
+      "__v": 0
+    },
+    {
+      "_id": "6a37a3770b992120268f60ec",
+      "buy_count": 1,
+      "price": 200000,
+      "price_before_discount": 252000,
+      "status": 4,
+      "product": "6a378fac7484365df21b2e63",
+      "user": "6a379391dd1210fc709e513a",
+      "createdAt": "2026-06-21T08:40:23.417Z",
+      "updatedAt": "2026-06-21T09:33:10.775Z",
+      "__v": 0
+    },
+    {
+      "_id": "6a37a44c05d748eb61310c69",
+      "buy_count": 1,
+      "price": 200000,
+      "price_before_discount": 252000,
+      "status": 4,
+      "product": "6a378fac7484365df21b2e63",
+      "user": "6a379391dd1210fc709e513a",
+      "createdAt": "2026-06-21T08:43:56.563Z",
+      "updatedAt": "2026-06-21T09:33:10.775Z",
+      "__v": 0
+    }
+  ]
+}
