@@ -23,6 +23,8 @@ export interface IUser extends Document {
   roles: string[];
   storeId?: mongoose.Types.ObjectId;
   isLocked: boolean;
+  resetOtp?: string;
+  resetOtpExpires?: Date;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -53,6 +55,8 @@ const UserSchema = new Schema<IUser>(
     roles:         { type: [String], default: ['User'], enum: ['User', 'Store', 'Admin'] },
     storeId:       { type: Schema.Types.ObjectId, ref: 'Store' },
     isLocked:      { type: Boolean, default: false },
+    resetOtp:        { type: String, select: false },
+    resetOtpExpires: { type: Date, select: false },
   },
   { timestamps: true }
 );

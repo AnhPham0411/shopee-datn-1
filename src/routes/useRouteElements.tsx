@@ -33,6 +33,7 @@ const Forbidden = lazy(() => import("src/pages/Forbidden"));
 const NotFound = lazy(() => import("src/pages/NotFound"));
 const ProductDetails = lazy(() => import("src/pages/ProductDetails"));
 const Register = lazy(() => import("src/pages/Register"));
+const ForgotPassword = lazy(() => import("src/pages/ForgotPassword"));
 const ChangePassword = lazy(() => import("src/pages/User/pages/ChangePassword"));
 const OrderHistory = lazy(() => import("src/pages/User/pages/OrderHistory"));
 const OrderDetail = lazy(() => import("src/pages/User/pages/OrderDetail"));
@@ -262,6 +263,14 @@ export default function useRoutesElement() {
               element: (
                 <Suspense>
                   <Register></Register>
+                </Suspense>
+              ),
+            },
+            {
+              path: path.forgotPassword,
+              element: (
+                <Suspense>
+                  <ForgotPassword></ForgotPassword>
                 </Suspense>
               ),
             },
