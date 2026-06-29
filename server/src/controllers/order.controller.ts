@@ -5,6 +5,7 @@ import Product from '../models/Product';
 import User from '../models/User';
 import Voucher from '../models/Voucher';
 import Promotion from '../models/Promotion';
+import { createNotification } from './notification.controller';
 
 export const createOrder = async (req: Request, res: Response) => {
   try {
@@ -174,6 +175,31 @@ export const createOrder = async (req: Request, res: Response) => {
 
     await order.save();
 
+    const orderCode = `#${order._id.toString().slice(-6).toUpperCase()}`;
+
+    // Thông báo cho người mua
+    await createNotification({
+      user: userId,
+      type: 'order',
+      title: 'Đặt hàng thành công',
+      message: `Đơn hàng ${orderCode} của bạn đã được tạo và đang chờ xác nhận.`,
+      link: `/user/order/${order._id}`,
+    });
+
+    // Thông báo cho người bán có sản phẩm trong đơn
+    const productIds = orderItems.map((i) => i.product);
+    const productsForSeller = await Product.find({ _id: { $in: productIds } }).select('seller');
+    const sellerIds = [...new Set(productsForSeller.map((p) => p.seller && p.seller.toString()).filter(Boolean))];
+    for (const sellerId of sellerIds) {
+      await createNotification({
+        user: sellerId,
+        type: 'order',
+        title: 'Đơn hàng mới',
+        message: `Bạn có đơn hàng mới ${orderCode} cần xử lý.`,
+        link: '/store/orders',
+      });
+    }
+
     res.status(200).json({
       message: 'Đặt hàng thành công',
       data: order
@@ -295,7 +321,19 @@ export const updateOrderStatus = async (req: Request, res: Response) => {
 
     order.status = status;
     await order.save();
-    
+
+    // Thông báo cho người mua về thay đổi trạng thái đơn
+    const STATUS_LABEL: Record<number, string> = {
+      1: 'Chờ xác nhận', 2: 'Đang chuẩn bị hàng', 3: 'Đang giao', 4: 'Đã hoàn thành', 5: 'Đã hủy'
+    };
+    await createNotification({
+      user: order.user,
+      type: 'order',
+      title: 'Cập nhật đơn hàng',
+      message: `Đơn hàng #${order._id.toString().slice(-6).toUpperCase()} ${STATUS_LABEL[Number(status)] ? `: ${STATUS_LABEL[Number(status)]}` : 'đã được cập nhật'}.`,
+      link: `/user/order/${order._id}`,
+    });
+
     // Cập nhật lại status của Purchase tương ứng để không gãy logic cũ
     for (const item of order.items) {
       await Purchase.updateMany(
