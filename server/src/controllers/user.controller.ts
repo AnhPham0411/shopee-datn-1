@@ -11,7 +11,6 @@ export const updateProfile = async (req: Request, res: Response) => {
       return res.status(404).json({ message: 'Không tìm thấy người dùng' });
     }
 
-    // Protect sensitive fields
     delete body.password;
     delete body.roles;
     delete body.email;
@@ -19,9 +18,22 @@ export const updateProfile = async (req: Request, res: Response) => {
     Object.assign(user, body);
     await user.save();
 
+    const userResponse = {
+      _id: user._id,
+      email: user.email,
+      name: user.name,
+      roles: user.roles,
+      address: user.address,
+      avatar: user.avatar,
+      phone: user.phone,
+      date_of_birth: user.date_of_birth,
+      createdAt: user.createdAt,
+      updatedAt: user.updatedAt
+    };
+
     res.status(200).json({
       message: 'Cập nhật thành công',
-      data: user
+      data: userResponse
     });
   } catch (error) { console.error(error); res.status(500).json({ message: 'Lỗi server' });
   }

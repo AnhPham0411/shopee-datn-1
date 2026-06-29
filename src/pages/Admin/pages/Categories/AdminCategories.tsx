@@ -109,13 +109,13 @@ export default function AdminCategories() {
                   <svg viewBox="0 0 24 24" className="h-5 w-5 fill-primary"><path d="M4 6h16v2H4zm4 5h12v2H8zm4 5h8v2h-8z"/></svg>
                 </div>
 
-                {editState?.id === cat._id ? (
+                {editState && editState.id === cat._id ? (
                   /* ── inline edit mode ── */
                   <div className="flex flex-1 items-center gap-2">
                     <input
                       autoFocus
                       value={editState.name}
-                      onChange={(e) => setEditState({ ...editState, name: e.target.value })}
+                      onChange={(e) => setEditState({ id: editState.id, name: e.target.value })}
                       onKeyDown={(e) => {
                         if (e.key === "Enter") updateMutation.mutate({ id: editState.id, name: editState.name });
                         if (e.key === "Escape") setEditState(null);

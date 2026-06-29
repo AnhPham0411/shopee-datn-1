@@ -2,6 +2,7 @@ import { Router } from 'express';
 import multer from 'multer';
 import path from 'path';
 import { updateProfile, uploadAvatar } from '../controllers/user.controller';
+import { getAddresses, addAddress, updateAddress, deleteAddress, setDefaultAddress } from '../controllers/address.controller';
 import { requireAuth } from '../middlewares/auth.middleware';
 
 const router = Router();
@@ -24,6 +25,13 @@ const upload = multer({
 router.use(requireAuth);
 
 router.put('/', updateProfile);
+
+// Sổ địa chỉ
+router.get('/addresses', getAddresses);
+router.post('/addresses', addAddress);
+router.put('/addresses/:addressId', updateAddress);
+router.delete('/addresses/:addressId', deleteAddress);
+router.put('/addresses/:addressId/default', setDefaultAddress);
 
 // Handle multer error explicitly to not return sensitive info
 router.post('/upload-avatar', (req, res, next) => {

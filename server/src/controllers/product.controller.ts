@@ -24,7 +24,7 @@ export const getProducts = async (req: Request, res: Response) => {
     limit = Number(limit);
     const skip = (page - 1) * limit;
 
-    const query: any = {};
+    const query: any = { status: 'active' };
     if (category) {
       if (typeof category === 'string' && category.includes(',')) {
         const ids = category.split(',').filter(id => /^[0-9a-fA-F]{24}$/.test(id));
@@ -90,7 +90,7 @@ export const getProducts = async (req: Request, res: Response) => {
 
 export const getProductById = async (req: Request, res: Response) => {
   try {
-    const product = await Product.findById(req.params.id).populate('category', 'name');
+    const product = await Product.findOne({ _id: req.params.id, status: 'active' }).populate('category', 'name');
     if (!product) {
       return res.status(404).json({ message: 'Không tìm thấy sản phẩm' });
     }
@@ -108,7 +108,7 @@ export const getRecommendations = async (req: Request, res: Response) => {
   try {
     const { category, limit = '6', recently_viewed } = req.query;
     
-    const query: any = {};
+    const query: any = { status: 'active' };
     const orConditions: any[] = [];
 
     if (category && typeof category === 'string' && /^[0-9a-fA-F]{24}$/.test(category)) {
@@ -156,10 +156,10 @@ export const suggestProducts = async (req: Request, res: Response) => {
     }
 
     const qString = String(q).trim();
-    const words = qString.split(/\\s+/).filter(Boolean);
+    const words = qString.split(/\s+/).filter(Boolean);
     const regexConditions = words.map(word => ({ name: { $regex: escapeRegex(word), $options: 'i' } }));
     
-    const query = { $or: regexConditions };
+    const query = { $or: regexConditions, status: 'active' };
     
     const products = await Product.find(query)
       .select('name image price')

@@ -151,7 +151,7 @@ export default function ProductReviews({ productId, productRating }: ProductRevi
             <textarea
               className="w-full rounded-sm border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-black dark:text-white p-3 outline-none focus:border-primary"
               rows={4}
-              placeholder={t("Chia sẻ nhận xét của bạn về sản phẩm này...")}
+              placeholder={t("Chia sẻ nhận xét của bạn về sản phẩm này...") as string}
               value={newComment}
               onChange={(e) => setNewComment(e.target.value)}
             />

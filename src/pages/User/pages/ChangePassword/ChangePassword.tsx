@@ -82,7 +82,7 @@ const ChangePassword = () => {
               <InputPassword
                 register={register}
                 name="password"
-                placeholder={t("Mật khẩu cũ")}
+                placeholder={t("Mật khẩu cũ") as string}
                 errorMsg={errors.password?.message}
                 className="w-full rounded-sm border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-black dark:text-white px-3 py-2 outline-none focus:border-gray-500 focus:shadow-sm"
               />
@@ -94,7 +94,7 @@ const ChangePassword = () => {
               <InputPassword
                 register={register}
                 name="new_password"
-                placeholder={t("Mật khẩu mới")}
+                placeholder={t("Mật khẩu mới") as string}
                 errorMsg={errors.new_password?.message}
                 className="w-full rounded-sm border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-black dark:text-white px-3 py-2 outline-none focus:border-gray-500 focus:shadow-sm"
               />
@@ -106,7 +106,7 @@ const ChangePassword = () => {
               <InputPassword
                 register={register}
                 name="confirm_password"
-                placeholder={t("Xác nhận mật khẩu mới")}
+                placeholder={t("Xác nhận mật khẩu mới") as string}
                 errorMsg={errors.confirm_password?.message}
                 className="w-full rounded-sm border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-black dark:text-white px-3 py-2 outline-none focus:border-gray-500 focus:shadow-sm"
               />

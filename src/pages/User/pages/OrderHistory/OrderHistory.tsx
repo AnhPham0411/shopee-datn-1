@@ -148,10 +148,16 @@ export default function HistoryPurchase() {
                     </div>
 
                     <div className="mt-4 flex gap-3">
+                      <Link
+                        to={`/user/order/${order._id}`}
+                        className="rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-6 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
+                      >
+                        {t("Xem chi tiết")}
+                      </Link>
                       {(order.status === 1 || order.status === 6 || order.status === 2) && (
                         <button
-                          onClick={() => {
-                            if (confirm(t("Bạn có chắc muốn hủy đơn hàng này?"))) {
+                           onClick={() => {
+                            if (confirm(t("Bạn có chắc muốn hủy đơn hàng này?") as string)) {
                               handleUpdate(order._id, 5);
                             }
                           }}
@@ -165,7 +171,7 @@ export default function HistoryPurchase() {
                       {order.status === 3 && (
                         <button
                           onClick={() => {
-                            if (confirm(t("Xác nhận bạn đã nhận được hàng?"))) {
+                            if (confirm(t("Xác nhận bạn đã nhận được hàng?") as string)) {
                               handleUpdate(order._id, 4);
                             }
                           }}

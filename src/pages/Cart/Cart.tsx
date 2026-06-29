@@ -133,14 +133,14 @@ const Cart = () => {
   };
   const handleDeleteAPurchase = (purchaseIndex: number) => () => {
     const purchaseId = extendedPurchases[purchaseIndex]._id;
-    if (window.confirm(t("Bạn có chắc muốn xoá sản phẩm này khỏi giỏ hàng?"))) {
+    if (window.confirm(t("Bạn có chắc muốn xoá sản phẩm này khỏi giỏ hàng?") as string)) {
       deletePurchaseMutation.mutate([purchaseId]);
     }
   };
 
   const handleDeleteMultiplePurchases = () => {
     const purchaseIds = checkedPurchases.map((purchase) => purchase._id);
-    if (purchaseIds.length > 0 && window.confirm(t("Bạn có chắc muốn xoá các sản phẩm đã chọn khỏi giỏ hàng?"))) {
+    if (purchaseIds.length > 0 && window.confirm(t("Bạn có chắc muốn xoá các sản phẩm đã chọn khỏi giỏ hàng?") as string)) {
       deletePurchaseMutation.mutate(purchaseIds);
     }
   };

@@ -1,439 +1,255 @@
-# Shoppe Clone
+**English** · [Tiếng Việt](README.vi.md)
 
-## How to run this project locally
+# Shopee Clone
 
-1. Clone this repository
-2. Open the project, and install all the deps and devDeps (This process may takes more than a few minutes):
-   <br clear="both">
+> A full-stack e-commerce web application inspired by Shopee — built with React + TypeScript on the front end and an Express + MongoDB REST API on the back end.
 
-- For `yarn` users, run `yarn`
+![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-4.9-3178C6?logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-4-646CFF?logo=vite&logoColor=white)
+![Express](https://img.shields.io/badge/Express-4-000000?logo=express&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-Mongoose%207-47A248?logo=mongodb&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/Tailwind-3-06B6D4?logo=tailwindcss&logoColor=white)
 
-- For `npm` users, run `npm install`
+This repository contains two applications:
 
-- For `pnpm` users, run `pnpm install`
+- **Front end** — a React 18 + TypeScript single-page app built with Vite, located at the project root (`src/`).
+- **Back end** — an Express REST API written in TypeScript with Mongoose/MongoDB, located in `server/`.
 
-3. You must declare your own environment variables (Sorry, i can't share the api because of security purposes)
-4. Run `yarn dev` or `npm run dev` to start a localhost server, or you can run `yarn dev --host` to host and let other devices get access to the website you're currently hosting
+---
 
-## Main features ⚡:
+## ✨ Features
 
-- Authentication using JWT:
+Features below reflect modules that actually exist in the codebase (front-end pages/APIs and back-end routes/controllers).
 
-  - Sign up
-  - Sign in
-  - Sign out
+- **Authentication & accounts** — sign up, sign in, sign out, forgot password, JWT access/refresh tokens, role-based access control, and account-lock handling.
+- **Product catalog** — product list with search, sorting, filtering and pagination; product detail page with image hover-zoom, carousel and rich (WYSIWYG/HTML) descriptions.
+- **Categories** — browse and filter products by category.
+- **Shopping cart & purchases** — add to cart and full cart CRUD, purchase status tracking.
+- **Checkout & orders** — order creation and order management, order status tracking.
+- **Payment (simulated)** — a payment-confirmation/IPN-style endpoint that simulates a payment gateway callback (intended to be replaced by a real VNPay/Momo webhook in production).
+- **Reviews & ratings** — product reviews tied to purchases.
+- **Wishlist** — save/remove favorite products.
+- **Vouchers & promotions** — discount vouchers and promotional campaigns.
+- **Addresses** — manage user shipping addresses (with location lookup APIs).
+- **User profile** — update profile info, upload avatar, change password.
+- **Notifications** — user notifications.
+- **Contact** — contact form / support messages.
+- **Store** — store-related endpoints.
+- **Admin panel** — administrative management endpoints and a dedicated admin area in the UI.
+- **Internationalization (i18n)** — multilingual UI via i18next.
+- **SEO** — dynamic document head management via React Helmet.
+- **Component workshop** — Storybook for isolated component development.
 
-- Product List:
+---
 
-  - Products Searching
-  - Sorting and filtering
-  - Pagination
+## 🛠️ Tech Stack
 
-- Product Detail:
+### Front end
+- **React 18** + **TypeScript**
+- **Vite 4** (build tool & dev server)
+- **Tailwind CSS 3** (+ `@tailwindcss/line-clamp`, `prettier-plugin-tailwindcss`)
+- **React Router 6** (routing)
+- **TanStack React Query 4** (server/async state) + React Context (local state)
+- **React Hook Form 7** + **Yup** + `@hookform/resolvers` (forms & validation)
+- **Axios** (HTTP client)
+- **i18next** / **react-i18next** (internationalization)
+- **React Helmet Async** (SEO / document head)
+- **Framer Motion** (animations), **Swiper** (carousels), **Recharts** (charts)
+- **Immer**, **Lodash**, **classnames**, **DOMPurify**, **html-to-text**, **React Toastify**
+- **Storybook 7** (component development)
+- **Vitest** (testing)
+- **ESLint** + **Prettier**
 
-  - Image on hover zoom effect
-  - Carousel
-  - Add to cart
-  - Descriptions are displayed in WYSIWYG HTML format
+### Back end
+- **Node.js** + **Express 4** + **TypeScript**
+- **MongoDB** via **Mongoose 7**
+- **JSON Web Tokens** (`jsonwebtoken`) for auth
+- **bcrypt** (password hashing)
+- **Multer** (file/image uploads)
+- **Helmet** (security headers), **CORS**, **express-rate-limit**
+- **dotenv** (environment config)
+- **ts-node** + **nodemon** (development)
 
-- Shopping Cart:
+---
 
-  - Payment (demo)
-  - CRUD
+## 🚀 Getting Started
 
-- User Profile:
-  - User information updating
-  - Avatar uploading
-  - Change your password
-  - Order's status checking
+This is a two-part project: the **front end** (project root) and the **back end** (`server/`) run as separate processes during development.
 
-## What i was using and is gonna be using 🤔
+### Prerequisites
+- **Node.js** (v18+ recommended)
+- A package manager: **yarn**, **npm**, or **pnpm**
+- **MongoDB** running locally (or a MongoDB connection string)
 
-- Programming languages: Javascript, Typescript 👩‍💻
-
-- UI / CSS Library: Tailwind 🌊
-
-- State Management: React Query for async state and React Context for other states 🔍
-
-- Form Management: React Hook Form 👀
-
-- Router: React Router 6️⃣
-
-- Build tool: Vite ⚡
-
-- Multilingualism: i18next 👩‍💻
-
-- SEO: React Helmet ⛑
-
-- Simulate components: Storybook 📔
-
-- Self-testing and unit-testing applied 🔧
-
-- _And many more ..._
-
-## Setting up the project
-
-Cuz we're not using **Create-React-App 🐢** but **Vite 🐇**, so we must install and configurate ESLint by ourselves. Here are the list of devDeps you have to install:
-
-- ESLint, Prettier
-
-- @typescript-eslint/eslint-plugin, @typescript-eslint/parser: For providing rules for Typescript and detecting Typescript errors
-
-- eslint-config-prettier: To disable all rules that made conflicts between ESLint and Prettier
-
-- eslint-plugin-import: Made ESLint understand what the actual ... is happening with the import statement (In short, helping vite to import more accurate)
-
-- eslint-plugin-jsx-a11y: For accessiblity improvement (check if your website is compatible on multiple devices),
-
-- eslint-plugin-react: ESLint rules for React
-
-- eslint-plugin-prettier: Add some more Prettier's rules in ESLint
-
-- prettier-plugin-tailwindcss: Sorting tailwindcss classes order to resolve CSS conflicts (believe me you must install this right now)
-
-- eslint-plugin-react-hooks: ESLint for React Hooks
-
-For **npm** users:
+### 1. Clone the repository
 
 ```bash
-npm install eslint prettier @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-prettier prettier-plugin-tailwindcss eslint-plugin-react-hooks -D
+git clone https://github.com/AnhPham0411/shopee-datn-1.git
+cd shopee-datn-1
 ```
 
-For **yarn** users:
+### 2. Back end (API)
 
 ```bash
-yarn add eslint prettier @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-prettier prettier-plugin-tailwindcss eslint-plugin-react-hooks -D
+cd server
+npm install
+# create server/.env (see Configuration below)
+npm run dev      # starts the API with nodemon + ts-node
 ```
 
-For pnpm users:
+By default the API listens on the `PORT` from `server/.env` (falling back to `4000`) and connects to `MONGODB_URI` (falling back to `mongodb://localhost:27017/shopee-clone`).
+
+> A `GET /health` endpoint is available for quick health checks.
+
+### 3. Front end (SPA)
+
+From the project root, in a separate terminal:
 
 ```bash
-pnpm add eslint prettier @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-prettier prettier-plugin-tailwindcss eslint-plugin-react-hooks -D
+# yarn
+yarn
+# or npm
+npm install
+# or pnpm
+pnpm install
+
+# create .env (see Configuration below)
+npm run dev      # starts Vite on http://localhost:3001
 ```
 
-## ESLint Configuration
-
-Create a new file called `.eslintrc.cjs` in the root folder
-
-```js
-/* eslint-disable @typescript-eslint/no-var-requires */
-const path = require("path");
-
-module.exports = {
-  extends: [
-    // Use all of the rules of the installed plugins.
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:react-hooks/recommended",
-    "plugin:import/recommended",
-    "plugin:import/typescript",
-    "plugin:jsx-a11y/recommended",
-    "plugin:@typescript-eslint/recommended",
-    // Some of the plugins above may cause conflicts between eslint and prettier
-    // Put these 2 below so they override all of the plugins above => fix the problems
-    "eslint-config-prettier",
-    "prettier",
-  ],
-  plugins: ["prettier"],
-  settings: {
-    react: {
-      // Auto-detect react version
-      version: "detect",
-    },
-    // Tell ESlint the correct import format, so that it doesn't show the error when importing components, pages, ...e.t.c
-    "import/resolver": {
-      node: {
-        paths: [path.resolve(__dirname, "")],
-        extensions: [".js", ".jsx", ".ts", ".tsx"],
-      },
-    },
-  },
-  env: {
-    node: true,
-  },
-  rules: {
-    "react/react-in-jsx-scope": "off",
-    "react/jsx-no-target-blank": "warn",
-    "prettier/prettier": [
-      "warn",
-      {
-        arrowParens: "always",
-        semi: true,
-        trailingComma: "all",
-        tabWidth: 2,
-        endOfLine: "auto",
-        useTabs: false,
-        singleQuote: false,
-        printWidth: 120,
-        jsxSingleQuote: false,
-        singleAttributePerLine: true,
-      },
-    ],
-  },
-};
-```
-
-Create a new file called `.eslintignore` with the following content:
-
-```json
-node_modules/
-dist/
-```
-
-And also `.prettierrc` with the following content:
-
-```json
-{
-  "arrowParens": "always",
-  "semi": true,
-  "trailingComma": "all",
-  "tabWidth": 2,
-  "endOfLine": "auto",
-  "useTabs": false,
-  "singleQuote": false,
-  "printWidth": 120,
-  "jsxSingleQuote": false,
-  "singleAttributePerLine": true
-}
-```
-
-Last but not least, `.prettierignore` with the following content:
-
-```json
-node_modules/
-dist/
-```
-
-Add new scripts into `package.json`
-
-```json
-  "scripts": {
-    ...
-    "lint": "eslint --ext ts,tsx src/",
-    "lint:fix": "eslint --fix --ext ts,tsx src/",
-    "prettier": "prettier --check \"src/**/(*.tsx|*.ts|*.css|*.scss)\"",
-    "prettier:fix": "prettier --write \"src/**/(*.tsx|*.ts|*.css|*.scss)\""
-  },
-```
-
-### Config editorconfig
-
-Create a file called `.editorconfig` in the root folder (outside the src folder)
-
-```EditorConfig
-[*]
-indent_size = 2
-indent_style = space
-```
-
-### Configuration inside tsconfig.json
-
-Set `"target": "ES2015"` và `"baseUrl": "."` inside `compilerOptions`
-
-```json
-{
-  "compilerOptions": {
-    "target": "ES2015",
-    "useDefineForClassFields": true,
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "allowJs": false,
-    "skipLibCheck": true,
-    "esModuleInterop": false,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx",
-    "baseUrl": "."
-  }
-}
-```
-
-### Using NodeJS in Vite.config.ts
-
-Install `@types/node` package to use NodeJS inside of .ts files without bugs
+To expose the dev server to other devices on your network:
 
 ```bash
-yarn add -D @types/node
+yarn dev --host
 ```
 
-In `vite.config.ts`, do as the following code:
+### 4. Build for production
 
-```ts
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import path from "path";
+```bash
+# Front end (from project root)
+npm run build      # tsc + vite build  → outputs to dist/
+npm run preview    # preview the production build locally
 
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react()],
-  server: {
-    port: 3000,
-  },
-  css: {
-    devSourcemap: true,
-  },
-  resolve: {
-    alias: {
-      src: path.resolve(__dirname, "./src"),
-    },
-  },
-});
+# Back end (from server/)
+npm run build      # tsc → outputs to server/dist/
+npm start          # node dist/index.js
 ```
 
-### Extensions you should, or should i say ... MUST install in VSCode
+---
 
-- ESLint
+## ⚙️ Configuration
 
-- Prettier - Code formatter
+Environment variables are **not** committed. Create the files below and provide your own values. **Never commit real secrets.**
 
-- EditorConfig for VS Code
+### Front end — `.env` (project root)
+See `.env.example` for the template.
 
-Vscode Settings Configuration
+| Variable    | Description                                          |
+| ----------- | ---------------------------------------------------- |
+| `VITE_API`  | Base URL of the back-end API the SPA talks to.       |
 
-- Turn on **`"Format On Save"`**
-- Change your default formatter to Prettier
+### Back end — `server/.env`
 
-## My Notes
+| Variable             | Description                                                              |
+| -------------------- | ------------------------------------------------------------------------ |
+| `PORT`               | Port the API server listens on (defaults to `4000` if unset).            |
+| `MONGODB_URI`        | MongoDB connection string (defaults to a local DB if unset).             |
+| `JWT_SECRET`         | Secret used to sign access tokens.                                       |
+| `JWT_REFRESH_SECRET` | Secret used to sign refresh tokens.                                      |
+| `CLIENT_URL`         | (Optional) Front-end origin allowed by CORS (defaults to localhost).     |
 
-Function to delete all special characters
+> The server's CORS config also allows `http://localhost:3001`, `http://localhost:5173`, and `http://localhost:3000` for local development.
 
-```ts
-export const removeSpecialCharacter = (str: string) =>
-  // eslint-disable-next-line no-useless-escape
-  str.replace(/!|@|%|\^|\*|\(|\)|\+|\=|\<|\>|\?|\/|,|\.|\:|\;|\'|\"|\&|\#|\[|\]|~|\$|_|`|-|{|}|\||\\/g, "");
+---
+
+## 📁 Project Structure
+
+```
+shopee-at-home-main/
+├── index.html              # Vite HTML entry
+├── vite.config.ts          # Vite config (dev server on port 3001)
+├── tailwind.config.cjs     # Tailwind config
+├── tsconfig.json           # Front-end TypeScript config
+├── .env.example            # Front-end env template
+├── .storybook/             # Storybook configuration
+├── public/                 # Static assets (logo, etc.)
+├── src/                    # Front-end source
+│   ├── main.tsx            # App bootstrap
+│   ├── App.tsx             # Root component
+│   ├── apis/               # Axios API clients (auth, product, cart, order, ...)
+│   ├── assets/             # Images & static assets
+│   ├── components/         # Reusable UI components
+│   ├── constants/          # Enums & config (paths, status codes, ...)
+│   ├── contexts/           # React Context providers
+│   ├── hooks/              # Custom hooks
+│   ├── i18n/               # Internationalization resources
+│   ├── layouts/            # Page layouts
+│   ├── pages/              # Route pages (Login, ProductList, Cart, Checkout, User, Admin, ...)
+│   ├── routes/             # Route definitions (useRouteElements)
+│   ├── schemas/            # Yup validation schemas
+│   ├── stories/            # Storybook stories
+│   ├── types/              # Shared TypeScript types
+│   └── utils/              # Helpers
+└── server/                 # Back-end source
+    ├── tsconfig.json
+    ├── package.json
+    └── src/
+        ├── index.ts        # Express app entry, route mounting, DB connect
+        ├── controllers/    # Route handlers (auth, product, order, payment, ...)
+        ├── models/         # Mongoose models (User, Product, Order, Purchase, ...)
+        ├── routes/         # Express routers
+        ├── middlewares/    # auth.middleware (requireAuth, requireRole)
+        ├── utils/          # jwt helpers
+        ├── seed.ts         # Database seeding
+        ├── import_data.ts  # Data import
+        └── export_data.ts  # Data export
 ```
 
-### React-Router-Dom
+---
 
-When you direct to a page which has the same header and footer component as your layout, the header and footer component won't be unmount, they just re-render
+## 📜 Available Scripts
 
-### Tailwind configuration
+### Front end (project root)
 
-I have overrided some of the Tailwind's styles, check it out right here: [tailwind.config.cjs](/tailwind.config.cjs)
+| Script                    | Description                                      |
+| ------------------------- | ------------------------------------------------ |
+| `npm run dev`             | Start the Vite dev server (port 3001).           |
+| `npm run build`           | Type-check (`tsc`) and build for production.     |
+| `npm run preview`         | Preview the production build locally.            |
+| `npm run test`            | Run unit tests with Vitest.                      |
+| `npm run coverage`        | Run tests with coverage report.                  |
+| `npm run lint`            | Lint `src/` with ESLint.                         |
+| `npm run lint:fix`        | Lint and auto-fix.                               |
+| `npm run prettier`        | Check formatting.                                |
+| `npm run prettier:fix`    | Auto-format.                                     |
+| `npm run storybook`       | Start Storybook on port 6006.                    |
+| `npm run build-storybook` | Build a static Storybook.                        |
 
-## Tips and other stuffs
+### Back end (`server/`)
 
-### Tailwind doesn't have suggestions
+| Script            | Description                                            |
+| ----------------- | ------------------------------------------------------ |
+| `npm run dev`     | Start the API in watch mode (nodemon + ts-node).       |
+| `npm run build`   | Compile TypeScript to `dist/`.                         |
+| `npm start`       | Run the compiled server (`node dist/index.js`).        |
 
-What did you say ? Your Tailwind doesn't have suggestions for classNames ? 🤔 Follow this instruction:
+---
 
-Add this into your `settings.json` (VSCode version)
+## 🤝 Contributing
 
-```json
-{
-  //...
-  "tailwindCSS.experimental.classRegex": ["[a-zA-Z]*class[a-zA-Z]*='([^']+)'"]
-}
-```
+Contributions are welcome. To contribute:
 
-### How can I enable Tailwind IntelliSense outside of a normal "className"?
+1. Fork the repository and create a feature branch.
+2. Follow the existing code style — run `npm run lint` and `npm run prettier` before committing.
+3. Open a pull request describing your changes.
 
-When you're writing classNames styles 💅 for many elements within a component using TailwindCSS and you want to conveniently style that component using "whateverClassName" props, sure go ahead and do that. BUT there might be more than 1 element that need to have the "whateverClassName" prop inside its `className attribute`, for example:
+---
 
-```tsx
-type TInputProps = {
-  type: React.HTMLInputTypeAttribute;
-  className?: string; // the first one
-  containerClassName?: string; // the second one
-  errorClassName?: string; // the third one
-} & InputHTMLAttributes<HTMLInputElement>;
+## 📄 License
 
-const Input = ({ type = "text", className, containerClassName, errorClassName }: InputProps) => {
-  return (
-    <div className={containerClassName}>
-      <input
-        type={type}
-        className={className}
-      />
-      <div className={errorClassName}>Error!</div>
-    </div>
-  );
-};
-```
+This project is intended for educational/portfolio purposes (a graduation project). No explicit license file is included in the repository; if you plan to reuse it, please contact the author. MIT is suggested as the default.
 
-When you export the component and then import it somewhere else, you can use those "whateverClassName" prop to style the component 😄. But the problem is... there are no className suggestions ☹. This will become frustrated for those who is new to Tailwind or haven't remembered all of the neccessary classNames (including me)
+---
 
-The reason is because Tailwind will only suggest Tailwind's classNames when you declare a `className=""`, it doesn't understand `errorClassName=""` or `containerClassName=""` or `whateverClassName=""`. So you need to change your settings a bit, using this one I made for myself:
-
-```json
-{
-  "tailwindCSS.classAttributes": ["class", "className", "ngClass", ".*Styles", ".*ClassName"]
-}
-```
-
-Example usage:
-
-```tsx
-// .*Styles
-const contentStyles = "py-1 bg-white dark:bg-gray-700";
-
-// .*ClassName
-<MyComponent errorClassName="text-red-500 py-10 bg-white"></MyComponent>;
-```
-
-Hope this tip will help you write code faster and more convinient 😎
-
-### Swiper
-
-> Cannot convert undefined or null to object when using Thumbs module
-
-Simply fixed by replace your current thumbs prop with this
-
-```tsx
-  thumbs={{ swiper: thumbSwiper && !thumbSwiper.destroyed ? thumbSwiper : null }}
-```
-
-### How to allow input type=file to select the same file again after i have selected it
-
-As you know in React, your component will not re-render when there's nothing updated. Imagine your website is showing a `input` with `type="file"`, after the users select a file to upload, an error pops up saying that "You can't upload that file because of ...". And oh shit..., the users couldn't have read it, because it closed too fast. So they try to upload it once again but there're no errors appear.
-
-It's because the component isn't re-rendering, the value that the input currently holds don't change. It's still holding the old file value - the one that the users tried to upload. So yeah, you as a developer will have to handle that. You will have to somehow let the users be able to upload it again.
-
-There are 2 ways you can do it, but before the onset of explanation, i want to say that i prefer the 2nd way
-
-First way 👇:
-
-```tsx
-<input
-  type="file"
-  accept="image/*"
-  onChange={(event) => {
-    this.readFile(event);
-  }}
-  onClick={(event) => {
-    // Set the value back to null after click on the input, so the input value will be set back to null (don't be scared of losing the image, we got the image through e.target.files)
-    event.target.value = null;
-  }}
-/>
-```
-
-Second way 👇:
-
-Just add this line in the function after executing all of the codes above it
-
-```tsx
-e.target.value = "";
-```
-
-Example:
-
-```tsx
-const handleChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-  const fileFromLocal = e.target.files?.[0];
-  if (fileFromLocal && fileFromLocal.size >= ONE_MEGABYTE_TO_BYTES) {
-    toast.error("Your image has exceeded 1MB");
-    e.target.value = "";
-    return;
-  }
-  if (fileFromLocal && !fileFromLocal.type.includes("image")) {
-    toast.error("Your file must be an image");
-    e.target.value = "";
-    return;
-  }
-};
-```
+<p align="center">Made with ❤️ as a graduation project — a Shopee-inspired e-commerce app.</p>

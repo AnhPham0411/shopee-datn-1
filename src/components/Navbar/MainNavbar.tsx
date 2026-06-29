@@ -20,6 +20,7 @@ import { generateSlug } from "src/utils/slugify";
 import { ArrowDownIcon, EarthIcon, ShopeeLogoIcon } from "../Icon";
 import ShopeeLogoIcon2 from "../Icon/ShopeeLogoIcon2";
 import Popover from "../Popover";
+import NotificationBell from "../NotificationBell/NotificationBell";
 
 type TMainNavbar = {
   bottomCropped?: boolean;
@@ -120,6 +121,7 @@ const MainNavbar = ({ bottomCropped = false }: TMainNavbar) => {
                 </svg>
               )}
             </button>
+            {isAuthenticated && <NotificationBell />}
             {isAuthenticated && (
               <Popover
                 className="flex cursor-pointer items-center py-1 hover:text-gray-300"

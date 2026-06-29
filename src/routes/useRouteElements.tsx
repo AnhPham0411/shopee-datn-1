@@ -12,6 +12,7 @@ import AdminLayout from "src/layouts/AdminLayout";
 const Login = lazy(() => import("src/pages/Login"));
 const Cart = lazy(() => import("src/pages/Cart"));
 const Checkout = lazy(() => import("src/pages/Checkout"));
+const Payment = lazy(() => import("src/pages/Payment"));
 const FAQ = lazy(() => import("src/pages/FAQ"));
 const Contact = lazy(() => import("src/pages/Contact"));
 const ReturnPolicy = lazy(() => import("src/pages/ReturnPolicy"));
@@ -32,9 +33,12 @@ const Forbidden = lazy(() => import("src/pages/Forbidden"));
 const NotFound = lazy(() => import("src/pages/NotFound"));
 const ProductDetails = lazy(() => import("src/pages/ProductDetails"));
 const Register = lazy(() => import("src/pages/Register"));
+const ForgotPassword = lazy(() => import("src/pages/ForgotPassword"));
 const ChangePassword = lazy(() => import("src/pages/User/pages/ChangePassword"));
 const OrderHistory = lazy(() => import("src/pages/User/pages/OrderHistory"));
+const OrderDetail = lazy(() => import("src/pages/User/pages/OrderDetail"));
 const Wishlist = lazy(() => import("src/pages/User/pages/Wishlist"));
+const Addresses = lazy(() => import("src/pages/User/pages/Addresses"));
 const Profile = lazy(() => import("src/pages/User/pages/Profile"));
 const ProductList = lazy(() => import("src/pages/ProductList"));
 
@@ -169,6 +173,16 @@ export default function useRoutesElement() {
           ),
         },
         {
+          path: path.payment,
+          element: (
+            <MainLayout>
+              <Suspense>
+                <Payment></Payment>
+              </Suspense>
+            </MainLayout>
+          ),
+        },
+        {
           path: path.user,
           element: (
             <MainLayout>
@@ -201,10 +215,26 @@ export default function useRoutesElement() {
               ),
             },
             {
+              path: path.orderDetail,
+              element: (
+                <Suspense>
+                  <OrderDetail></OrderDetail>
+                </Suspense>
+              ),
+            },
+            {
               path: path.wishlist,
               element: (
                 <Suspense>
                   <Wishlist></Wishlist>
+                </Suspense>
+              ),
+            },
+            {
+              path: path.addresses,
+              element: (
+                <Suspense>
+                  <Addresses></Addresses>
                 </Suspense>
               ),
             },
@@ -233,6 +263,14 @@ export default function useRoutesElement() {
               element: (
                 <Suspense>
                   <Register></Register>
+                </Suspense>
+              ),
+            },
+            {
+              path: path.forgotPassword,
+              element: (
+                <Suspense>
+                  <ForgotPassword></ForgotPassword>
                 </Suspense>
               ),
             },

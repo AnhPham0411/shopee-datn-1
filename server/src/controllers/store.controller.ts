@@ -39,11 +39,36 @@ export const getStoreProducts = async (req: Request, res: Response) => {
 export const createStoreProduct = async (req: Request, res: Response) => {
   try {
     const userId = (req as any).user._id;
-    const body = req.body;
+    const {
+      name,
+      description,
+      images,
+      image,
+      price,
+      price_before_discount,
+      quantity,
+      category,
+      video,
+      status,
+      attributes
+    } = req.body;
 
     const product = new Product({
-      ...body,
-      seller: userId
+      name,
+      description,
+      images,
+      image,
+      price,
+      price_before_discount,
+      quantity,
+      category,
+      video,
+      status: status || 'active',
+      attributes,
+      seller: userId,
+      sold: 0,
+      view: 0,
+      rating: 0
     });
 
     await product.save();
@@ -60,14 +85,37 @@ export const updateStoreProduct = async (req: Request, res: Response) => {
   try {
     const userId = (req as any).user._id;
     const { id } = req.params;
-    const body = req.body;
+    const {
+      name,
+      description,
+      images,
+      image,
+      price,
+      price_before_discount,
+      quantity,
+      category,
+      video,
+      status,
+      attributes
+    } = req.body;
 
     const product = await Product.findOne({ _id: id, seller: userId });
     if (!product) {
       return res.status(403).json({ message: 'Bạn không có quyền sửa sản phẩm này' });
     }
 
-    Object.assign(product, body);
+    if (name !== undefined) product.name = name;
+    if (description !== undefined) product.description = description;
+    if (images !== undefined) product.images = images;
+    if (image !== undefined) product.image = image;
+    if (price !== undefined) product.price = price;
+    if (price_before_discount !== undefined) product.price_before_discount = price_before_discount;
+    if (quantity !== undefined) product.quantity = quantity;
+    if (category !== undefined) product.category = category;
+    if (video !== undefined) product.video = video;
+    if (status !== undefined) product.status = status;
+    if (attributes !== undefined) product.attributes = attributes;
+
     await product.save();
 
     res.status(200).json({
@@ -113,7 +161,7 @@ export const getStoreOrders = async (req: Request, res: Response) => {
     const purchases = await Purchase.find({
       product: { $in: storeProductIds },
       status: { $gte: 1 }
-    }).populate('product').populate('user', 'name email address phone').sort({ createdAt: -1 });
+    }).populate('product').populate('user', 'name address phone').sort({ createdAt: -1 });
 
     res.status(200).json({
       message: 'Lấy đơn hàng thành công',
@@ -130,11 +178,10 @@ export const getStoreDashboard = async (req: Request, res: Response) => {
     const storeProducts = await Product.find({ seller: userId }).select('_id');
     const storeProductIds = storeProducts.map(p => p._id);
 
-    // Tính tổng doanh thu từ các đơn hàng hoàn thành (status = 3 hoặc 4 tuỳ logic)
-    // Giả sử status = 3 là đã giao (thành công)
+    // Tính tổng doanh thu từ các đơn hàng hoàn thành (status = 4)
     const completedPurchases = await Purchase.find({
       product: { $in: storeProductIds },
-      status: 3
+      status: 4
     });
 
     // Store nhận 90% giá trị sản phẩm, 10% chia cho nền tảng

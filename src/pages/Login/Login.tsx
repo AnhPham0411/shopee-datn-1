@@ -88,6 +88,11 @@ const Login = () => {
             placeholder="Mật khẩu của bạn"
             containerClassName="mt-1"
           ></Input>
+          <div className="mt-2 text-right">
+            <Link className="text-sm text-red-400 hover:underline" to={path.forgotPassword}>
+              Quên mật khẩu?
+            </Link>
+          </div>
           <div className="mt-3">
             <Button
               type="submit"

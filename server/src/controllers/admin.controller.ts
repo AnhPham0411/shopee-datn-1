@@ -98,9 +98,19 @@ export const getUsers = async (req: Request, res: Response) => {
 export const toggleLockUser = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
+    const adminUser = (req as any).user;
+
+    if (adminUser && adminUser._id.toString() === id) {
+      return res.status(400).json({ message: 'Bạn không thể tự khóa tài khoản của chính mình' });
+    }
+
     const user = await User.findById(id);
     if (!user) {
       return res.status(404).json({ message: 'Không tìm thấy người dùng' });
+    }
+
+    if (user.roles.includes('Admin')) {
+      return res.status(403).json({ message: 'Không thể khóa tài khoản Admin khác' });
     }
 
     user.isLocked = !user.isLocked;
@@ -180,9 +190,42 @@ export const updateOrderStatus = async (req: Request, res: Response) => {
     const order = await Order.findById(id);
     if (!order) return res.status(404).json({ message: 'Không tìm thấy đơn hàng' });
     
-    order.status = status;
+    const targetStatus = Number(status);
+    if (![1, 2, 3, 4, 5].includes(targetStatus)) {
+      return res.status(400).json({ message: 'Trạng thái đơn hàng không hợp lệ' });
+    }
+
+    if (order.status === 4 || order.status === 5) {
+      return res.status(400).json({ message: 'Đơn hàng đã kết thúc, không thể thay đổi trạng thái' });
+    }
+
+    const oldStatus = order.status;
+    order.status = targetStatus;
     await order.save();
     
+    // Sync Purchase status
+    for (const item of order.items) {
+      await Purchase.updateMany(
+        { user: order.user, product: item.product, status: { $gte: 1 } },
+        { status: status }
+      );
+    }
+
+    // Revert stock on cancellation (status 5)
+    if (status === 5 && oldStatus !== 5) {
+      for (const item of order.items) {
+        const product = await Product.findById(item.product);
+        if (product) {
+          product.quantity += item.buy_count;
+          product.sold = Math.max(0, product.sold - item.buy_count);
+          await product.save();
+        }
+      }
+      if (order.voucherId) {
+        await Voucher.findByIdAndUpdate(order.voucherId, { $inc: { used_count: -1 } });
+      }
+    }
+
     res.status(200).json({
       message: 'Cập nhật trạng thái thành công',
       data: order
@@ -212,6 +255,13 @@ export const createCategory = async (req: Request, res: Response) => {
 export const deleteCategory = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
+    
+    // Check if there are active or hidden products in this category
+    const productCount = await Product.countDocuments({ category: id, status: { $ne: 'deleted' } });
+    if (productCount > 0) {
+      return res.status(400).json({ message: 'Không thể xóa danh mục này vì vẫn còn sản phẩm đang thuộc danh mục' });
+    }
+
     await Category.findByIdAndDelete(id);
     res.status(200).json({ message: 'Đã xóa danh mục' });
   } catch (error) { res.status(500).json({ message: 'Lỗi server', data: error }); }
