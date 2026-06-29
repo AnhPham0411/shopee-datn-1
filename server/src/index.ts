@@ -18,6 +18,7 @@ import adminRoutes from './routes/admin.routes';
 import userRoutes from './routes/user.routes';
 import voucherRoutes from './routes/voucher.routes';
 import reviewRoutes from './routes/review.routes';
+import paymentRoutes from './routes/payment.routes';
 import helmet from 'helmet';
 
 const app = express();
@@ -48,6 +49,7 @@ app.use('/admin', adminRoutes);
 app.use('/user', userRoutes);
 app.use('/vouchers', voucherRoutes);
 app.use('/products', reviewRoutes);
+app.use('/payment', paymentRoutes);
 
 // Health check endpoint
 app.get('/health', (req: Request, res: Response) => {

@@ -12,6 +12,7 @@ import AdminLayout from "src/layouts/AdminLayout";
 const Login = lazy(() => import("src/pages/Login"));
 const Cart = lazy(() => import("src/pages/Cart"));
 const Checkout = lazy(() => import("src/pages/Checkout"));
+const Payment = lazy(() => import("src/pages/Payment"));
 const FAQ = lazy(() => import("src/pages/FAQ"));
 const Contact = lazy(() => import("src/pages/Contact"));
 const ReturnPolicy = lazy(() => import("src/pages/ReturnPolicy"));
@@ -166,6 +167,16 @@ export default function useRoutesElement() {
             <MainLayout>
               <Suspense>
                 <Checkout></Checkout>
+              </Suspense>
+            </MainLayout>
+          ),
+        },
+        {
+          path: path.payment,
+          element: (
+            <MainLayout>
+              <Suspense>
+                <Payment></Payment>
               </Suspense>
             </MainLayout>
           ),

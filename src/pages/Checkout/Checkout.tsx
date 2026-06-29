@@ -90,9 +90,15 @@ export default function Checkout() {
 
   const checkoutMutation = useMutation({
     mutationFn: (body: any) => http.post("/orders/checkout", body),
-    onSuccess: () => {
+    onSuccess: (res) => {
       toast.success("Đặt hàng thành công");
-      navigate(path.orderHistory);
+      const order = res.data?.data;
+      // Nếu chọn thanh toán online → sang cổng thanh toán (mock)
+      if (order?._id && paymentMethod !== "cod") {
+        navigate(`/payment/${order._id}`);
+      } else {
+        navigate(path.orderHistory);
+      }
     },
     onError: () => {
       toast.error("Có lỗi xảy ra khi đặt hàng");

@@ -13,6 +13,7 @@ export enum path {
   productDetail = "/:slug",
   cart = "/cart",
   checkout = "/checkout",
+  payment = "/payment/:id",
   faq = "/faq",
   contact = "/contact",
   returnPolicy = "/return-policy",
