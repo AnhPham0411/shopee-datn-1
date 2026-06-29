@@ -206,6 +206,38 @@ export const getOrders = async (req: Request, res: Response) => {
   }
 };
 
+export const getOrderById = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const user = (req as any).user;
+
+    const order = await Order.findById(id).populate('items.product');
+    if (!order) {
+      return res.status(404).json({ message: 'Không tìm thấy đơn hàng' });
+    }
+
+    // Kiểm quyền: chủ đơn / Admin / Store sở hữu sản phẩm trong đơn (chống IDOR)
+    const isOwner = order.user.toString() === user._id.toString();
+    const isAdmin = user.roles.includes('Admin');
+    const isSellerOfAnyItem = user.roles.includes('Store') && order.items.some((item: any) => {
+      const product = item.product;
+      return product && product.seller && product.seller.toString() === user._id.toString();
+    });
+
+    if (!isOwner && !isAdmin && !isSellerOfAnyItem) {
+      return res.status(403).json({ message: 'Bạn không có quyền xem đơn hàng này' });
+    }
+
+    res.status(200).json({
+      message: 'Lấy chi tiết đơn hàng thành công',
+      data: order
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Lỗi server' });
+  }
+};
+
 export const updateOrderStatus = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;

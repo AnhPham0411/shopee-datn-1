@@ -3,6 +3,7 @@ export enum path {
   user = "/user",
   changePassword = "/user/change-password",
   orderHistory = "/user/order-history",
+  orderDetail = "/user/order/:id",
   wishlist = "/user/wishlist",
   profile = "/user/profile",
   login = "/login",
