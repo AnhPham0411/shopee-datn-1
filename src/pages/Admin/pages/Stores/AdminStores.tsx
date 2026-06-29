@@ -22,15 +22,15 @@ export default function AdminStores() {
   const stores = storesData?.data?.data || [];
 
   return (
-    <div className="rounded-xl bg-white p-6 shadow-sm ring-1 ring-gray-100">
+    <div className="rounded-xl bg-white p-6 shadow-sm ring-1 ring-gray-100 dark:bg-gray-800 dark:ring-gray-800">
       <div className="mb-6">
-        <h2 className="text-2xl font-bold text-gray-800">Quản lý Cửa hàng</h2>
-        <p className="mt-1 text-sm text-gray-500">Xem danh sách đối tác bán hàng và kiểm soát trạng thái hoạt động.</p>
+        <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Quản lý Cửa hàng</h2>
+        <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">Xem danh sách đối tác bán hàng và kiểm soát trạng thái hoạt động.</p>
       </div>
 
-      <div className="overflow-x-auto rounded-lg border border-gray-200">
-        <table className="w-full text-left text-sm text-gray-500">
-          <thead className="bg-gray-50 text-xs uppercase text-gray-700">
+      <div className="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700">
+        <table className="w-full text-left text-sm text-gray-500 dark:text-gray-400">
+          <thead className="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-800 dark:text-gray-300">
             <tr>
               <th className="px-6 py-4 font-semibold">Tên Shop</th>
               <th className="px-6 py-4 font-semibold">Email</th>
@@ -51,7 +51,7 @@ export default function AdminStores() {
               </tr>
             ) : (
               stores.map((store: any) => (
-                <tr key={store._id} className="border-b bg-white hover:bg-gray-50">
+                <tr key={store._id} className="border-b bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800/50 dark:hover:bg-gray-800">
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
                       <div className="h-10 w-10 overflow-hidden rounded-full border border-gray-200">
@@ -61,7 +61,7 @@ export default function AdminStores() {
                           className="h-full w-full object-cover"
                         />
                       </div>
-                      <div className="font-medium text-gray-900">{store.name || "Cửa hàng mới"}</div>
+                      <div className="font-medium text-gray-900 dark:text-gray-200">{store.name || "Cửa hàng mới"}</div>
                     </div>
                   </td>
                   <td className="px-6 py-4">{store.email}</td>

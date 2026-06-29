@@ -11,10 +11,14 @@ import Recommendations from "src/components/Recommendations";
 import SortProductList from "./components/SortProductList";
 import FlashSale from "./components/FlashSale";
 import { useTranslation } from "react-i18next";
+import Banner from "./components/Banner";
+import CategoryIcons from "./components/CategoryIcons";
+import MainCategories from "./components/MainCategories";
 
 const ProductList = () => {
   const { t } = useTranslation();
   const queryConfig = useQueryConfig();
+  const isHomePage = !queryConfig.name && !queryConfig.category && !queryConfig.price_min && !queryConfig.price_max && !queryConfig.rating_filter;
   const { data: productsData } = useQuery({
     queryKey: ["products", queryConfig],
     queryFn: () => productApi.getProducts(queryConfig as TProductListConfig),
@@ -26,7 +30,7 @@ const ProductList = () => {
     queryFn: () => categoryApi.getCategories(),
   });
   return (
-    <div className="bg-gray-200 dark:bg-gray-900 py-6">
+    <div className="bg-[#f5f5f5] dark:bg-gray-900 py-6">
       <Helmet>
         <title>Shopee At Home | Trang chủ</title>
         <meta
@@ -36,14 +40,19 @@ const ProductList = () => {
         />
       </Helmet>
       <div className="container">
+        {isHomePage && <Banner />}
+        {isHomePage && <CategoryIcons />}
+        {isHomePage && <MainCategories categories={categoriesData?.data.data || []} />}
         <div className="gap-6 md:grid md:grid-cols-12">
-          <div className="block w-full md:col-span-3">
-            <AsideFilter
-              queryConfig={queryConfig}
-              categories={categoriesData?.data.data || []}
-            />
-          </div>
-          <div className="block w-full md:col-span-9">
+          {!isHomePage && (
+            <div className="block w-full md:col-span-3">
+              <AsideFilter
+                queryConfig={queryConfig}
+                categories={categoriesData?.data.data || []}
+              />
+            </div>
+          )}
+          <div className={`block w-full ${isHomePage ? 'md:col-span-12' : 'md:col-span-9'}`}>
             <FlashSale />
             {productsData && (
               <SortProductList

@@ -1,9 +1,10 @@
 export enum purchasesStatus {
   inCart = -1,
-  all,
-  waitForConfirmation,
-  waitForPickup,
-  inProgress,
-  delivered,
-  cancelled,
+  all = 0,
+  waitForConfirmation = 1,
+  waitForPickup = 2,
+  inProgress = 3,
+  delivered = 4,
+  cancelled = 5,
+  confirmed = 6,
 }

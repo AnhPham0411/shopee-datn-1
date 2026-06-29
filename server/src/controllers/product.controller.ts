@@ -34,8 +34,7 @@ export const getProducts = async (req: Request, res: Response) => {
       }
     }
     if (name) {
-      const safeName = (text: string) => text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
-      query.name = { $regex: safeName(name as string), $options: 'i' };
+      query.$text = { $search: name as string };
     }
     if (exclude && typeof exclude === 'string' && /^[0-9a-fA-F]{24}$/.test(exclude)) {
       query._id = { $ne: exclude };
@@ -156,8 +155,11 @@ export const suggestProducts = async (req: Request, res: Response) => {
       });
     }
 
-    const safeQ = escapeRegex(String(q).trim());
-    const query = { name: { $regex: safeQ, $options: 'i' } };
+    const qString = String(q).trim();
+    const words = qString.split(/\\s+/).filter(Boolean);
+    const regexConditions = words.map(word => ({ name: { $regex: escapeRegex(word), $options: 'i' } }));
+    
+    const query = { $or: regexConditions };
     
     const products = await Product.find(query)
       .select('name image price')

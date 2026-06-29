@@ -162,7 +162,7 @@ const ProductDetails = () => {
 
   if (!product) {
     return (
-      <div className="bg-gray-200 dark:bg-gray-900 py-6">
+      <div className="bg-[#f5f5f5] dark:bg-gray-900 py-6">
         <div className="bg-white dark:bg-gray-800 p-4 shadow">
           <div className="container">
             <div className="animate-pulse lg:grid lg:grid-cols-12 lg:gap-9">
@@ -198,7 +198,7 @@ const ProductDetails = () => {
   }
 
   return (
-    <div className="bg-gray-200 dark:bg-gray-900 py-6">
+    <div className="bg-[#f5f5f5] dark:bg-gray-900 py-6">
       <Helmet>
         <title>{product.name}</title>
         <meta

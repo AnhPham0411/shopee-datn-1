@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import adminApi from "src/apis/admin.api";
 import { formatCurrency } from "src/utils/formatNumber";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from "recharts";
 
 export default function Dashboard() {
   const { data } = useQuery({
@@ -23,8 +23,8 @@ export default function Dashboard() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight text-gray-900">Dashboard Tổng Quan</h1>
-        <p className="mt-2 text-sm text-gray-500">
+        <h1 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-100">Dashboard Tổng Quan</h1>
+        <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
           Theo dõi doanh thu, người dùng và hoạt động mua bán trên toàn hệ thống Shopee.
         </p>
       </div>
@@ -45,16 +45,16 @@ export default function Dashboard() {
         </div>
 
         {/* Đơn hàng */}
-        <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
+        <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm dark:border-gray-800">
           <div className="flex items-center justify-between">
-            <p className="text-sm font-medium text-gray-500">Đơn hàng (Chờ/Hoàn thành)</p>
+            <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Đơn hàng (Chờ/Hoàn thành)</p>
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
               <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" /></svg>
             </div>
           </div>
           <p className="mt-4 flex items-baseline gap-2">
-            <span className="text-3xl font-bold tracking-tight text-gray-900">{stats.totalOrders}</span>
-            <span className="text-sm font-semibold text-gray-500">tổng</span>
+            <span className="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100">{stats.totalOrders}</span>
+            <span className="text-sm font-semibold text-gray-500 dark:text-gray-400">tổng</span>
           </p>
           <div className="mt-4 flex gap-4 text-xs font-medium">
             <span className="flex items-center gap-1 text-yellow-600">
@@ -67,14 +67,14 @@ export default function Dashboard() {
         </div>
 
         {/* Người dùng */}
-        <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
+        <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm dark:border-gray-800">
           <div className="flex items-center justify-between">
-            <p className="text-sm font-medium text-gray-500">Khách hàng</p>
+            <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Khách hàng</p>
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-purple-50 text-purple-600">
               <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" /></svg>
             </div>
           </div>
-          <p className="mt-4 text-3xl font-bold tracking-tight text-gray-900">{stats.totalUsers}</p>
+          <p className="mt-4 text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100">{stats.totalUsers}</p>
           <div className="mt-4 flex items-center text-xs font-medium text-green-600">
             <svg viewBox="0 0 24 24" className="mr-1 h-4 w-4 fill-current"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z" /></svg>
             <span>+3 user mới hôm nay</span>
@@ -82,14 +82,14 @@ export default function Dashboard() {
         </div>
 
         {/* Cửa hàng */}
-        <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
+        <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm dark:border-gray-800">
           <div className="flex items-center justify-between">
-            <p className="text-sm font-medium text-gray-500">Gian hàng (Stores)</p>
+            <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Gian hàng (Stores)</p>
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-teal-50 text-teal-600">
               <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z" /></svg>
             </div>
           </div>
-          <p className="mt-4 text-3xl font-bold tracking-tight text-gray-900">{stats.totalStores}</p>
+          <p className="mt-4 text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100">{stats.totalStores}</p>
           <div className="mt-4 flex items-center text-xs font-medium text-gray-500">
             <span>Đối tác bán hàng trên sàn</span>
           </div>
@@ -97,17 +97,11 @@ export default function Dashboard() {
       </div>
 
       {/* Chart */}
-      <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
-        <h2 className="mb-6 text-lg font-bold text-gray-900">Biểu đồ doanh thu 7 ngày gần nhất</h2>
+      <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm dark:border-gray-800">
+        <h2 className="mb-6 text-lg font-bold text-gray-900 dark:text-gray-100">Biểu đồ doanh thu 7 ngày gần nhất</h2>
         <div className="h-[400px] w-full">
           <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={stats.chartData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
-              <defs>
-                <linearGradient id="colorRevenue" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#ee4d2d" stopOpacity={0.1}/>
-                  <stop offset="95%" stopColor="#ee4d2d" stopOpacity={0}/>
-                </linearGradient>
-              </defs>
+            <BarChart data={stats.chartData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
               <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E5E7EB" />
               <XAxis dataKey="date" axisLine={false} tickLine={false} tick={{ fill: "#6B7280", fontSize: 12 }} dy={10} />
               <YAxis 
@@ -118,18 +112,23 @@ export default function Dashboard() {
                 width={80}
               />
               <Tooltip 
+                cursor={{ fill: 'rgba(238, 77, 45, 0.05)' }}
                 contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)' }}
                 formatter={(value) => [`₫${formatCurrency(value as number)}`, "Doanh thu"]}
               />
-              <Line
-                type="monotone"
+              <Bar
                 dataKey="revenue"
-                stroke="#ee4d2d"
-                strokeWidth={3}
-                dot={{ r: 4, strokeWidth: 2, fill: "#fff" }}
-                activeDot={{ r: 6, strokeWidth: 0, fill: "#ee4d2d" }}
-              />
-            </LineChart>
+                fill="#ee4d2d"
+                radius={[4, 4, 0, 0]}
+                barSize={30}
+              >
+                {
+                  stats.chartData.map((entry: any, index: number) => (
+                    <Cell key={`cell-${index}`} fill={entry.revenue > 0 ? "#ee4d2d" : "#fca5a5"} />
+                  ))
+                }
+              </Bar>
+            </BarChart>
           </ResponsiveContainer>
         </div>
       </div>

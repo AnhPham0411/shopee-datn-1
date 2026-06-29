@@ -1,5 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AuthContext } from "src/contexts/auth.context";
 import { toast } from "react-toastify";
 import reviewApi from "src/apis/review.api";
 import Button from "src/components/Button";
@@ -14,6 +15,7 @@ type ProductReviewsProps = {
 
 export default function ProductReviews({ productId, productRating }: ProductReviewsProps) {
   const { t } = useTranslation();
+  const { isAuthenticated } = useContext(AuthContext);
   const [ratingFilter, setRatingFilter] = useState<number>(0);
   const [page, setPage] = useState<number>(1);
   const [showReviewForm, setShowReviewForm] = useState(false);
@@ -52,6 +54,10 @@ export default function ProductReviews({ productId, productRating }: ProductRevi
   });
 
   const handlePostReview = () => {
+    if (!isAuthenticated) {
+      toast.error(t("Bạn phải đăng nhập tài khoản"));
+      return;
+    }
     if (!newComment.trim()) {
       toast.error(t("Vui lòng nhập nội dung đánh giá"));
       return;

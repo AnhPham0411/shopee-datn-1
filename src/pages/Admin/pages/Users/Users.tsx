@@ -27,12 +27,12 @@ export default function Users() {
   };
 
   return (
-    <div className="min-h-[600px] rounded-sm bg-white p-6 shadow-sm">
-      <h1 className="mb-6 text-2xl font-medium">Quản lý Người dùng & Cửa hàng</h1>
+    <div className="min-h-[600px] rounded-sm bg-white p-6 shadow-sm dark:bg-gray-800">
+      <h1 className="mb-6 text-2xl font-medium dark:text-gray-100">Quản lý Người dùng & Cửa hàng</h1>
 
       <div className="overflow-x-auto">
-        <table className="w-full text-left text-sm">
-          <thead className="bg-gray-50 uppercase text-gray-700">
+        <table className="w-full text-left text-sm dark:text-gray-300">
+          <thead className="bg-gray-50 uppercase text-gray-700 dark:bg-gray-800/50 dark:text-gray-400">
             <tr>
               <th className="px-4 py-3">Email</th>
               <th className="px-4 py-3">Tên</th>
@@ -45,9 +45,9 @@ export default function Users() {
             {users.map((user: any) => (
               <tr
                 key={user._id}
-                className="border-b border-gray-100 hover:bg-gray-50"
+                className="border-b border-gray-100 hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-700/50"
               >
-                <td className="px-4 py-3 font-medium">{user.email}</td>
+                <td className="px-4 py-3 font-medium dark:text-gray-200">{user.email}</td>
                 <td className="px-4 py-3">{user.name || "N/A"}</td>
                 <td className="px-4 py-3">
                   {user.roles.includes("Store") ? (

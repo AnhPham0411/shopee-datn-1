@@ -79,8 +79,8 @@ export default function AdminVouchers() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-gray-800">Quản lý Voucher</h2>
-          <p className="mt-1 text-sm text-gray-500">Tạo và quản lý mã giảm giá toàn sàn.</p>
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Quản lý Voucher</h2>
+          <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">Tạo và quản lý mã giảm giá toàn sàn.</p>
         </div>
         <button
           onClick={() => setShowForm(true)}
@@ -93,8 +93,8 @@ export default function AdminVouchers() {
 
       {/* Create Form */}
       {showForm && (
-        <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-          <h3 className="mb-5 text-lg font-bold text-gray-800">Tạo Voucher Mới</h3>
+        <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-800 dark:bg-gray-800">
+          <h3 className="mb-5 text-lg font-bold text-gray-800 dark:text-gray-100">Tạo Voucher Mới</h3>
           <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <div>
               <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-gray-500">Mã code *</label>
@@ -158,9 +158,9 @@ export default function AdminVouchers() {
       )}
 
       {/* Voucher List */}
-      <div className="overflow-x-auto rounded-2xl border border-gray-200 bg-white shadow-sm">
-        <table className="w-full text-left text-sm">
-          <thead className="border-b border-gray-100 bg-gray-50 text-xs uppercase tracking-wide text-gray-500">
+      <div className="overflow-x-auto rounded-2xl border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800">
+        <table className="w-full text-left text-sm dark:text-gray-300">
+          <thead className="border-b border-gray-100 bg-gray-50 text-xs uppercase tracking-wide text-gray-500 dark:border-gray-700 dark:bg-gray-800/80 dark:text-gray-400">
             <tr>
               <th className="px-6 py-4 font-semibold">Mã / Tên</th>
               <th className="px-6 py-4 font-semibold">Loại & Giá trị</th>
@@ -180,10 +180,10 @@ export default function AdminVouchers() {
               vouchers.map((v: any) => {
                 const isExpired = new Date(v.expires_at) < now;
                 return (
-                  <tr key={v._id} className="border-b border-gray-50 hover:bg-gray-50/50">
+                  <tr key={v._id} className="border-b border-gray-50 hover:bg-gray-50/50 dark:border-gray-700 dark:hover:bg-gray-700/50">
                     <td className="px-6 py-4">
                       <div className="font-mono text-sm font-bold tracking-wider text-primary">{v.code}</div>
-                      <div className="text-xs text-gray-500">{v.title}</div>
+                      <div className="text-xs text-gray-500 dark:text-gray-400">{v.title}</div>
                     </td>
                     <td className="px-6 py-4">
                       {v.discount_type === "percent" ? (
@@ -197,16 +197,16 @@ export default function AdminVouchers() {
                         </span>
                       )}
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-600">
+                    <td className="px-6 py-4 text-sm text-gray-600 dark:text-gray-400">
                       {v.min_order_value > 0 ? `₫${formatCurrency(v.min_order_value)}` : "Không giới hạn"}
                     </td>
                     <td className="px-6 py-4">
-                      <div className="text-sm font-semibold text-gray-700">{v.used_count} / {v.usage_limit}</div>
+                      <div className="text-sm font-semibold text-gray-700 dark:text-gray-300">{v.used_count} / {v.usage_limit}</div>
                       <div className="mt-1.5 h-1.5 w-24 rounded-full bg-gray-200">
                         <div className="h-1.5 rounded-full bg-primary" style={{ width: `${Math.min(100, (v.used_count / v.usage_limit) * 100)}%` }} />
                       </div>
                     </td>
-                    <td className="px-6 py-4 text-xs text-gray-500">
+                    <td className="px-6 py-4 text-xs text-gray-500 dark:text-gray-400">
                       <div className={isExpired ? "text-red-500 font-medium" : ""}>
                         {new Date(v.expires_at).toLocaleDateString("vi-VN")}
                       </div>

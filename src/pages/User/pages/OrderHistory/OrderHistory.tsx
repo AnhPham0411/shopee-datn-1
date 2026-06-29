@@ -15,6 +15,7 @@ import ReviewModal from "./ReviewModal";
 const orderTabs = [
   { status: 0, name: "Tất cả" },
   { status: 1, name: "Chờ xác nhận" },
+  { status: 6, name: "Đã xác nhận" },
   { status: 2, name: "Chuẩn bị hàng" },
   { status: 3, name: "Đang giao" },
   { status: 4, name: "Hoàn thành" },
@@ -50,6 +51,7 @@ export default function HistoryPurchase() {
   const getStatusText = (st: number) => {
     switch (st) {
       case 1: return <span className="text-yellow-600">{t("Chờ xác nhận").toUpperCase()}</span>;
+      case 6: return <span className="text-orange-600">{t("Đã xác nhận").toUpperCase()}</span>;
       case 2: return <span className="text-blue-600">{t("Chuẩn bị hàng").toUpperCase()}</span>;
       case 3: return <span className="text-indigo-600">{t("Đang giao").toUpperCase()}</span>;
       case 4: return <span className="text-green-600">{t("Hoàn thành").toUpperCase()}</span>;
@@ -146,7 +148,7 @@ export default function HistoryPurchase() {
                     </div>
 
                     <div className="mt-4 flex gap-3">
-                      {(order.status === 1 || order.status === 2) && (
+                      {(order.status === 1 || order.status === 6 || order.status === 2) && (
                         <button
                           onClick={() => {
                             if (confirm(t("Bạn có chắc muốn hủy đơn hàng này?"))) {

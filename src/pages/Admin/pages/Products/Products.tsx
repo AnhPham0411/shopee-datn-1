@@ -88,8 +88,8 @@ export default function AdminProducts() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-bold text-gray-800">Quản lý Sản phẩm</h2>
-          <p className="mt-1 text-sm text-gray-500">Kiểm duyệt, chỉnh sửa và gỡ sản phẩm vi phạm.</p>
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Quản lý Sản phẩm</h2>
+          <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">Kiểm duyệt, chỉnh sửa và gỡ sản phẩm vi phạm.</p>
         </div>
         <div className="relative">
           <svg viewBox="0 0 24 24" className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 fill-gray-400">
@@ -100,14 +100,14 @@ export default function AdminProducts() {
             placeholder="Tìm kiếm sản phẩm..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="rounded-xl border border-gray-200 bg-white py-2.5 pl-9 pr-4 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/10"
+            className="rounded-xl border border-gray-200 bg-white py-2.5 pl-9 pr-4 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100"
           />
         </div>
       </div>
 
-      <div className="overflow-x-auto rounded-2xl border border-gray-200 bg-white shadow-sm">
-        <table className="w-full text-left text-sm">
-          <thead className="border-b border-gray-100 bg-gray-50 text-xs uppercase tracking-wide text-gray-500">
+      <div className="overflow-x-auto rounded-2xl border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800">
+        <table className="w-full text-left text-sm dark:text-gray-300">
+          <thead className="border-b border-gray-100 bg-gray-50 text-xs uppercase tracking-wide text-gray-500 dark:border-gray-700 dark:bg-gray-800/80 dark:text-gray-400">
             <tr>
               <th className="px-6 py-4 font-semibold">Sản phẩm</th>
               <th className="px-6 py-4 font-semibold">Cửa hàng</th>
@@ -125,12 +125,12 @@ export default function AdminProducts() {
             ) : (
               products.map((product: any) => (
                 <React.Fragment key={product._id}>
-                  <tr className="border-b border-gray-50 hover:bg-gray-50/50">
+                  <tr className="border-b border-gray-50 hover:bg-gray-50/50 dark:border-gray-700 dark:hover:bg-gray-700/50">
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-3">
-                        <img src={product.image} alt={product.name} className="h-12 w-12 flex-shrink-0 rounded-xl border border-gray-100 object-cover" />
+                        <img src={product.image} alt={product.name} className="h-12 w-12 flex-shrink-0 rounded-xl border border-gray-100 object-cover dark:border-gray-700" />
                         <div className="max-w-[200px]">
-                          <div className="line-clamp-2 text-sm font-medium text-gray-800">{product.name}</div>
+                          <div className="line-clamp-2 text-sm font-medium text-gray-800 dark:text-gray-200">{product.name}</div>
                           <div className="mt-0.5 text-xs text-gray-400">{product.category?.name}</div>
                         </div>
                       </div>
@@ -142,7 +142,7 @@ export default function AdminProducts() {
                         <div className="text-xs text-gray-400 line-through">₫{formatCurrency(product.price_before_discount)}</div>
                       )}
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-600">
+                    <td className="px-6 py-4 text-sm text-gray-600 dark:text-gray-400">
                       {product.quantity} / {product.sold}
                     </td>
                     <td className="px-6 py-4">{getStatusBadge(product.status)}</td>
@@ -164,43 +164,43 @@ export default function AdminProducts() {
 
                   {/* ── Inline Edit Row ── */}
                   {editingId === product._id && (
-                    <tr className="border-b border-primary/10 bg-orange-50/50">
+                    <tr className="border-b border-primary/10 bg-orange-50/50 dark:border-primary/20 dark:bg-gray-800">
                       <td colSpan={6} className="px-6 py-5">
-                        <p className="mb-4 text-sm font-bold text-gray-700">✏️ Chỉnh sửa: {product.name}</p>
+                        <p className="mb-4 text-sm font-bold text-gray-700 dark:text-gray-300">✏️ Chỉnh sửa: {product.name}</p>
                         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                           <div className="lg:col-span-3">
-                            <label className="mb-1 block text-xs font-semibold uppercase tracking-wide text-gray-500">Tên sản phẩm</label>
+                            <label className="mb-1 block text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">Tên sản phẩm</label>
                             <input value={editForm.name} onChange={e => setEditForm(f => ({...f, name: e.target.value}))}
-                              className="w-full rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/10" />
+                              className="w-full rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100" />
                           </div>
                           <div>
-                            <label className="mb-1 block text-xs font-semibold uppercase tracking-wide text-gray-500">Giá bán (₫)</label>
+                            <label className="mb-1 block text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">Giá bán (₫)</label>
                             <input type="number" min="0" value={editForm.price} onChange={e => setEditForm(f => ({...f, price: e.target.value}))}
-                              className="w-full rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/10" />
+                              className="w-full rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100" />
                           </div>
                           <div>
-                            <label className="mb-1 block text-xs font-semibold uppercase tracking-wide text-gray-500">Giá gốc (₫)</label>
+                            <label className="mb-1 block text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">Giá gốc (₫)</label>
                             <input type="number" min="0" value={editForm.price_before_discount} onChange={e => setEditForm(f => ({...f, price_before_discount: e.target.value}))}
-                              className="w-full rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/10" />
+                              className="w-full rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100" />
                           </div>
                           <div>
-                            <label className="mb-1 block text-xs font-semibold uppercase tracking-wide text-gray-500">Số lượng tồn kho</label>
+                            <label className="mb-1 block text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">Số lượng tồn kho</label>
                             <input type="number" min="0" value={editForm.quantity} onChange={e => setEditForm(f => ({...f, quantity: e.target.value}))}
-                              className="w-full rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/10" />
+                              className="w-full rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100" />
                           </div>
                           <div>
-                            <label className="mb-1 block text-xs font-semibold uppercase tracking-wide text-gray-500">Trạng thái</label>
+                            <label className="mb-1 block text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">Trạng thái</label>
                             <select value={editForm.status} onChange={e => setEditForm(f => ({...f, status: e.target.value}))}
-                              className="w-full rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm outline-none focus:border-primary">
+                              className="w-full rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm outline-none focus:border-primary dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100">
                               <option value="active">Đang bán (Active)</option>
                               <option value="hidden">Ẩn khỏi trang chủ (Hidden)</option>
                               <option value="deleted">Đã xóa (Deleted)</option>
                             </select>
                           </div>
                           <div className="sm:col-span-2 lg:col-span-3">
-                            <label className="mb-1 block text-xs font-semibold uppercase tracking-wide text-gray-500">Mô tả (tóm tắt)</label>
+                            <label className="mb-1 block text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">Mô tả (tóm tắt)</label>
                             <textarea rows={2} value={editForm.description} onChange={e => setEditForm(f => ({...f, description: e.target.value}))}
-                              className="w-full rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/10" />
+                              className="w-full rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100" />
                           </div>
                         </div>
                         <div className="mt-4 flex gap-3">

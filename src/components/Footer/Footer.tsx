@@ -3,12 +3,16 @@ import { Link } from "react-router-dom";
 import { path } from "src/constants/path.enum";
 import { useTranslation } from "react-i18next";
 
+import SeoFooter from "./SeoFooter";
+
 const Footer = () => {
   const { t } = useTranslation();
   return (
-    <footer className="mt-10 border-t-4 border-primary bg-neutral-100 dark:bg-gray-900 py-10">
-      <div className="container">
-        <div className="mb-10 grid grid-cols-1 gap-8 border-b border-gray-200 dark:border-gray-700 pb-8 md:grid-cols-3">
+    <>
+      <SeoFooter />
+      <footer className="bg-neutral-100 dark:bg-gray-900 py-10">
+        <div className="container">
+          <div className="mb-10 grid grid-cols-1 gap-8 border-b border-gray-200 dark:border-gray-700 pb-8 md:grid-cols-3">
           <div>
             <h3 className="mb-4 text-sm font-bold uppercase text-gray-700 dark:text-gray-300">{t("Chăm sóc khách hàng")}</h3>
             <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
@@ -130,6 +134,7 @@ const Footer = () => {
         </div>
       </div>
     </footer>
+    </>
   );
 };
 

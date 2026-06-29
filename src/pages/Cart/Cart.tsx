@@ -145,7 +145,7 @@ const Cart = () => {
     }
   };
   return (
-    <div className="bg-neutral-100 dark:bg-gray-900 py-16">
+    <div className="bg-[#f5f5f5] dark:bg-gray-900 py-16">
       <Helmet>
         <title>Shopee At Home | Giỏ hàng</title>
         <meta

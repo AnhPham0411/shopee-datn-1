@@ -35,6 +35,8 @@ export default function AdminOrders() {
     switch (status) {
       case 1:
         return <span className="rounded-full bg-yellow-100 px-3 py-1 text-xs font-medium text-yellow-800">Chờ xác nhận</span>;
+      case 6:
+        return <span className="rounded-full bg-orange-100 px-3 py-1 text-xs font-medium text-orange-800">Đã xác nhận</span>;
       case 2:
         return <span className="rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-blue-800">Chuẩn bị hàng</span>;
       case 3:
@@ -49,20 +51,21 @@ export default function AdminOrders() {
   };
 
   return (
-    <div className="rounded-xl bg-white p-6 shadow-sm ring-1 ring-gray-100">
+    <div className="rounded-xl bg-white p-6 shadow-sm ring-1 ring-gray-100 dark:bg-gray-800 dark:ring-gray-800">
       <div className="mb-6 flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-gray-800">Quản lý Đơn hàng</h2>
-          <p className="mt-1 text-sm text-gray-500">Duyệt và theo dõi trạng thái các đơn hàng trên toàn hệ thống.</p>
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">Quản lý Đơn hàng</h2>
+          <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">Duyệt và theo dõi trạng thái các đơn hàng trên toàn hệ thống.</p>
         </div>
         <div className="flex gap-2">
           <select 
-            className="rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 outline-none focus:border-primary focus:ring-primary"
+            className="rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 outline-none focus:border-primary focus:ring-primary dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100"
             value={filterStatus}
             onChange={(e) => setFilterStatus(Number(e.target.value))}
           >
             <option value={0}>Tất cả đơn hàng</option>
             <option value={1}>Chờ xác nhận</option>
+            <option value={6}>Đã xác nhận</option>
             <option value={2}>Chuẩn bị hàng</option>
             <option value={3}>Đang giao hàng</option>
             <option value={4}>Hoàn thành (Đã nhận)</option>
@@ -71,9 +74,9 @@ export default function AdminOrders() {
         </div>
       </div>
 
-      <div className="overflow-x-auto rounded-lg border border-gray-200">
-        <table className="w-full text-left text-sm text-gray-500">
-          <thead className="bg-gray-50 text-xs uppercase text-gray-700">
+      <div className="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700">
+        <table className="w-full text-left text-sm text-gray-500 dark:text-gray-400">
+          <thead className="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-800 dark:text-gray-300">
             <tr>
               <th className="px-6 py-4 font-semibold">Mã ĐH / Ngày đặt</th>
               <th className="px-6 py-4 font-semibold">Khách hàng</th>
@@ -94,10 +97,10 @@ export default function AdminOrders() {
               </tr>
             ) : (
               filteredOrders.map((order: any) => (
-                <tr key={order._id} className="border-b bg-white hover:bg-gray-50">
+                <tr key={order._id} className="border-b bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800/50 dark:hover:bg-gray-800">
                   <td className="px-6 py-4">
-                    <div className="font-medium text-gray-900">#{order._id.substring(order._id.length - 6).toUpperCase()}</div>
-                    <div className="text-xs text-gray-500">
+                    <div className="font-medium text-gray-900 dark:text-gray-200">#{order._id.substring(order._id.length - 6).toUpperCase()}</div>
+                    <div className="text-xs text-gray-500 dark:text-gray-400">
                       {order.createdAt && new Date(order.createdAt).toLocaleDateString("vi-VN", {
                         hour: "2-digit",
                         minute: "2-digit",
@@ -105,11 +108,11 @@ export default function AdminOrders() {
                     </div>
                   </td>
                   <td className="px-6 py-4">
-                    <div className="font-medium text-gray-900">{order.recipientName}</div>
-                    <div className="text-xs text-gray-500">{order.recipientPhone}</div>
+                    <div className="font-medium text-gray-900 dark:text-gray-200">{order.recipientName}</div>
+                    <div className="text-xs text-gray-500 dark:text-gray-400">{order.recipientPhone}</div>
                   </td>
                   <td className="px-6 py-4">
-                    <div className="text-xs text-gray-600 line-clamp-2">
+                    <div className="text-xs text-gray-600 line-clamp-2 dark:text-gray-300">
                       {order.items.map((i: any) => i.productName).join(", ")}
                     </div>
                     <div className="mt-1 text-xs text-gray-400">{order.items.length} sản phẩm</div>
@@ -123,11 +126,20 @@ export default function AdminOrders() {
                   <td className="px-6 py-4 text-right">
                     {order.status === 1 && (
                       <button
-                        onClick={() => handleUpdateStatus(order._id, 2)}
+                        onClick={() => handleUpdateStatus(order._id, 6)}
                         className="rounded bg-blue-600 px-3 py-1 text-xs font-medium text-white hover:bg-blue-700"
                         disabled={updateStatusMutation.isLoading}
                       >
                         Xác nhận đơn
+                      </button>
+                    )}
+                    {order.status === 6 && (
+                      <button
+                        onClick={() => handleUpdateStatus(order._id, 2)}
+                        className="rounded bg-teal-600 px-3 py-1 text-xs font-medium text-white hover:bg-teal-700"
+                        disabled={updateStatusMutation.isLoading}
+                      >
+                        Chuẩn bị hàng
                       </button>
                     )}
                     {order.status === 2 && (
@@ -142,7 +154,7 @@ export default function AdminOrders() {
                     {order.status === 3 && (
                       <span className="text-xs text-gray-500 italic">Chờ KH nhận hàng</span>
                     )}
-                    {(order.status === 1 || order.status === 2) && (
+                    {(order.status === 1 || order.status === 6 || order.status === 2) && (
                       <button
                         onClick={() => {
                           if (confirm("Bạn có chắc muốn hủy đơn này?")) {

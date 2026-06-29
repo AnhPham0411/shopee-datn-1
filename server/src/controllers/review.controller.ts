@@ -38,7 +38,12 @@ export const createReview = async (req: Request, res: Response) => {
       message: 'Đánh giá sản phẩm thành công',
       data: review
     });
-  } catch (error) { console.error(error); res.status(500).json({ message: 'Lỗi server', data: error });
+  } catch (error: any) { 
+    if (error.code === 11000) {
+      return res.status(400).json({ message: 'Bạn đã đánh giá sản phẩm này rồi' });
+    }
+    console.error(error); 
+    res.status(500).json({ message: 'Lỗi server', data: error });
   }
 };
 

@@ -25,8 +25,8 @@ const ReviewSchema = new Schema<IReview>(
   { timestamps: true }
 );
 
-// Mỗi user chỉ review 1 lần cho mỗi sản phẩm
-ReviewSchema.index({ product: 1, user: 1 }, { unique: true });
+// Mỗi user có thể review nhiều lần nếu mua nhiều đơn
+// ReviewSchema.index({ product: 1, user: 1 }, { unique: true });
 ReviewSchema.index({ product: 1, rating: 1 });
 ReviewSchema.index({ product: 1, createdAt: -1 });
 
