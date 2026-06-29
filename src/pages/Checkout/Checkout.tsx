@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import React, { useContext, useMemo, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Button from "src/components/Button";
 import { path } from "src/constants/path.enum";
@@ -9,6 +9,7 @@ import { AuthContext } from "src/contexts/auth.context";
 import { formatCurrency } from "src/utils/formatNumber";
 import http from "src/utils/http";
 import voucherApi from "src/apis/voucher.api";
+import addressApi from "src/apis/address.api";
 
 export default function Checkout() {
   const { t } = useTranslation();
@@ -18,20 +19,35 @@ export default function Checkout() {
 
   const purchases = state?.purchases || [];
 
-  const [shippingAddress, setShippingAddress] = useState(userProfile?.address || "");
+  const [manualAddress, setManualAddress] = useState(userProfile?.address || "");
   const [shippingMethod, setShippingMethod] = useState("nhanh");
   const [paymentMethod, setPaymentMethod] = useState("cod");
+
+  const [selectedAddressId, setSelectedAddressId] = useState<string | null>(null);
+  const [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
 
   const [voucherCode, setVoucherCode] = useState("");
   const [discountAmount, setDiscountAmount] = useState(0);
   const [appliedVoucherId, setAppliedVoucherId] = useState<string | null>(null);
   const [isVoucherModalOpen, setIsVoucherModalOpen] = useState(false);
 
+  const { data: addressesData } = useQuery({
+    queryKey: ["addresses"],
+    queryFn: () => addressApi.getAddresses(),
+  });
+  const addresses: any[] = addressesData?.data?.data || [];
+
   useEffect(() => {
-    if (userProfile?.address && !shippingAddress) {
-      setShippingAddress(userProfile.address);
+    if (addresses.length > 0 && !selectedAddressId) {
+      const def = addresses.find((a) => a.isDefault) || addresses[0];
+      setSelectedAddressId(def._id);
     }
-  }, [userProfile?.address]);
+  }, [addresses, selectedAddressId]);
+
+  const selectedAddress = addresses.find((a) => a._id === selectedAddressId);
+  const composedAddress = selectedAddress
+    ? `${selectedAddress.detail}, ${selectedAddress.ward}, ${selectedAddress.district}, ${selectedAddress.province}`
+    : manualAddress;
 
   const { data: vouchersData } = useQuery({
     queryKey: ["vouchers", "public"],
@@ -84,8 +100,8 @@ export default function Checkout() {
   });
 
   const handleCheckout = () => {
-    if (!shippingAddress.trim()) {
-      toast.error("Vui lòng nhập địa chỉ giao hàng");
+    if (!composedAddress.trim()) {
+      toast.error("Vui lòng chọn hoặc nhập địa chỉ giao hàng");
       return;
     }
 
@@ -101,11 +117,13 @@ export default function Checkout() {
 
     checkoutMutation.mutate({
       items,
-      shippingAddress,
+      shippingAddress: composedAddress,
       shippingMethod,
       shippingFee,
       paymentMethod,
       voucherCode: appliedVoucherId ? voucherCode : undefined,
+      recipientName: selectedAddress?.fullName,
+      recipientPhone: selectedAddress?.phone,
     });
   };
 
@@ -140,13 +158,43 @@ export default function Checkout() {
                 </svg>
                 {t("Địa chỉ nhận hàng")}
               </h2>
-              <textarea
-                className="w-full rounded-sm border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-black dark:text-white p-3 outline-none focus:border-primary"
-                rows={3}
-                placeholder={t("Nhập địa chỉ giao hàng chi tiết...") as string}
-                value={shippingAddress}
-                onChange={(e) => setShippingAddress(e.target.value)}
-              />
+
+              {addresses.length > 0 ? (
+                <div className="flex items-start justify-between gap-4">
+                  {selectedAddress ? (
+                    <div className="text-sm text-gray-700 dark:text-gray-300">
+                      <div className="font-medium text-gray-900 dark:text-gray-100">
+                        {selectedAddress.fullName} <span className="text-gray-400">|</span> {selectedAddress.phone}
+                        {selectedAddress.isDefault && (
+                          <span className="ml-2 rounded border border-primary px-1.5 py-0.5 text-xs text-primary">{t("Mặc định")}</span>
+                        )}
+                      </div>
+                      <div className="mt-1">{composedAddress}</div>
+                    </div>
+                  ) : (
+                    <div className="text-sm text-gray-500">{t("Vui lòng chọn địa chỉ")}</div>
+                  )}
+                  <button
+                    onClick={() => setIsAddressModalOpen(true)}
+                    className="flex-shrink-0 text-sm text-primary hover:underline"
+                  >
+                    {t("Thay đổi")}
+                  </button>
+                </div>
+              ) : (
+                <div>
+                  <textarea
+                    className="w-full rounded-sm border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-black dark:text-white p-3 outline-none focus:border-primary"
+                    rows={3}
+                    placeholder={t("Nhập địa chỉ giao hàng chi tiết...") as string}
+                    value={manualAddress}
+                    onChange={(e) => setManualAddress(e.target.value)}
+                  />
+                  <Link to={path.addresses} className="mt-2 inline-block text-sm text-primary hover:underline">
+                    + {t("Thêm vào sổ địa chỉ để dùng lại lần sau")}
+                  </Link>
+                </div>
+              )}
             </div>
 
             <div className="rounded-sm bg-white dark:bg-gray-800 p-6 shadow-sm">
@@ -302,6 +350,50 @@ export default function Checkout() {
           </div>
         </div>
       </div>
+
+      {isAddressModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4" onClick={() => setIsAddressModalOpen(false)}>
+          <div className="w-full max-w-md rounded bg-white dark:bg-gray-800 p-6 shadow-lg" onClick={(e) => e.stopPropagation()}>
+            <div className="mb-4 flex items-center justify-between">
+              <h2 className="text-lg font-medium text-gray-800 dark:text-white">{t("Chọn địa chỉ nhận hàng")}</h2>
+              <button onClick={() => setIsAddressModalOpen(false)} className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">✕</button>
+            </div>
+            <div className="max-h-[60vh] space-y-3 overflow-y-auto">
+              {addresses.map((a) => (
+                <label
+                  key={a._id}
+                  className={`flex cursor-pointer items-start gap-3 rounded border p-3 ${
+                    selectedAddressId === a._id ? "border-primary bg-primary/5" : "border-gray-200 dark:border-gray-700"
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    name="address"
+                    className="mt-1"
+                    checked={selectedAddressId === a._id}
+                    onChange={() => {
+                      setSelectedAddressId(a._id);
+                      setIsAddressModalOpen(false);
+                    }}
+                  />
+                  <div className="text-sm text-gray-700 dark:text-gray-300">
+                    <div className="font-medium text-gray-900 dark:text-gray-100">
+                      {a.fullName} <span className="text-gray-400">|</span> {a.phone}
+                      {a.isDefault && <span className="ml-2 text-xs text-primary">({t("Mặc định")})</span>}
+                    </div>
+                    <div className="mt-1">
+                      {a.detail}, {a.ward}, {a.district}, {a.province}
+                    </div>
+                  </div>
+                </label>
+              ))}
+            </div>
+            <Link to={path.addresses} className="mt-3 inline-block text-sm text-primary hover:underline">
+              + {t("Quản lý sổ địa chỉ")}
+            </Link>
+          </div>
+        </div>
+      )}
 
       {isVoucherModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">

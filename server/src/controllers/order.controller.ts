@@ -9,7 +9,7 @@ import Promotion from '../models/Promotion';
 export const createOrder = async (req: Request, res: Response) => {
   try {
     const userId = (req as any).user._id;
-    const { items, shippingAddress, shippingMethod, shippingFee: clientShippingFee, paymentMethod, voucherCode } = req.body;
+    const { items, shippingAddress, shippingMethod, shippingFee: clientShippingFee, paymentMethod, voucherCode, recipientName: bodyRecipientName, recipientPhone: bodyRecipientPhone } = req.body;
 
     if (!items || items.length === 0) {
       return res.status(400).json({ message: 'Giỏ hàng trống' });
@@ -147,8 +147,8 @@ export const createOrder = async (req: Request, res: Response) => {
     }
 
     const user = await User.findById(userId);
-    const recipientName = user?.name || 'Khách hàng';
-    const recipientPhone = user?.phone || '0123456789';
+    const recipientName = bodyRecipientName || user?.name || 'Khách hàng';
+    const recipientPhone = bodyRecipientPhone || user?.phone || '0123456789';
 
     const mappedShippingMethod = shippingMethod === 'hoatoc' ? 'express' : shippingMethod === 'tietkiem' ? 'sameday' : 'standard';
     const mappedPaymentMethod = paymentMethod === 'bank' ? 'bank_transfer' : 'cod';

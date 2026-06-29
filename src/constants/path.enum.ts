@@ -5,6 +5,7 @@ export enum path {
   orderHistory = "/user/order-history",
   orderDetail = "/user/order/:id",
   wishlist = "/user/wishlist",
+  addresses = "/user/addresses",
   profile = "/user/profile",
   login = "/login",
   register = "/register",

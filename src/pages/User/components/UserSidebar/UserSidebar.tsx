@@ -76,6 +76,20 @@ const UserSidebar = () => {
           {t("Đổi mật khẩu")}
         </NavLink>
         <NavLink
+          to={path.addresses}
+          className={({ isActive }) =>
+            `mt-2 flex items-center gap-x-3 capitalize transition-colors ${isActive ? "text-primary" : "text-gray-600 dark:text-gray-400"}`
+          }
+        >
+          <div className="flex h-[22px] w-[22px] items-center justify-center">
+            <svg viewBox="0 0 24 24" className="h-5 w-5 fill-none stroke-[#0E4FB2] stroke-2">
+              <path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z" strokeLinejoin="round" />
+              <circle cx="12" cy="10" r="2.5" />
+            </svg>
+          </div>
+          {t("Sổ địa chỉ")}
+        </NavLink>
+        <NavLink
           to={path.orderHistory}
           className={({ isActive }) =>
             `mt-2 flex items-center gap-x-3 capitalize transition-colors ${isActive ? "text-primary" : "text-gray-600 dark:text-gray-400"}`
