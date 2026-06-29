@@ -6,8 +6,26 @@ import { signToken, verifyToken } from '../utils/jwt';
 export const register = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const errors: Record<string, string> = {};
+
+    if (!email || typeof email !== 'string' || !emailRegex.test(email)) {
+      errors.email = 'Email không đúng định dạng';
+    }
+
+    if (!password || typeof password !== 'string' || password.length < 6) {
+      errors.password = 'Mật khẩu phải từ 6 ký tự trở lên';
+    }
+
+    if (Object.keys(errors).length > 0) {
+      return res.status(422).json({
+        message: 'Lỗi validate',
+        data: errors
+      });
+    }
     
-    const existingUser = await User.findOne({ email });
+    const existingUser = await User.findOne({ email: email.toLowerCase() });
     if (existingUser) {
       return res.status(422).json({
         message: 'Lỗi validate',
@@ -16,7 +34,7 @@ export const register = async (req: Request, res: Response) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user = new User({ email, password: hashedPassword, roles: ['User'] });
+    const user = new User({ email: email.toLowerCase(), password: hashedPassword, roles: ['User'] });
     await user.save();
 
     const payload = { userId: user._id };

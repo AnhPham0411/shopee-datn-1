@@ -105,6 +105,7 @@ export default function Checkout() {
       shippingMethod,
       shippingFee,
       paymentMethod,
+      voucherCode: appliedVoucherId ? voucherCode : undefined,
     });
   };
 
@@ -142,7 +143,7 @@ export default function Checkout() {
               <textarea
                 className="w-full rounded-sm border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-black dark:text-white p-3 outline-none focus:border-primary"
                 rows={3}
-                placeholder={t("Nhập địa chỉ giao hàng chi tiết...")}
+                placeholder={t("Nhập địa chỉ giao hàng chi tiết...") as string}
                 value={shippingAddress}
                 onChange={(e) => setShippingAddress(e.target.value)}
               />
@@ -247,7 +248,7 @@ export default function Checkout() {
                 <div className="flex gap-2">
                   <input
                     type="text"
-                    placeholder={t("Nhập mã giảm giá")}
+                    placeholder={t("Nhập mã giảm giá") as string}
                     value={voucherCode}
                     onChange={(e) => setVoucherCode(e.target.value)}
                     className="flex-1 rounded-sm border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-black dark:text-white p-2 uppercase outline-none focus:border-primary"

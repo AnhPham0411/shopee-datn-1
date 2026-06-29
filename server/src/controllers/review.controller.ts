@@ -9,6 +9,17 @@ export const createReview = async (req: Request, res: Response) => {
     const { id: productId } = req.params;
     const userId = (req as any).user._id;
 
+    // Validate rating
+    if (typeof rating !== 'number' || rating < 1 || rating > 5 || !Number.isInteger(rating)) {
+      return res.status(400).json({ message: 'Điểm đánh giá phải là số nguyên từ 1 đến 5', data: null });
+    }
+
+    // Check if user has already reviewed the product
+    const existingReview = await Review.findOne({ product: productId, user: userId });
+    if (existingReview) {
+      return res.status(400).json({ message: 'Bạn đã đánh giá sản phẩm này rồi', data: null });
+    }
+
     // Check if user has purchased the product (status >= 1)
     const hasPurchased = await Purchase.findOne({
       product: productId,

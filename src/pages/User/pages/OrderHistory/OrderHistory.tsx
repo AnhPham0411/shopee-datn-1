@@ -146,10 +146,10 @@ export default function HistoryPurchase() {
                     </div>
 
                     <div className="mt-4 flex gap-3">
-                      {(order.status === 1 || order.status === 2) && (
+                      {order.status === 1 && (
                         <button
-                          onClick={() => {
-                            if (confirm(t("Bạn có chắc muốn hủy đơn hàng này?"))) {
+                           onClick={() => {
+                            if (confirm(t("Bạn có chắc muốn hủy đơn hàng này?") as string)) {
                               handleUpdate(order._id, 5);
                             }
                           }}
@@ -163,7 +163,7 @@ export default function HistoryPurchase() {
                       {order.status === 3 && (
                         <button
                           onClick={() => {
-                            if (confirm(t("Xác nhận bạn đã nhận được hàng?"))) {
+                            if (confirm(t("Xác nhận bạn đã nhận được hàng?") as string)) {
                               handleUpdate(order._id, 4);
                             }
                           }}

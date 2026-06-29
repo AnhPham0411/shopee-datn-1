@@ -25,7 +25,7 @@ export interface IOrder extends Document {
   totalAmount: number;   // = subTotal + shippingFee - discountAmount
   voucherCode?: string;
   voucherId?: mongoose.Types.ObjectId;
-  // 1: chờ xác nhận, 2: đang giao, 3: hoàn thành, 4: đã hủy
+  // status: 1=chờ xác nhận, 2=chuẩn bị hàng, 3=đang giao, 4=hoàn thành, 5=đã hủy
   status: number;
   note?: string;
   createdAt?: Date;
