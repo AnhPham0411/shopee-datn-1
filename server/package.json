@@ -17,7 +17,8 @@
     "helmet": "^8.2.0",
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^7.6.3",
-    "multer": "^2.2.0"
+    "multer": "^2.2.0",
+    "nodemailer": "^9.0.3"
   },
   "devDependencies": {
     "@types/bcrypt": "^6.0.0",
@@ -26,6 +27,7 @@
     "@types/jsonwebtoken": "^9.0.10",
     "@types/multer": "^2.1.0",
     "@types/node": "^20.8.9",
+    "@types/nodemailer": "^8.0.1",
     "nodemon": "^3.0.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2"

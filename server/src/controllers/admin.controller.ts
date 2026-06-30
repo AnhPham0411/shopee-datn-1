@@ -191,7 +191,7 @@ export const updateOrderStatus = async (req: Request, res: Response) => {
     if (!order) return res.status(404).json({ message: 'Không tìm thấy đơn hàng' });
     
     const targetStatus = Number(status);
-    if (![1, 2, 3, 4, 5].includes(targetStatus)) {
+    if (![1, 2, 3, 4, 5, 6].includes(targetStatus)) {
       return res.status(400).json({ message: 'Trạng thái đơn hàng không hợp lệ' });
     }
 

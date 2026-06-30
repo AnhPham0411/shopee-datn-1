@@ -159,7 +159,8 @@ const resources = {
       "Sửa hồ sơ": "Edit Profile",
       "Sản phẩm yêu thích": "Favorite Products",
       "Quản lý những sản phẩm bạn đã yêu thích": "Manage your favorite products",
-      "Bạn chưa có sản phẩm yêu thích nào": "You don't have any favorite products yet"
+      "Bạn chưa có sản phẩm yêu thích nào": "You don't have any favorite products yet",
+      "Sản phẩm của bạn": "Your product"
     }
   },
   vi: {
@@ -319,7 +320,8 @@ const resources = {
       "Sửa hồ sơ": "Sửa hồ sơ",
       "Sản phẩm yêu thích": "Sản phẩm yêu thích",
       "Quản lý những sản phẩm bạn đã yêu thích": "Quản lý những sản phẩm bạn đã yêu thích",
-      "Bạn chưa có sản phẩm yêu thích nào": "Bạn chưa có sản phẩm yêu thích nào"
+      "Bạn chưa có sản phẩm yêu thích nào": "Bạn chưa có sản phẩm yêu thích nào",
+      "Sản phẩm của bạn": "Sản phẩm của bạn"
     }
   }
 };

@@ -276,7 +276,7 @@ export const updateOrderStatus = async (req: Request, res: Response) => {
     }
 
     const targetStatus = Number(status);
-    if (![1, 2, 3, 4, 5].includes(targetStatus)) {
+    if (![1, 2, 3, 4, 5, 6].includes(targetStatus)) {
       return res.status(400).json({ message: 'Trạng thái đơn hàng không hợp lệ' });
     }
 
@@ -324,7 +324,7 @@ export const updateOrderStatus = async (req: Request, res: Response) => {
 
     // Thông báo cho người mua về thay đổi trạng thái đơn
     const STATUS_LABEL: Record<number, string> = {
-      1: 'Chờ xác nhận', 2: 'Đang chuẩn bị hàng', 3: 'Đang giao', 4: 'Đã hoàn thành', 5: 'Đã hủy'
+      1: 'Chờ xác nhận', 6: 'Đã xác nhận', 2: 'Đang chuẩn bị hàng', 3: 'Đang giao', 4: 'Đã hoàn thành', 5: 'Đã hủy'
     };
     await createNotification({
       user: order.user,

@@ -13,6 +13,8 @@ export type TProduct = {
     _id: string;
     name: string;
   };
+  seller?: string | { _id: string; email: string };
+  storeId?: string;
   image: string;
   video?: string;
   createdAt: string;

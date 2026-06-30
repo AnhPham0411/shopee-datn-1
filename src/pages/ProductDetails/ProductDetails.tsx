@@ -34,7 +34,7 @@ const ProductDetails = () => {
   const { slug } = useParams();
   const id = getIdFromSlug(slug as string);
   const queryClient = useQueryClient();
-  const { isAuthenticated } = useContext(AuthContext);
+  const { isAuthenticated, userProfile } = useContext(AuthContext);
   const { data: productDetailData } = useQuery({
     queryKey: ["product", id],
     queryFn: () => productApi.getProductById(id as string),
@@ -355,67 +355,78 @@ const ProductDetails = () => {
                 <div className="ml-6 text-sm text-gray-500 dark:text-gray-400">{product.quantity} {t("sản phẩm có sẵn")}</div>
               </div>
               <div className="mt-8 sm:flex sm:items-center sm:gap-x-4">
-                <button
-                  onClick={handleAddToCart}
-                  className="flex h-12 w-full items-center justify-center rounded-sm border border-primary bg-primary/10 px-5 capitalize text-primary shadow-sm hover:bg-primary/5 sm:w-auto"
-                >
-                  <svg
-                    enableBackground="new 0 0 15 15"
-                    viewBox="0 0 15 15"
-                    x={0}
-                    y={0}
-                    className="mr-[10px] h-5 w-5 fill-current stroke-primary text-primary"
+                {isAuthenticated && userProfile?._id === (typeof product.seller === 'string' ? product.seller : product.seller?._id) ? (
+                  <button
+                    disabled
+                    className="flex h-12 w-full cursor-not-allowed items-center justify-center rounded-sm bg-gray-300 px-5 capitalize text-gray-500 shadow-sm sm:w-auto"
                   >
-                    <g>
-                      <g>
-                        <polyline
-                          fill="none"
-                          points=".5 .5 2.7 .5 5.2 11 12.4 11 14.5 3.5 3.7 3.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeMiterlimit={10}
-                        />
-                        <circle
-                          cx={6}
-                          cy="13.5"
-                          r={1}
-                          stroke="none"
-                        />
-                        <circle
-                          cx="11.5"
-                          cy="13.5"
-                          r={1}
-                          stroke="none"
-                        />
-                      </g>
-                      <line
-                        fill="none"
-                        strokeLinecap="round"
-                        strokeMiterlimit={10}
-                        x1="7.5"
-                        x2="10.5"
-                        y1={7}
-                        y2={7}
-                      />
-                      <line
-                        fill="none"
-                        strokeLinecap="round"
-                        strokeMiterlimit={10}
-                        x1={9}
-                        x2={9}
-                        y1="8.5"
-                        y2="5.5"
-                      />
-                    </g>
-                  </svg>
-                  {t("Thêm vào giỏ hàng")}
-                </button>
-                <button
-                  onClick={handleBuyNow}
-                  className="mt-5 flex h-12 w-full min-w-[5rem] items-center justify-center rounded-sm bg-primary px-5 capitalize text-white shadow-sm outline-none hover:bg-primary/90 sm:mt-0 sm:w-auto"
-                >
-                  {t("Mua ngay")}
-                </button>
+                    {t("Sản phẩm của bạn")}
+                  </button>
+                ) : (
+                  <>
+                    <button
+                      onClick={handleAddToCart}
+                      className="flex h-12 w-full items-center justify-center rounded-sm border border-primary bg-primary/10 px-5 capitalize text-primary shadow-sm hover:bg-primary/5 sm:w-auto"
+                    >
+                      <svg
+                        enableBackground="new 0 0 15 15"
+                        viewBox="0 0 15 15"
+                        x={0}
+                        y={0}
+                        className="mr-[10px] h-5 w-5 fill-current stroke-primary text-primary"
+                      >
+                        <g>
+                          <g>
+                            <polyline
+                              fill="none"
+                              points=".5 .5 2.7 .5 5.2 11 12.4 11 14.5 3.5 3.7 3.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeMiterlimit={10}
+                            />
+                            <circle
+                              cx={6}
+                              cy="13.5"
+                              r={1}
+                              stroke="none"
+                            />
+                            <circle
+                              cx="11.5"
+                              cy="13.5"
+                              r={1}
+                              stroke="none"
+                            />
+                          </g>
+                          <line
+                            fill="none"
+                            strokeLinecap="round"
+                            strokeMiterlimit={10}
+                            x1="7.5"
+                            x2="10.5"
+                            y1={7}
+                            y2={7}
+                          />
+                          <line
+                            fill="none"
+                            strokeLinecap="round"
+                            strokeMiterlimit={10}
+                            x1={9}
+                            x2={9}
+                            y1="8.5"
+                            y2="5.5"
+                          />
+                        </g>
+                      </svg>
+                      {t("Thêm vào giỏ hàng")}
+                    </button>
+                    <button
+                      onClick={handleBuyNow}
+                      className="mt-5 flex h-12 w-full min-w-[5rem] items-center justify-center rounded-sm bg-primary px-5 capitalize text-white shadow-sm outline-none hover:bg-primary/90 sm:mt-0 sm:w-auto"
+                    >
+                      {t("Mua ngay")}
+                    </button>
+                  </>
+                )}
                 <button
                   onClick={handleToggleWishlist}
                   className="mt-5 flex h-12 w-full min-w-[5rem] items-center justify-center gap-2 rounded-sm border border-gray-300 px-5 capitalize text-gray-600 shadow-sm outline-none hover:bg-gray-50 sm:mt-0 sm:w-auto"

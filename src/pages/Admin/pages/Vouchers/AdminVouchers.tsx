@@ -99,17 +99,17 @@ export default function AdminVouchers() {
             <div>
               <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-gray-500">Mã code *</label>
               <input required placeholder="VD: SALE50" value={form.code} onChange={e => setForm(f => ({...f, code: e.target.value}))}
-                className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-2.5 text-sm font-mono uppercase outline-none focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/10" />
+                className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-2.5 text-sm font-mono uppercase outline-none focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/10 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:bg-gray-600" />
             </div>
             <div className="sm:col-span-2 lg:col-span-2">
               <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-gray-500">Tên / Mô tả *</label>
               <input required placeholder="VD: Giảm 50% cho đơn từ 200k" value={form.title} onChange={e => setForm(f => ({...f, title: e.target.value}))}
-                className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-2.5 text-sm outline-none focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/10" />
+                className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-2.5 text-sm outline-none focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/10 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:bg-gray-600" />
             </div>
             <div>
               <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-gray-500">Loại giảm *</label>
               <select value={form.discount_type} onChange={e => setForm(f => ({...f, discount_type: e.target.value as any}))}
-                className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-2.5 text-sm outline-none focus:border-primary focus:bg-white">
+                className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-2.5 text-sm outline-none focus:border-primary focus:bg-white dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:focus:bg-gray-600">
                 <option value="percent">Theo % (phần trăm)</option>
                 <option value="fixed">Theo số tiền cố định (₫)</option>
               </select>
@@ -119,29 +119,29 @@ export default function AdminVouchers() {
                 Giá trị giảm * {form.discount_type === "percent" ? "(%)" : "(₫)"}
               </label>
               <input required type="number" min="1" placeholder={form.discount_type === "percent" ? "Nhập % (1-100)" : "Nhập số tiền"} value={form.discount_value} onChange={e => setForm(f => ({...f, discount_value: e.target.value}))}
-                className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-2.5 text-sm outline-none focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/10" />
+                className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-2.5 text-sm outline-none focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/10 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:bg-gray-600" />
             </div>
             <div>
               <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-gray-500">Đơn tối thiểu (₫)</label>
               <input type="number" min="0" placeholder="0 = không giới hạn" value={form.min_order_value} onChange={e => setForm(f => ({...f, min_order_value: e.target.value}))}
-                className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-2.5 text-sm outline-none focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/10" />
+                className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-2.5 text-sm outline-none focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/10 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:bg-gray-600" />
             </div>
             {form.discount_type === "percent" && (
               <div>
                 <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-gray-500">Giảm tối đa (₫)</label>
                 <input type="number" min="0" placeholder="Để trống = không giới hạn" value={form.max_discount_amount} onChange={e => setForm(f => ({...f, max_discount_amount: e.target.value}))}
-                  className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-2.5 text-sm outline-none focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/10" />
+                  className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-2.5 text-sm outline-none focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/10 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:bg-gray-600" />
               </div>
             )}
             <div>
               <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-gray-500">Số lượt dùng *</label>
               <input required type="number" min="1" value={form.usage_limit} onChange={e => setForm(f => ({...f, usage_limit: e.target.value}))}
-                className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-2.5 text-sm outline-none focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/10" />
+                className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-2.5 text-sm outline-none focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/10 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:focus:bg-gray-600" />
             </div>
             <div>
               <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-gray-500">Hết hạn lúc *</label>
               <input required type="datetime-local" value={form.expires_at} onChange={e => setForm(f => ({...f, expires_at: e.target.value}))}
-                className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-2.5 text-sm outline-none focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/10" />
+                className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-2.5 text-sm outline-none focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/10 dark:[color-scheme:dark] dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:focus:bg-gray-600" />
             </div>
             <div className="flex items-end gap-3 sm:col-span-2 lg:col-span-3">
               <button type="submit" disabled={createMutation.isLoading}

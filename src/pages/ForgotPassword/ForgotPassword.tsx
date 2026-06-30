@@ -16,13 +16,11 @@ export default function ForgotPassword() {
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
   const [newPassword, setNewPassword] = useState("");
-  const [devOtp, setDevOtp] = useState<string | null>(null);
 
   const forgotMutation = useMutation({
     mutationFn: () => authApi.forgotPassword({ email }),
     onSuccess: (res) => {
       toast.success(res.data.message);
-      setDevOtp(res.data?.data?.devOtp || null);
       setStep(2);
     },
     onError: (e: any) => toast.error(e?.response?.data?.message || "Có lỗi xảy ra"),
@@ -78,11 +76,6 @@ export default function ForgotPassword() {
               className="mt-6"
               noValidate
             >
-              {devOtp && (
-                <div className="mb-3 rounded bg-yellow-50 px-3 py-2 text-sm text-yellow-700">
-                  (Demo) Mã OTP của bạn: <span className="font-bold">{devOtp}</span>
-                </div>
-              )}
               <input
                 type="text"
                 className={inputClass}

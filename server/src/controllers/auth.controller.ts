@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 import User from '../models/User';
 import { signToken, verifyToken } from '../utils/jwt';
+import nodemailer from 'nodemailer';
 
 export const register = async (req: Request, res: Response) => {
   try {
@@ -166,12 +167,46 @@ export const forgotPassword = async (req: Request, res: Response) => {
     user.resetOtpExpires = new Date(Date.now() + 10 * 60 * 1000); // 10 phút
     await user.save();
 
-    // Production: gửi OTP qua email (nodemailer). Demo đồ án: log + trả về để thử nghiệm.
-    console.log(`[Forgot Password] OTP cho ${email}: ${otp}`);
+    // Production: gửi OTP qua email (nodemailer)
+    console.log(`[Forgot Password] Bắt đầu gửi OTP cho ${email}...`);
+
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+      }
+    });
+
+    const mailOptions = {
+      from: '"Shopee Admin" <no-reply@shopeeclone.com>',
+      to: email,
+      subject: 'Mã xác nhận khôi phục mật khẩu - Shopee Clone',
+      html: `
+        <div style="font-family: Arial, sans-serif; padding: 20px; max-width: 600px; margin: 0 auto; border: 1px solid #e5e5e5; border-radius: 8px;">
+          <h2 style="color: #ee4d2d; text-align: center;">Khôi phục mật khẩu</h2>
+          <p>Xin chào,</p>
+          <p>Bạn đã yêu cầu đặt lại mật khẩu cho tài khoản Shopee của mình.</p>
+          <p>Mã xác thực (OTP) của bạn là:</p>
+          <div style="text-align: center; margin: 20px 0;">
+            <span style="font-size: 32px; font-weight: bold; color: #ee4d2d; letter-spacing: 5px; padding: 10px 20px; background: #fff0ed; border-radius: 8px;">${otp}</span>
+          </div>
+          <p>Mã này sẽ hết hạn sau <strong>10 phút</strong>.</p>
+          <p style="color: #666; font-size: 14px; margin-top: 30px;">Nếu bạn không thực hiện yêu cầu này, vui lòng bỏ qua email này để đảm bảo an toàn cho tài khoản.</p>
+        </div>
+      `
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error('Lỗi gửi email:', error);
+      } else {
+        console.log('Email sent: ' + info.response);
+      }
+    });
 
     res.status(200).json({
-      message: 'Mã OTP đã được gửi (demo)',
-      data: { devOtp: otp } // chỉ dùng cho demo; production KHÔNG trả OTP về client
+      message: 'Mã OTP đã được gửi đến email của bạn',
     });
   } catch (error) {
     console.error(error);
