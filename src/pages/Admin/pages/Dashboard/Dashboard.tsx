@@ -2,7 +2,39 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import adminApi from "src/apis/admin.api";
 import { formatCurrency } from "src/utils/formatNumber";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from "recharts";
+
+// Workaround: recharts children types conflict with @types/react 18 — use a separate component
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function RevenueChart({ chartData }: { chartData: any[] }) {
+  return (
+    <ResponsiveContainer width="100%" height="100%">
+      <BarChart data={chartData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E5E7EB" />
+        <XAxis dataKey="date" axisLine={false} tickLine={false} tick={{ fill: "#6B7280", fontSize: 12 }} dy={10} />
+        <YAxis
+          axisLine={false}
+          tickLine={false}
+          tick={{ fill: "#6B7280", fontSize: 12 }}
+          tickFormatter={(value: number) => `₫${formatCurrency(value)}`}
+          width={80}
+        />
+        <Tooltip
+          cursor={{ fill: 'rgba(238, 77, 45, 0.05)' }}
+          contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)' }}
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          formatter={(value: any) => [`₫${formatCurrency(value as number)}`, "Doanh thu"]}
+        />
+        <Bar dataKey="revenue" fill="#ee4d2d" radius={[4, 4, 0, 0]} barSize={30}>
+          {chartData.map((entry: any, index: number) => (
+            <Cell key={`cell-${index}`} fill={entry.revenue > 0 ? "#ee4d2d" : "#fca5a5"} />
+          ))}
+        </Bar>
+      </BarChart>
+    </ResponsiveContainer>
+  );
+}
 
 export default function Dashboard() {
   const { data } = useQuery({
@@ -100,36 +132,7 @@ export default function Dashboard() {
       <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm dark:border-gray-800">
         <h2 className="mb-6 text-lg font-bold text-gray-900 dark:text-gray-100">Biểu đồ doanh thu 7 ngày gần nhất</h2>
         <div className="h-[400px] w-full">
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={stats.chartData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
-              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E5E7EB" />
-              <XAxis dataKey="date" axisLine={false} tickLine={false} tick={{ fill: "#6B7280", fontSize: 12 }} dy={10} />
-              <YAxis 
-                axisLine={false} 
-                tickLine={false} 
-                tick={{ fill: "#6B7280", fontSize: 12 }}
-                tickFormatter={(value) => `₫${formatCurrency(value)}`}
-                width={80}
-              />
-              <Tooltip 
-                cursor={{ fill: 'rgba(238, 77, 45, 0.05)' }}
-                contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)' }}
-                formatter={(value) => [`₫${formatCurrency(value as number)}`, "Doanh thu"]}
-              />
-              <Bar
-                dataKey="revenue"
-                fill="#ee4d2d"
-                radius={[4, 4, 0, 0]}
-                barSize={30}
-              >
-                {
-                  stats.chartData.map((entry: any, index: number) => (
-                    <Cell key={`cell-${index}`} fill={entry.revenue > 0 ? "#ee4d2d" : "#fca5a5"} />
-                  ))
-                }
-              </Bar>
-            </BarChart>
-          </ResponsiveContainer>
+          <RevenueChart chartData={stats.chartData} />
         </div>
       </div>
     </div>
